@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 public class MainBDDmin {
 
     //attention, tu doit créer en 
-    private String URL = "jdbc:mysql://localhost:3306/";
-    String login = "log";
-    String password = "pass";
+    private String URL = "jdbc:mysql://localhost:3306/chatV1";
+    String login = "localhost";
+    String password = "Ohywybo0*";
     Connection connexion = null;
 
     
@@ -44,5 +44,6 @@ System.err.println("test");
     
     public static void main(String[] args) {
         new MainBDDmin();
+        System.out.println("Connexion Success");
     }
 }
