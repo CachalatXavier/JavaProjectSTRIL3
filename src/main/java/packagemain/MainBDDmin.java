@@ -26,9 +26,9 @@ import java.util.logging.Logger;
 public class MainBDDmin {
 
     
-    private String URL = "jdbc:mysql://localhost:3307/javaBDD";
-    String login = "root";  //changé votre login si besoin
-    String password = "";   //changé votre mdp si besoin
+    private String URL = "jdbc:mysql://localhost:8888/javaBDD";
+    String login = "java";  //changé votre login si besoin
+    String password = "java123123";   //changé votre mdp si besoin
     Connection connexion = null;
 
     
