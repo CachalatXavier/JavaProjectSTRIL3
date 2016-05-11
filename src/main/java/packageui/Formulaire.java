@@ -7,7 +7,7 @@ package packageui;
 
 /**
  *
- * @author najim
+ * @author Xavier
  */
 public class Formulaire extends javax.swing.JFrame {
 
