@@ -34,4 +34,9 @@ public class testCoBDD {
         
         return DBConnection;
     }
+    
+        public static void main(String[] args) {
+        Connection testCO = new testCoBDD().connect();
+    }
 }
+
