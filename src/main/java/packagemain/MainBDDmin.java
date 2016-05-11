@@ -14,6 +14,7 @@ package packagemain;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import static java.time.Clock.system;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,7 +39,6 @@ public class MainBDDmin {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connexion = DriverManager.getConnection(URL, login, password);
             //travail avec les données 
-            System.err.println("test");
             /* Ici, nous placerons nos requêtes vers la BDD */
             
             //int i = smt.executeUpdate("insert into … values …") ;
@@ -54,5 +54,6 @@ public class MainBDDmin {
     
     public static void main(String[] args) {
          MainBDDmin maBDDmin = new MainBDDmin();
+         System.out.println("toto");
     }
 }
