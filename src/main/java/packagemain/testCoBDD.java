@@ -23,9 +23,9 @@ public class testCoBDD {
         catch (ClassNotFoundException cnfe){
             System.out.println("Connectio Fail" + cnfe);
         }
-        String url = "jdbc:mysql://localhost:8888/javaBDD";
+        String url = "jdbc:mysql://localhost:8889/javaBDD";
         try {
-            DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
+            DBConnection = (Connection) DriverManager.getConnection(url, "root", "root");
             System.out.println("Database Connected");
         }
         catch (SQLException se){
