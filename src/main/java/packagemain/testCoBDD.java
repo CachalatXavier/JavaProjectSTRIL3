@@ -15,8 +15,10 @@ import java.sql.SQLException;
  */
 public class testCoBDD {
     
-    private Connection DBConnection;
-    public Connection connect() {
+    private static Connection DBConnection;
+    
+    
+    public static  Connection connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         }
@@ -35,8 +37,8 @@ public class testCoBDD {
         return DBConnection;
     }
     
-        public static void main(String[] args) {
+   /*     public static void main(String[] args) {
         Connection testCO = new testCoBDD().connect();
-    }
+    }*/
 }
 
