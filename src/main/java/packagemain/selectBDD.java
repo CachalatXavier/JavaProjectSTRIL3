@@ -19,19 +19,7 @@ public class selectBDD {
     boolean tmp =false;
     Connection connect = testCoBDD.connect();
     Statement smt = connect.createStatement();
-  
-  
-  return tmp;
-    
-    }
-    public selectBDD() throws SQLException {
-
-        Connection connect = testCoBDD.connect();
-        /*faire ici les requêtes ( select )*/
-        
-        Statement smt = connect.createStatement();
-        
-        
+    return tmp;
     }
 
 
