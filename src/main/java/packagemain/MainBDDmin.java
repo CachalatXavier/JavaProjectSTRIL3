@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import static java.time.Clock.system;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.*;
 
 /**
  *
@@ -27,13 +28,19 @@ import java.util.logging.Logger;
 public class MainBDDmin {
 
     
-    public MainBDDmin() {
+    public MainBDDmin() throws SQLException {
 
         Connection connect = testCoBDD.connect();
         /*faire ici les requêtes ( insert )*/
+        
+        Statement smt =  connect.createStatement();
+        // utilisateurs :  idU (auto ) nomU prenomU mailU mdpU droitU presentU
+        int insertu1 = smt.executeUpdate("insert into utilisateurs values('chan','jackie','jackie@chan.com','kunfu','user',0 )");
+        
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        createTableBDD BDD = new createTableBDD();
          MainBDDmin maBDDmin = new MainBDDmin();
          System.out.println("toto");
     }
