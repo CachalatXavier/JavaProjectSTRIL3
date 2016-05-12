@@ -40,7 +40,7 @@ public class MainBDDmin {
     }
     
     public static void main(String[] args) throws SQLException {
-        createTableBDD BDD = new createTableBDD();
+       // createTableBDD BDD = new createTableBDD();
          MainBDDmin maBDDmin = new MainBDDmin();
          System.out.println("toto");
     }
