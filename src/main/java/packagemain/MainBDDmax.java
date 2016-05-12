@@ -22,33 +22,15 @@ import java.util.logging.Logger;
 
 // votre base de données doit avoir le le nom suivant: javaBDD
 public class MainBDDmax {
-
-     
-    private String URL = "jdbc:mysql://localhost:3307/javaBDD";
-    String login = "root";  //changé votre login si besoin
-    String password = "";   //changé votre mdp si besoin
-    Connection connexion = null;
-
     
-    public MainBDDmax() {
+        public MainBDDmax() {
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connexion = DriverManager.getConnection(URL, login, password);
-            //travail avec les données 
-            System.err.println("test");
-            /* Ici, nous placerons nos requêtes vers la BDD */          
-            
-        } catch (SQLException e) {
-            /* Gérer les éventuelles erreurs ici */
-       
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MainBDDmax.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        Connection connect = testCoBDD.connect();
+        /*faire ici les requêtes ( insert )*/
     }
     
     public static void main(String[] args) {
-        MainBDDmax maBDDmax = new MainBDDmax();
+         MainBDDmax maBDDmax = new MainBDDmax();
+         System.out.println("toto");
     }
 }
