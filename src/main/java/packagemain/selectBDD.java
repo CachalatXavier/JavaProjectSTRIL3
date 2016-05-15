@@ -35,6 +35,7 @@ public class selectBDD {
                 if(motDePasse.equals(pass)){
              
                     JOptionPane.showMessageDialog(null,"Connexion réussie ! ","Success",JOptionPane.PLAIN_MESSAGE);
+                    tmp = true;
                 }else {
                      
                     JOptionPane.showMessageDialog(null,"Mot de passe incorrect ! ","Error",1);

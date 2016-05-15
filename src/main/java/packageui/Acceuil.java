@@ -182,6 +182,9 @@ public class Acceuil extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        dispose();
+        Formulaire formulaire = new Formulaire();
+        formulaire.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -194,11 +197,18 @@ public class Acceuil extends javax.swing.JFrame {
         // TODO add your handling code here:
         String mail = jtfMail.getText();
         String pass = jtfPass.getText();
+        boolean exist = false;
         
         try {
-            boolean exist = selectBDD.isuservalid(mail,pass);
+             exist = selectBDD.isuservalid(mail,pass);
         } catch (SQLException ex) {
             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(exist == true)
+        {
+            dispose();
+            Messagerie messagerie = new Messagerie();
+            messagerie.setVisible(true);
         }
         
         
