@@ -5,6 +5,9 @@
  */
 package packageui;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import packagemain.selectBDD;
 
 /**
@@ -192,7 +195,13 @@ public class Acceuil extends javax.swing.JFrame {
         String mail = jtfMail.getText();
         String pass = jtfPass.getText();
         
-        boolean exist = selectBDD.isuservalid(mail,pass);
+        try {
+            boolean exist = selectBDD.isuservalid(mail,pass);
+        } catch (SQLException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jBconnActionPerformed
 
     private void jtfPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPassActionPerformed
