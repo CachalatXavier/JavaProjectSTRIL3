@@ -42,6 +42,14 @@ public class MainBDDmin {
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
                 + "VALUES ('2', 'LOUIS-STANISLAS', 'Cyril', 'cyril.ls@upssi.fr', 'cyril', 'ADMIN', '1');");
         
+        int insert_admin3 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+                + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
+                + "VALUES ('3', 'LESAICHOT', 'Francois', 'francois.l@upssi.fr', 'francois', 'ADMIN', '0');");
+        
+        int insert_admin4 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+                + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
+                + "VALUES ('4', 'ELOUARIACHI', 'Najim', 'najim.e@upssi.fr', 'najim', 'ADMIN', '0');");
+        
         System.out.println("Admins ajoutés");
     }
     
