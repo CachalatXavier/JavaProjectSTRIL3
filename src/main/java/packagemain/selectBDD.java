@@ -6,8 +6,10 @@
 package packagemain;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,8 +19,37 @@ public class selectBDD {
 
     public static boolean isuservalid(String mail, String pass) throws SQLException {
     boolean tmp =false;
+    createTableBDD creation = new createTableBDD();
+    MainBDDmin maBDDmin = new MainBDDmin();
+    
     Connection connect = testCoBDD.connect();
     Statement smt = connect.createStatement();
+    try{
+                String sql = "SELECT mdpU FROM utilisateurs WHERE mailU ='"+mail+"'";
+                ResultSet resultat = smt.executeQuery(sql);
+                 
+                if(resultat.next()){
+                     
+                    String motDePasse = resultat.getString(1);
+         
+                if(motDePasse.equals(pass)){
+             
+                    JOptionPane.showMessageDialog(null,"Connexion réussie ! ","Success",JOptionPane.PLAIN_MESSAGE);
+                }else {
+                     
+                    JOptionPane.showMessageDialog(null,"Mot de passe incorrect ! ","Error",1);
+                }
+                }else {
+                     
+                    JOptionPane.showMessageDialog(null,"Login incorrect ! ","Error",1);
+                }
+ 
+                   
+         
+            }catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+            }
     return tmp;
     }
 

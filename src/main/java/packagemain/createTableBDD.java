@@ -21,6 +21,8 @@ public class createTableBDD {
         Statement smt = connect.createStatement();
         
     /*Création des différentes tables*/
+        int initialisation = smt.executeUpdate("DROP TABLE IF EXISTS `javabdd`.`utilisateurs`");
+        
         int tab_user = smt.executeUpdate("CREATE TABLE `javabdd`.`utilisateurs` "
                 + "( `idU` INT NOT NULL AUTO_INCREMENT , "
                 + "`nomU` VARCHAR(100) NOT NULL , "
@@ -32,7 +34,7 @@ public class createTableBDD {
                 + "PRIMARY KEY (`idU`))"
                 + " ENGINE = InnoDB;");
         
-        int tab_salon = smt.executeUpdate("CREATE TABLE `javabdd`.`salon` "
+        /*int tab_salon = smt.executeUpdate("CREATE TABLE `javabdd`.`salon` "
                 + "( `idS` INT NOT NULL AUTO_INCREMENT , "
                 + "`description` TEXT NOT NULL , "
                 + "`listUser` TEXT NOT NULL , "
@@ -59,7 +61,9 @@ public class createTableBDD {
                 + "( `idU` INT NOT NULL , "
                 + "`idS` INT NOT NULL , "
                 + "PRIMARY KEY (`idS`)) "
-                + "ENGINE = InnoDB;");
+                + "ENGINE = InnoDB;");*/
+        
+        System.out.println("Table créée");
         
     }
 }

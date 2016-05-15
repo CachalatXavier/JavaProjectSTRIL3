@@ -21,17 +21,18 @@ public class testCoBDD {
     public static  Connection connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Connexion Success !");
         }
         catch (ClassNotFoundException cnfe){
-            System.out.println("Connectio Fail" + cnfe);
+            System.out.println("Connexion Fail..." + cnfe);
         }
-        String url = "jdbc:mysql://localhost:8889/javaBDD";
+        String url = "jdbc:mysql://localhost:3307/javabdd?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         try {
-            DBConnection = (Connection) DriverManager.getConnection(url, "root", "root");
-            System.out.println("Database Connected");
+            DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
+            System.out.println("Database Connected !");
         }
         catch (SQLException se){
-            System.out.println("No database" + se);
+            System.out.println("No database : " + se);
         }
         
         return DBConnection;
