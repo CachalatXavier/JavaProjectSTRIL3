@@ -89,6 +89,31 @@ public class selectBDD {
         
         return tmp;
     }
+    
+    public static String checkright(String mail) throws SQLException{
+        String droit = "";
+        
+        Connection connect = testCoBDD.connect();
+        Statement smt = connect.createStatement();
+        try{
+                String sql = "SELECT droitU FROM utilisateurs WHERE mailU ='"+mail+"'";
+                ResultSet resultat = smt.executeQuery(sql);
+                 
+                if(resultat.next()){
+                    droit = resultat.getString(1);
+                    
+                }else {
+                     
+                    System.out.println("Problème lors de la récupération des droits");
+                }
+ 
+            }catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+            }
+        
+        return droit;
+    }
 
 
 public static void main(String[] args) throws SQLException {

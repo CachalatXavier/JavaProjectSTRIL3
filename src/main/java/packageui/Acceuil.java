@@ -8,6 +8,9 @@ package packageui;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import packageapi.Admin;
+import packageapi.Chef_Projet;
+import packageapi.Utilisateurs;
 import packagemain.MainBDDmin;
 import packagemain.createTableBDD;
 import packagemain.selectBDD;
@@ -191,6 +194,9 @@ public class Acceuil extends javax.swing.JFrame {
         // TODO add your handling code here:
         String mail = jtfMail.getText();
         String pass = jtfPass.getText();
+        String nom =  "";
+        String prenom = "";
+        String droit = "";
         boolean exist = false;
         
         try {
@@ -201,9 +207,82 @@ public class Acceuil extends javax.swing.JFrame {
         if(exist == true)
         {
             dispose();
-            Salon salon = new Salon();
-            salon.setVisible(true);
+            Fenetre_principale MainWindow = new Fenetre_principale();
+            MainWindow.setVisible(true);
         }
+        
+        try {
+            droit = selectBDD.checkright(mail);
+        } catch (SQLException ex) {
+            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(droit.equals("USER")){
+            Utilisateurs U1 = new Utilisateurs(mail);
+            try {
+                nom = U1.getNom();
+            } catch (SQLException ex) {
+                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+            try {
+                prenom = U1.getPrenom();
+            } catch (SQLException ex) {
+                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+            try {
+                U1.setPresence(nom, prenom);
+            } catch (SQLException ex) {
+                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            if(droit.equals("CHEF_PROJET")){
+                Chef_Projet CP1 = new Chef_Projet(mail);
+                try {
+                    nom = CP1.getNom();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+                try {
+                    prenom = CP1.getPrenom();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+                try {
+                    CP1.setPresence(nom, prenom);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else {
+                if(droit.equals("ADMIN")){
+                    Admin A1 = new Admin(mail);
+                    try {
+                        nom = A1.getNom();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    try {
+                        prenom = A1.getPrenom();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    try {
+                        A1.setPresence(nom, prenom);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        
+        }
+       
         
         
     }//GEN-LAST:event_jBconnActionPerformed
@@ -268,4 +347,8 @@ public class Acceuil extends javax.swing.JFrame {
     private javax.swing.JTextField jtfMail;
     private javax.swing.JTextField jtfPass;
     // End of variables declaration//GEN-END:variables
+
+    private void elseif(boolean equals) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -40,7 +40,7 @@ public class MainBDDmin {
         
         int insert_admin2 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
-                + "VALUES ('2', 'LOUIS-STANISLAS', 'Cyril', 'cyril.ls@upssi.fr', 'cyril', 'ADMIN', '1');");
+                + "VALUES ('2', 'LOUIS-STANISLAS', 'Cyril', 'cyril.ls@upssi.fr', 'cyril', 'ADMIN', '0');");
         
         int insert_admin3 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
@@ -49,6 +49,25 @@ public class MainBDDmin {
         int insert_admin4 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
                 + "VALUES ('4', 'ELOUARIACHI', 'Najim', 'najim.e@upssi.fr', 'najim', 'ADMIN', '0');");
+        
+        int insert_admin5 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+                + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `salonMaster`, `presentU`) "
+                + "VALUES ('5', 'BETA1', 'User1', 'user1.b1@upssi.fr', 'user1', 'Informatique', 'CHEF_PROJET', 'Informatique', '0');");
+        
+        int insert_admin6 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+                + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
+                + "VALUES ('6', 'BETA2', 'User2', 'user2.b2@upssi.fr', 'user2', 'Informatique', 'USER', '0');");
+        
+        int insert_admin7 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+                + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
+                + "VALUES ('7', 'BETA3', 'User3', 'user3.b3@upssi.fr', 'user3', 'Informatique', 'USER', '0');");
+        
+        int insert_admin8 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+                + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
+                + "VALUES ('8', 'BETA4', 'User4', 'user4.b4@upssi.fr', 'user4', 'RH', 'USER', '0');");
+        
+   
+        
         
         System.out.println("Admins ajoutés");
     }

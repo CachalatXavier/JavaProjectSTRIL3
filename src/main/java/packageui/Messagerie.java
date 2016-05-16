@@ -61,7 +61,7 @@ public class Messagerie extends javax.swing.JFrame {
         jButton1.setText("Valider");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Repertoir");
+        jLabel1.setText("Repertoire");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);

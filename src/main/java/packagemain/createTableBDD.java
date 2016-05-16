@@ -29,7 +29,9 @@ public class createTableBDD {
                 + "`prenomU` VARCHAR(100) NOT NULL , "
                 + "`mailU` VARCHAR(100) NOT NULL , "
                 + "`mdpU` VARCHAR(100) NOT NULL , "
+                + "`serviceU` VARCHAR(100) NULL , "
                 + "`droitU` VARCHAR(100) NOT NULL , "
+                + "`salonMaster` VARCHAR(100) NULL, "
                 + "`presentU` BOOLEAN NOT NULL , "
                 + "PRIMARY KEY (`idU`))"
                 + " ENGINE = InnoDB;");
