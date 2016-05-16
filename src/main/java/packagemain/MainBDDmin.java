@@ -65,8 +65,8 @@ public class MainBDDmin {
         int insert_admin8 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
                 + "VALUES ('8', 'BETA4', 'User4', 'user4.b4@upssi.fr', 'user4', 'RH', 'USER', '0');");
+
         
-   
         
         
         System.out.println("Admins ajoutés");

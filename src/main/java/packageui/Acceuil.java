@@ -209,82 +209,78 @@ public class Acceuil extends javax.swing.JFrame {
             dispose();
             Fenetre_principale MainWindow = new Fenetre_principale();
             MainWindow.setVisible(true);
-        }
-        
-        try {
-            droit = selectBDD.checkright(mail);
-        } catch (SQLException ex) {
-            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if(droit.equals("USER")){
-            Utilisateurs U1 = new Utilisateurs(mail);
+            
             try {
-                nom = U1.getNom();
+                droit = selectBDD.checkright(mail);
             } catch (SQLException ex) {
                 Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-            try {
-                prenom = U1.getPrenom();
-            } catch (SQLException ex) {
-                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-            try {
-                U1.setPresence(nom, prenom);
-            } catch (SQLException ex) {
-                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else{
-            if(droit.equals("CHEF_PROJET")){
-                Chef_Projet CP1 = new Chef_Projet(mail);
+            if(droit.equals("USER")){
+                Utilisateurs CurrentU = new Utilisateurs(mail);
                 try {
-                    nom = CP1.getNom();
+                    nom = CurrentU.getNom();
                 } catch (SQLException ex) {
                     Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                 }
         
                 try {
-                    prenom = CP1.getPrenom();
+                    prenom = CurrentU.getPrenom();
                 } catch (SQLException ex) {
                     Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                 }
         
                 try {
-                    CP1.setPresence(nom, prenom);
+                    CurrentU.setPresence(nom, prenom);
                 } catch (SQLException ex) {
                     Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            else {
-                if(droit.equals("ADMIN")){
-                    Admin A1 = new Admin(mail);
+            else{
+                if(droit.equals("CHEF_PROJET")){
+                    Chef_Projet CurentCP = new Chef_Projet(mail);
                     try {
-                        nom = A1.getNom();
+                        nom = CurentCP.getNom();
                     } catch (SQLException ex) {
                         Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                     }
+        
+                    try {
+                        prenom = CurentCP.getPrenom();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        
+                    try {
+                        CurentCP.setPresence(nom, prenom);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else {
+                    if(droit.equals("ADMIN")){
+                        Admin CurrentA = new Admin(mail);
+                        try {
+                            nom = CurrentA.getNom();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     
-                    try {
-                        prenom = A1.getPrenom();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                        try {
+                            prenom = CurrentA.getPrenom();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     
-                    try {
-                        A1.setPresence(nom, prenom);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                        try {
+                            CurrentA.setPresence(nom, prenom);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }
-        
-        }
-       
-        
-        
+        }    
     }//GEN-LAST:event_jBconnActionPerformed
 
     private void jtfPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPassActionPerformed
