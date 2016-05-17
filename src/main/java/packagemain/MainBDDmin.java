@@ -50,26 +50,36 @@ public class MainBDDmin {
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
                 + "VALUES ('4', 'ELOUARIACHI', 'Najim', 'najim.e@upssi.fr', 'najim', 'ADMIN', '0');");
         
-        int insert_admin5 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+        System.out.println("Admins ajoutés");
+        
+        int insert_chef_projet = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `salonMaster`, `presentU`) "
                 + "VALUES ('5', 'BETA1', 'User1', 'user1.b1@upssi.fr', 'user1', 'Informatique', 'CHEF_PROJET', 'Informatique', '0');");
         
-        int insert_admin6 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+        System.out.println("Chef de projet ajoutés");
+        
+        int insert_user1 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
                 + "VALUES ('6', 'BETA2', 'User2', 'user2.b2@upssi.fr', 'user2', 'Informatique', 'USER', '0');");
         
-        int insert_admin7 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+        int insert_user2 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
                 + "VALUES ('7', 'BETA3', 'User3', 'user3.b3@upssi.fr', 'user3', 'Informatique', 'USER', '0');");
         
-        int insert_admin8 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
+        int insert_user3 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
                 + "VALUES ('8', 'BETA4', 'User4', 'user4.b4@upssi.fr', 'user4', 'RH', 'USER', '0');");
 
+        System.out.println("Users ajoutés");
+        
+        int salon_global = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
+                + "(`idS`, `description`) "
+                + "VALUES ('1', 'Salon gobal');");
+        
+         System.out.println("Salon global créé");
         
         
         
-        System.out.println("Admins ajoutés");
     }
     
     public static void main(String[] args) throws SQLException {

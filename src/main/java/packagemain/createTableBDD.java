@@ -36,15 +36,17 @@ public class createTableBDD {
                 + "PRIMARY KEY (`idU`))"
                 + " ENGINE = InnoDB;");
         
-        /*int tab_salon = smt.executeUpdate("CREATE TABLE `javabdd`.`salon` "
+        int initialisation2 = smt.executeUpdate("DROP TABLE IF EXISTS `javabdd`.`salon`");
+        
+        int tab_salon = smt.executeUpdate("CREATE TABLE `javabdd`.`salon` "
                 + "( `idS` INT NOT NULL AUTO_INCREMENT , "
                 + "`description` TEXT NOT NULL , "
-                + "`listUser` TEXT NOT NULL , "
-                + "`listMessage` TEXT NOT NULL , "
+                + "`listUser` TEXT NULL , "
+                + "`listMessage` TEXT NULL , "
                 + "PRIMARY KEY (`idS`)) "
                 + "ENGINE = InnoDB;");
         
-        int tab_message = smt.executeUpdate("CREATE TABLE `javabdd`.`message` "
+        /*int tab_message = smt.executeUpdate("CREATE TABLE `javabdd`.`message` "
                 + "( `idM` int( 11 ) NOT NULL , "
                 + "`contenuM` text NOT NULL , "
                 + "`dateM` date NOT NULL , "
