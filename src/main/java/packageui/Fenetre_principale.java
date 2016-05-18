@@ -5,6 +5,8 @@
  */
 package packageui;
 
+import packageapi.Salon;
+
 /**
  *
  * @author Francois
@@ -208,7 +210,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Salon().setVisible(true);
+                //new Salon().setVisible(true);
             }
         });
     }
