@@ -20,7 +20,7 @@ import packagemain.selectBDD;
  * @author Xavier
  */
 public class Acceuil extends javax.swing.JFrame {
-
+    Utilisateurs User = new Utilisateurs ("teste@upssi.fr");
     /**
      * Creates new form Acceuil
      */
@@ -234,7 +234,7 @@ public class Acceuil extends javax.swing.JFrame {
                 }
         
                 try {
-                    CurrentU.setPresence(nom, prenom);
+                    CurrentU.setPresence(nom, prenom,1);
                 } catch (SQLException ex) {
                     Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -255,7 +255,7 @@ public class Acceuil extends javax.swing.JFrame {
                     }
         
                     try {
-                        CurentCP.setPresence(nom, prenom);
+                        CurentCP.setPresence(nom, prenom,1);
                     } catch (SQLException ex) {
                         Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -276,7 +276,7 @@ public class Acceuil extends javax.swing.JFrame {
                         }
                     
                         try {
-                            CurrentA.setPresence(nom, prenom);
+                            CurrentA.setPresence(nom, prenom ,1);
                         } catch (SQLException ex) {
                             Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                         }
