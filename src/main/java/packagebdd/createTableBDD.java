@@ -47,13 +47,16 @@ public class createTableBDD {
                 + "PRIMARY KEY (`idS`)) "
                 + "ENGINE = InnoDB;");
         
+        int initialisation3 = smt.executeUpdate("DROP TABLE IF EXISTS `javabdd`.`message`");
+        
         int tab_message = smt.executeUpdate("CREATE TABLE `javabdd`.`message` "
-                + "( `idM` int( 11 ) NOT NULL , "
+                + "( `idM` INT NOT NULL AUTO_INCREMENT , "
                 + "`contenuM` text NOT NULL , "
                 + "`dateM` date NOT NULL , "
                 + "`emetteurM` varchar( 100 ) NOT NULL , "
-                + "`destinataireM` varchar( 100 ) NOT NULL ) "
-                + "ENGINE = InnoDB DEFAULT CHARSET = latin1");
+                + "`destinataireM` varchar( 100 ) NOT NULL , "
+                + "PRIMARY KEY (`idM`)) "
+                + "ENGINE = InnoDB DEFAULT CHARSET = latin1;");
         
         /*
         int tab_fairePartie = smt.executeUpdate("CREATE TABLE `javabdd`.`fairePartie` "

@@ -22,7 +22,10 @@ import packagebdd.selectBDD;
  * @author Xavier
  */
 public class Accueil extends javax.swing.JFrame {
-    Utilisateur User = new Utilisateur ("teste@upssi.fr");
+    static Utilisateur CurrentU = new Utilisateur("");
+    static Chef_Projet CurrentCP = new Chef_Projet("");
+    static Admin CurrentA = new Admin("");
+    static int user = 0;
     /**
      * Creates new form Acceuil
      */
@@ -206,6 +209,7 @@ public class Accueil extends javax.swing.JFrame {
         Salon SalonGlobal;
         SalonGlobal = new Salon();
         
+       
         try {
              exist = selectBDD.isuservalid(mail,pass);
         } catch (SQLException ex) {
@@ -223,81 +227,101 @@ public class Accueil extends javax.swing.JFrame {
                 Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+            
             if(droit.equals("USER")){
-                Utilisateur CurrentU = new Utilisateur(mail);
-                CurrentU.setMail(mail);
-                try {
-                    nom = CurrentU.getNom();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
-                try {
-                    prenom = CurrentU.getPrenom();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
-                try {
-                    CurrentU.setPresence(nom, prenom);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                SalonGlobal.adduser(CurrentU);
+                CurrentU = recupUser(mail);
+                user = 3;
             }
             else{
                 if(droit.equals("CHEF_PROJET")){
-                    Chef_Projet CurrentCP = new Chef_Projet(mail);
-                    CurrentCP.setMail(mail);
-                    try {
-                        nom = CurrentCP.getNom();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        
-                    try {
-                        prenom = CurrentCP.getPrenom();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        
-                    try {
-
-                        CurrentCP.setPresence(nom, prenom);
-
-                        CurrentCP.setPresence(nom, prenom);
-
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    CurrentCP = recupChefProjet(mail);
+                    user = 2;
                 }
                 else {
                     if(droit.equals("ADMIN")){
-                        Admin CurrentA = new Admin(mail);
-                        CurrentA.setMail(mail);
                         try {
-                            nom = CurrentA.getNom();
+                            CurrentA = recupAdmin(mail);
                         } catch (SQLException ex) {
                             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    
-                        try {
-                            prenom = CurrentA.getPrenom();
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    
-                        try {
-                            CurrentA.setPresence(nom, prenom);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        user = 1;
                     }
                 }
             }
         }    
     }//GEN-LAST:event_connexionActionPerformed
 
+    /**
+     *
+     * @param mail
+     * @return
+     */
+   public Admin recupAdmin(String mail) throws SQLException{
+        String nom = "";
+        String prenom = "";
+
+        CurrentA.setMail(mail);
+        nom = CurrentA.getNom();
+        prenom = CurrentA.getPrenom();
+        CurrentA.setPresence(nom, prenom);
+      
+                //SalonGlobal.adduser(CurrentU);
+        return CurrentA;
+    }
+    
+   public Chef_Projet recupChefProjet(String mail){
+       String nom = "";
+       String prenom = "";
+
+       CurrentCP.setMail(mail);
+       try {
+           nom = CurrentCP.getNom();
+        } catch (SQLException ex) {
+           Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            prenom = CurrentCP.getPrenom();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            CurrentCP.setPresence(nom, prenom);
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                //SalonGlobal.adduser(CurrentU);
+        return CurrentCP;
+    }
+   
+   public Utilisateur recupUser(String mail){
+       String nom = "";
+       String prenom = "";
+       
+       CurrentU.setMail(mail);
+       try {
+           nom = CurrentU.getNom();
+        } catch (SQLException ex) {
+           Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            prenom = CurrentU.getPrenom();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            CurrentU.setPresence(nom, prenom);
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                //SalonGlobal.adduser(CurrentU);
+        return CurrentU;
+    }
+    
+   
     private void motDePasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motDePasseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_motDePasseActionPerformed
@@ -347,7 +371,7 @@ public class Accueil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton connexion;
+    public javax.swing.JButton connexion;
     private javax.swing.JButton inscription;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
