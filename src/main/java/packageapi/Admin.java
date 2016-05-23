@@ -8,13 +8,13 @@ package packageapi;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import packagemain.testCoBDD;
+import packagebdd.coBDD;
 
 /**
  *
  * @author Cyril
  */
-public class Admin extends Utilisateurs{
+public class Admin extends Utilisateur{
     
     public Admin(String mail) {
         super(mail);
@@ -22,7 +22,7 @@ public class Admin extends Utilisateurs{
     
     @Override
      public void setPresence(String nom, String prenom , int presence) throws SQLException {
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         /*faire ici les requêtes ( insert )*/
@@ -40,7 +40,7 @@ public class Admin extends Utilisateurs{
      
     @Override
      public void Deconnexion(String nom, String prenom) throws SQLException{
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         /*faire ici les requêtes ( insert )*/

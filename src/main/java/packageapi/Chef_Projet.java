@@ -8,20 +8,20 @@ package packageapi;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import packagemain.testCoBDD;
+import packagebdd.coBDD;
 
 /**
  *
  * @author Cyril
  */
-public class Chef_Projet extends Utilisateurs{
+public class Chef_Projet extends Utilisateur{
     
     public Chef_Projet(String mail) {
         super(mail);
     }
     
      public void setPresence(String nom, String prenom ,int presence ) throws SQLException {
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         if (presence == 1 ){
@@ -39,7 +39,7 @@ public class Chef_Projet extends Utilisateurs{
      
     @Override
      public void Deconnexion(String nom, String prenom) throws SQLException{
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         /*faire ici les requêtes ( insert )*/

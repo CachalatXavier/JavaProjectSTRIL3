@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package packagemain;
+package packagebdd;
 
 /**
  *
  * @author Francois
  */
-public class decoBDD {
+public class suppBDD {
     
 }

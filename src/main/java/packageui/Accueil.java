@@ -12,21 +12,21 @@ import static javafx.scene.input.KeyCode.U;
 import packageapi.Admin;
 import packageapi.Chef_Projet;
 import packageapi.Salon;
-import packageapi.Utilisateurs;
-import packagemain.MainBDDmin;
-import packagemain.createTableBDD;
-import packagemain.selectBDD;
+import packageapi.Utilisateur;
+import packagebdd.MainBDDmin;
+import packagebdd.createTableBDD;
+import packagebdd.selectBDD;
 
 /**
  *
  * @author Xavier
  */
-public class Acceuil extends javax.swing.JFrame {
-    Utilisateurs User = new Utilisateurs ("teste@upssi.fr");
+public class Accueil extends javax.swing.JFrame {
+    Utilisateur User = new Utilisateur ("teste@upssi.fr");
     /**
      * Creates new form Acceuil
      */
-    public Acceuil() {
+    public Accueil() {
         initComponents();
     }
 
@@ -209,7 +209,7 @@ public class Acceuil extends javax.swing.JFrame {
         try {
              exist = selectBDD.isuservalid(mail,pass);
         } catch (SQLException ex) {
-            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(exist == true)
         {
@@ -220,28 +220,28 @@ public class Acceuil extends javax.swing.JFrame {
             try {
                 droit = selectBDD.checkright(mail);
             } catch (SQLException ex) {
-                Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             if(droit.equals("USER")){
-                Utilisateurs CurrentU = new Utilisateurs(mail);
+                Utilisateur CurrentU = new Utilisateur(mail);
                 CurrentU.setMail(mail);
                 try {
                     nom = CurrentU.getNom();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                 }
         
                 try {
                     prenom = CurrentU.getPrenom();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                 }
         
                 try {
                     CurrentU.setPresence(nom, prenom,1);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 SalonGlobal.adduser(CurrentU);
             }
@@ -252,13 +252,13 @@ public class Acceuil extends javax.swing.JFrame {
                     try {
                         nom = CurrentCP.getNom();
                     } catch (SQLException ex) {
-                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                     }
         
                     try {
                         prenom = CurrentCP.getPrenom();
                     } catch (SQLException ex) {
-                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                     }
         
                     try {
@@ -268,7 +268,7 @@ public class Acceuil extends javax.swing.JFrame {
                         CurentCP.setPresence(nom, prenom,1);
 
                     } catch (SQLException ex) {
-                        Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 else {
@@ -278,19 +278,19 @@ public class Acceuil extends javax.swing.JFrame {
                         try {
                             nom = CurrentA.getNom();
                         } catch (SQLException ex) {
-                            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     
                         try {
                             prenom = CurrentA.getPrenom();
                         } catch (SQLException ex) {
-                            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     
                         try {
                             CurrentA.setPresence(nom, prenom ,1);
                         } catch (SQLException ex) {
-                            Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }
@@ -323,14 +323,15 @@ public class Acceuil extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Acceuil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accueil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Acceuil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accueil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Acceuil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accueil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Acceuil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accueil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         /*Initialisation*/
@@ -340,7 +341,7 @@ public class Acceuil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Acceuil().setVisible(true);
+                new Accueil().setVisible(true);
             }
         });
     }

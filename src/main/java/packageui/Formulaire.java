@@ -8,7 +8,7 @@ package packageui;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import packagemain.selectBDD;
+import packagebdd.selectBDD;
 
 /**
  *
@@ -267,7 +267,7 @@ public class Formulaire extends javax.swing.JFrame {
             {
                 jLVerifMail.setText("OK");
                 dispose();
-                Acceuil accueil = new Acceuil();
+                Accueil accueil = new Accueil();
                 accueil.setVisible(true);
             }
         }
@@ -285,7 +285,7 @@ public class Formulaire extends javax.swing.JFrame {
     private void retourFormulaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourFormulaireActionPerformed
         // TODO add your handling code here:
         dispose();
-        Acceuil accueil = new Acceuil();
+        Accueil accueil = new Accueil();
         accueil.setVisible(true);
     }//GEN-LAST:event_retourFormulaireActionPerformed
 

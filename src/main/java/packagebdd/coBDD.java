@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package packagemain;
+package packagebdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author Francois
  */
-public class testCoBDD {
+public class coBDD {
     
     private static Connection DBConnection;
     
@@ -43,7 +43,7 @@ public class testCoBDD {
     }
     
    /*     public static void main(String[] args) {
-        Connection testCO = new testCoBDD().connect();
+        Connection testCO = new coBDD().connect();
     }*/
 }
 

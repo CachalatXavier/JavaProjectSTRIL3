@@ -9,8 +9,9 @@
 
 //doc : http://blog.paumard.org/cours/jdbc/chap02-apercu-exemple.html
 
-package packagemain;
+package packagebdd;
 
+import packagebdd.coBDD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class MainBDDmin {
     
     public MainBDDmin() throws SQLException {
 
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         /*faire ici les requêtes ( insert )*/
         int insert_admin1 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "

@@ -7,8 +7,9 @@
 
 //ce main permet de remplir la bdd au niveau le plus FORT
 
-package packagemain;
+package packagebdd;
 
+import packagebdd.coBDD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ public class MainBDDmax {
     
         public MainBDDmax() {
 
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         /*faire ici les requêtes ( insert )*/
         
         

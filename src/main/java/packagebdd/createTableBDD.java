@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package packagemain;
+package packagebdd;
 
+import packagebdd.coBDD;
 import java.sql.*;
 
 
@@ -15,7 +16,7 @@ import java.sql.*;
 public class createTableBDD {
     
     public createTableBDD () throws SQLException {
-    Connection connect = testCoBDD.connect();
+    Connection connect = coBDD.connect();
     
     /* Création de l'objet gérant les requêtes */
         Statement smt = connect.createStatement();

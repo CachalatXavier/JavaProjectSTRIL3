@@ -10,20 +10,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import packagemain.testCoBDD;
+import packagebdd.coBDD;
 
 /**
  *
  * @author Cyril
  */
-public class Utilisateurs {
+public class Utilisateur {
     private String nom;
     private String prenom;
     String mail;
     private String Service;
     private String droit;
 
-    public Utilisateurs(String mail) {
+    public Utilisateur(String mail) {
         this.mail = mail;
     }
 
@@ -33,7 +33,7 @@ public class Utilisateurs {
      * @throws java.sql.SQLException
      */
     public String getNom() throws SQLException {
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         try {
@@ -67,7 +67,7 @@ public class Utilisateurs {
      * @throws java.sql.SQLException
      */
     public String getPrenom() throws SQLException {
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         try {
@@ -141,7 +141,7 @@ public class Utilisateurs {
     }
     
     public void setPresence(String nom, String prenom , int presence) throws SQLException {
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         /*faire ici les requêtes ( insert )*/
@@ -161,7 +161,7 @@ public class Utilisateurs {
     }
     
     public void Deconnexion(String nom, String prenom) throws SQLException{
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         /*faire ici les requêtes ( insert )*/

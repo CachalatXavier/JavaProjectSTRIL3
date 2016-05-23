@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import packageapi.Salon;
-import packageapi.Utilisateurs;
+import packageapi.Utilisateur;
 
 /**
  *
@@ -197,14 +197,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         String nom = CurrentU.getNom();
         dispose();
         setPresence(nom  , prenom , 0 );
         
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -248,7 +248,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JList<Utilisateurs> jLUser;
+    private javax.swing.JList<Utilisateur> jLUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

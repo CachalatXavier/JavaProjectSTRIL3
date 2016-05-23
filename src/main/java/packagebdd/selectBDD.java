@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package packagemain;
+package packagebdd;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,7 +22,7 @@ public class selectBDD {
     /*createTableBDD creation = new createTableBDD();
     MainBDDmin maBDDmin = new MainBDDmin();*/
     
-    Connection connect = testCoBDD.connect();
+    Connection connect = coBDD.connect();
     Statement smt = connect.createStatement();
     try{
                 String sql = "SELECT mdpU FROM utilisateurs WHERE mailU ='"+mail+"'";
@@ -60,7 +60,7 @@ public class selectBDD {
         /*createTableBDD creation = new createTableBDD();
          MainBDDmin maBDDmin = new MainBDDmin();*/
     
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         try {
@@ -93,7 +93,7 @@ public class selectBDD {
     public static String checkright(String mail) throws SQLException{
         String droit = "";
         
-        Connection connect = testCoBDD.connect();
+        Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         try{
                 String sql = "SELECT droitU FROM utilisateurs WHERE mailU ='"+mail+"'";
