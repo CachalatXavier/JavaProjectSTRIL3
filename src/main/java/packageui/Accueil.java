@@ -335,8 +335,8 @@ public class Accueil extends javax.swing.JFrame {
         //</editor-fold>
         
         /*Initialisation*/
-        createTableBDD creation = new createTableBDD();
-        MainBDDmin maBDDmin = new MainBDDmin();
+        /*createTableBDD creation = new createTableBDD();
+        MainBDDmin maBDDmin = new MainBDDmin();*/
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
