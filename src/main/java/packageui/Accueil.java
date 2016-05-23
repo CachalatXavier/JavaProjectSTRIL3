@@ -42,7 +42,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        mail = new javax.swing.JTextField();
+        mailAccueil = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         connexion = new javax.swing.JButton();
@@ -63,9 +63,9 @@ public class Accueil extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Login");
 
-        mail.addActionListener(new java.awt.event.ActionListener() {
+        mailAccueil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mailActionPerformed(evt);
+                mailAccueilActionPerformed(evt);
             }
         });
 
@@ -143,7 +143,7 @@ public class Accueil extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(mailAccueil, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(connexion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,7 +167,7 @@ public class Accueil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mailAccueil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -197,7 +197,7 @@ public class Accueil extends javax.swing.JFrame {
 
     private void connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionActionPerformed
         // TODO add your handling code here:
-        String mail = mail.getText();
+        String mail = mailAccueil.getText();
         String pass = motDePasse.getText();
         String nom =  "";
         String prenom = "";
@@ -239,7 +239,7 @@ public class Accueil extends javax.swing.JFrame {
                 }
         
                 try {
-                    CurrentU.setPresence(nom, prenom,1);
+                    CurrentU.setPresence(nom, prenom);
                 } catch (SQLException ex) {
                     Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -265,7 +265,7 @@ public class Accueil extends javax.swing.JFrame {
 
                         CurrentCP.setPresence(nom, prenom);
 
-                        CurentCP.setPresence(nom, prenom,1);
+                        CurrentCP.setPresence(nom, prenom);
 
                     } catch (SQLException ex) {
                         Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
@@ -288,7 +288,7 @@ public class Accueil extends javax.swing.JFrame {
                         }
                     
                         try {
-                            CurrentA.setPresence(nom, prenom ,1);
+                            CurrentA.setPresence(nom, prenom);
                         } catch (SQLException ex) {
                             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -302,9 +302,9 @@ public class Accueil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_motDePasseActionPerformed
 
-    private void mailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailActionPerformed
+    private void mailAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailAccueilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mailActionPerformed
+    }//GEN-LAST:event_mailAccueilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,7 +355,7 @@ public class Accueil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField mail;
+    private javax.swing.JTextField mailAccueil;
     private javax.swing.JTextField motDePasse;
     private javax.swing.JButton quitter;
     // End of variables declaration//GEN-END:variables

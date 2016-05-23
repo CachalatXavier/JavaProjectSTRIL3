@@ -58,7 +58,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel4" min="-2" pref="87" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="mail" min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="mailAccueil" min="-2" pref="124" max="-2" attributes="0"/>
                           </Group>
                           <Component id="connexion" alignment="1" min="-2" pref="124" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
@@ -90,7 +90,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="mail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mailAccueil" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -132,9 +132,9 @@
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="mail">
+    <Component class="javax.swing.JTextField" name="mailAccueil">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mailActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mailAccueilActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

@@ -56,7 +56,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         sendSalonSend = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
-        jButton2 = new javax.swing.JButton();
+        decoButtonSalon = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -68,11 +68,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         sendSalontexte.setRows(5);
         jScrollPane1.setViewportView(sendSalontexte);
 
-        listeUtilisateurSalon.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        listeUtilisateurSalon.setModel(SalonGlobal);
         jScrollPane2.setViewportView(listeUtilisateurSalon);
 
         listSalon.setModel(new javax.swing.AbstractListModel<String>() {
@@ -91,10 +87,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(jList3);
 
-        jButton2.setText("Deconnexion");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        decoButtonSalon.setText("Deconnexion");
+        decoButtonSalon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                decoButtonSalonActionPerformed(evt);
             }
         });
 
@@ -112,7 +108,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(sendSalonSend, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(decoButtonSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -150,7 +146,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
+                            .addComponent(decoButtonSalon)
                             .addComponent(jLabel4))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -161,7 +157,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(decoButtonSalon))
                 .addGap(18, 18, 18)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rechercheSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,20 +192,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-        String nom = CurrentU.getNom();
-        dispose();
-        setPresence(nom  , prenom , 0 );
-        
-        
-    }                                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void decoButtonSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoButtonSalonActionPerformed
         // TODO add your handling code here:
-         
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_decoButtonSalonActionPerformed
+    
+                                        
 
     /**
      * @param args the command line arguments
@@ -247,8 +236,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JList<Utilisateur> jLUser;
+    private javax.swing.JButton decoButtonSalon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -262,7 +250,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JList<String> listSalon;
-    private javax.swing.JList<String> listeUtilisateurSalon;
+    private javax.swing.JList<packageapi.Utilisateur> listeUtilisateurSalon;
     private javax.swing.JTextField rechercheSalon;
     private javax.swing.JButton sendSalonSend;
     private javax.swing.JTextArea sendSalontexte;

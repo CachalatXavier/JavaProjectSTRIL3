@@ -140,24 +140,16 @@ public class Utilisateur {
         this.droit = droit;
     }
     
-    public void setPresence(String nom, String prenom , int presence) throws SQLException {
+    public void setPresence(String nom, String prenom) throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
         /*faire ici les requêtes ( insert )*/
-        if (presence == 1 ){
-            int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+      
+        int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 1 WHERE mailU ='"+mail+"'");
-            System.out.println("L'utilisateur " + nom + " " + prenom + " est entré(e) dans le chat");
-        }
-        if (presence == 0 ){
-            int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
-                + "SET presentU = 0 WHERE mailU ='"+mail+"'");
-            System.out.println("l'utilisateur" + nom +" "+ prenom +"est deconnecter" );
-        }
-        
-        
         System.out.println("L'utilisateur " + nom + " " + prenom + " est entré(e) dans le chat");
+      
     }
     
     public void Deconnexion(String nom, String prenom) throws SQLException{
@@ -168,7 +160,7 @@ public class Utilisateur {
         int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 0 WHERE mailU ='"+mail+"'");
         
-        System.out.println("L'utilisateur " + nom + " " + prenom + " a quitté le le chat");
+        System.out.println("L'utilisateur " + nom + " " + prenom + " a quitté le chat");
         
     }
     

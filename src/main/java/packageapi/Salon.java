@@ -40,11 +40,4 @@ public class Salon extends AbstractListModel<Utilisateur>{
 }
 
 
-/**
- *
- * @author Francois
- */
-public class Salon {
-   
-}
 
