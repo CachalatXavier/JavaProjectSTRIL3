@@ -40,14 +40,14 @@ public class Acceuil extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jtfMail = new javax.swing.JTextField();
+        mail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jBconn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        connexion = new javax.swing.JButton();
+        inscription = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jtfPass = new javax.swing.JTextField();
+        quitter = new javax.swing.JButton();
+        motDePasse = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,9 +61,9 @@ public class Acceuil extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Login");
 
-        jtfMail.addActionListener(new java.awt.event.ActionListener() {
+        mail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfMailActionPerformed(evt);
+                mailActionPerformed(evt);
             }
         });
 
@@ -73,19 +73,19 @@ public class Acceuil extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Password");
 
-        jBconn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jBconn.setText("Connexion");
-        jBconn.addActionListener(new java.awt.event.ActionListener() {
+        connexion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        connexion.setText("Connexion");
+        connexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBconnActionPerformed(evt);
+                connexionActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("S'inscrire");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        inscription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inscription.setText("S'inscrire");
+        inscription.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                inscriptionActionPerformed(evt);
             }
         });
 
@@ -93,18 +93,18 @@ public class Acceuil extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Accueil ");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setText("Quitter");
-        jButton3.setActionCommand("Quittez");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        quitter.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        quitter.setText("Quitter");
+        quitter.setActionCommand("Quittez");
+        quitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                quitterActionPerformed(evt);
             }
         });
 
-        jtfPass.addActionListener(new java.awt.event.ActionListener() {
+        motDePasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfPassActionPerformed(evt);
+                motDePasseActionPerformed(evt);
             }
         });
 
@@ -128,25 +128,25 @@ public class Acceuil extends javax.swing.JFrame {
                 .addGap(197, 197, 197))
             .addGroup(layout.createSequentialGroup()
                 .addGap(127, 127, 127)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inscription, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(quitter)
                         .addGap(83, 83, 83))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jtfMail, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jBconn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(connexion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(21, 21, 21)
-                                .addComponent(jtfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(motDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(155, 155, 155))))
         );
         layout.setVerticalGroup(
@@ -161,42 +161,42 @@ public class Acceuil extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(inscription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jtfMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jtfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(motDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
-                .addComponent(jBconn)
+                .addComponent(connexion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(quitter)
                 .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void inscriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inscriptionActionPerformed
         // TODO add your handling code here:
         dispose();
         Formulaire formulaire = new Formulaire();
         formulaire.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_inscriptionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitterActionPerformed
         // TODO add your handling code here:
         System.exit(0);
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_quitterActionPerformed
 
-    private void jBconnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBconnActionPerformed
+    private void connexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connexionActionPerformed
         // TODO add your handling code here:
-        String mail = jtfMail.getText();
-        String pass = jtfPass.getText();
+        String mail = mail.getText();
+        String pass = motDePasse.getText();
         String nom =  "";
         String prenom = "";
         String droit = "";
@@ -284,15 +284,15 @@ public class Acceuil extends javax.swing.JFrame {
                 }
             }
         }    
-    }//GEN-LAST:event_jBconnActionPerformed
+    }//GEN-LAST:event_connexionActionPerformed
 
-    private void jtfPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPassActionPerformed
+    private void motDePasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motDePasseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfPassActionPerformed
+    }//GEN-LAST:event_motDePasseActionPerformed
 
-    private void jtfMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMailActionPerformed
+    private void mailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfMailActionPerformed
+    }//GEN-LAST:event_mailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,17 +334,17 @@ public class Acceuil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBconn;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton connexion;
+    private javax.swing.JButton inscription;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jtfMail;
-    private javax.swing.JTextField jtfPass;
+    private javax.swing.JTextField mail;
+    private javax.swing.JTextField motDePasse;
+    private javax.swing.JButton quitter;
     // End of variables declaration//GEN-END:variables
 
     private void elseif(boolean equals) {
