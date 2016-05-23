@@ -21,7 +21,6 @@ public class Utilisateurs {
     private String prenom;
     String mail;
     private String Service;
-    private int presence;
     private String droit;
 
     public Utilisateurs(String mail) {
@@ -125,19 +124,7 @@ public class Utilisateurs {
         this.Service = Service;
     }
 
-    /**
-     * @return the presence
-     */
-    public int getPresence() {
-        return presence;
-    }
-
-    /**
-     * @param presence the presence to set
-     */
-    public void setPresence(int presence) {
-        this.presence = presence;
-    }
+   
 
     /**
      * @return the droit
@@ -171,6 +158,18 @@ public class Utilisateurs {
         
         
         System.out.println("L'utilisateur " + nom + " " + prenom + " est entré(e) dans le chat");
+    }
+    
+    public void Deconnexion(String nom, String prenom) throws SQLException{
+        Connection connect = testCoBDD.connect();
+        Statement smt = connect.createStatement();
+        
+        /*faire ici les requêtes ( insert )*/
+        int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+                + "SET presentU = 0 WHERE mailU ='"+mail+"'");
+        
+        System.out.println("L'utilisateur " + nom + " " + prenom + " a quitté le le chat");
+        
     }
     
     

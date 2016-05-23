@@ -8,8 +8,10 @@ package packageui;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.scene.input.KeyCode.U;
 import packageapi.Admin;
 import packageapi.Chef_Projet;
+import packageapi.Salon;
 import packageapi.Utilisateurs;
 import packagemain.MainBDDmin;
 import packagemain.createTableBDD;
@@ -201,6 +203,8 @@ public class Acceuil extends javax.swing.JFrame {
         String prenom = "";
         String droit = "";
         boolean exist = false;
+        Salon SalonGlobal;
+        SalonGlobal = new Salon();
         
         try {
              exist = selectBDD.isuservalid(mail,pass);
@@ -218,9 +222,10 @@ public class Acceuil extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+            
             if(droit.equals("USER")){
                 Utilisateurs CurrentU = new Utilisateurs(mail);
+                CurrentU.setMail(mail);
                 try {
                     nom = CurrentU.getNom();
                 } catch (SQLException ex) {
@@ -238,24 +243,30 @@ public class Acceuil extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                SalonGlobal.adduser(CurrentU);
             }
             else{
                 if(droit.equals("CHEF_PROJET")){
-                    Chef_Projet CurentCP = new Chef_Projet(mail);
+                    Chef_Projet CurrentCP = new Chef_Projet(mail);
+                    CurrentCP.setMail(mail);
                     try {
-                        nom = CurentCP.getNom();
+                        nom = CurrentCP.getNom();
                     } catch (SQLException ex) {
                         Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                     }
         
                     try {
-                        prenom = CurentCP.getPrenom();
+                        prenom = CurrentCP.getPrenom();
                     } catch (SQLException ex) {
                         Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                     }
         
                     try {
+
+                        CurrentCP.setPresence(nom, prenom);
+
                         CurentCP.setPresence(nom, prenom,1);
+
                     } catch (SQLException ex) {
                         Logger.getLogger(Acceuil.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -263,6 +274,7 @@ public class Acceuil extends javax.swing.JFrame {
                 else {
                     if(droit.equals("ADMIN")){
                         Admin CurrentA = new Admin(mail);
+                        CurrentA.setMail(mail);
                         try {
                             nom = CurrentA.getNom();
                         } catch (SQLException ex) {
