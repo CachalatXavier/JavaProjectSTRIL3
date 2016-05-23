@@ -38,21 +38,21 @@ public class Formulaire extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTFFirstName = new javax.swing.JTextField();
+        firstNameFormulaire = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTFName = new javax.swing.JTextField();
+        nameFormulaire = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTFMail = new javax.swing.JTextField();
+        mailFormulaire = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jBValider = new javax.swing.JButton();
+        validerFormulaire = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jBRetour = new javax.swing.JButton();
-        jTFPass = new javax.swing.JTextField();
-        jTFConfPass = new javax.swing.JTextField();
+        serviceFormulaire = new javax.swing.JComboBox<>();
+        salonFavorisFormulaire = new javax.swing.JComboBox<>();
+        retourFormulaire = new javax.swing.JButton();
+        pwdFormulaire = new javax.swing.JTextField();
+        pwdConfirmFormulaire = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLConfPass = new javax.swing.JLabel();
         jLVerifMail = new javax.swing.JLabel();
@@ -66,7 +66,6 @@ public class Formulaire extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("First name: ");
@@ -77,9 +76,9 @@ public class Formulaire extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Name: ");
 
-        jTFName.addActionListener(new java.awt.event.ActionListener() {
+        nameFormulaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNameActionPerformed(evt);
+                nameFormulaireActionPerformed(evt);
             }
         });
 
@@ -92,11 +91,11 @@ public class Formulaire extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Confirm Password: ");
 
-        jBValider.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jBValider.setText("Valider");
-        jBValider.addActionListener(new java.awt.event.ActionListener() {
+        validerFormulaire.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        validerFormulaire.setText("Valider");
+        validerFormulaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBValiderActionPerformed(evt);
+                validerFormulaireActionPerformed(evt);
             }
         });
 
@@ -106,32 +105,32 @@ public class Formulaire extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Services ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Informatique", "R&D", "Comptabilite", "RH" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        serviceFormulaire.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Informatique", "R&D", "Comptabilite", "RH" }));
+        serviceFormulaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                serviceFormulaireActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAQ", "Projets en cours", "Bonnasses de la boite" }));
-        jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        salonFavorisFormulaire.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FAQ", "Projets en cours", "Bonnasses de la boite" }));
+        salonFavorisFormulaire.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        salonFavorisFormulaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                salonFavorisFormulaireActionPerformed(evt);
             }
         });
 
-        jBRetour.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jBRetour.setText("Retour");
-        jBRetour.addActionListener(new java.awt.event.ActionListener() {
+        retourFormulaire.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        retourFormulaire.setText("Retour");
+        retourFormulaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBRetourActionPerformed(evt);
+                retourFormulaireActionPerformed(evt);
             }
         });
 
-        jTFPass.addActionListener(new java.awt.event.ActionListener() {
+        pwdFormulaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFPassActionPerformed(evt);
+                pwdFormulaireActionPerformed(evt);
             }
         });
 
@@ -146,12 +145,12 @@ public class Formulaire extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBValider, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(validerFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTFFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(firstNameFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
@@ -162,12 +161,12 @@ public class Formulaire extends javax.swing.JFrame {
                                 .addComponent(jLabel8))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTFName)
-                                .addComponent(jTFMail)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTFPass)
-                                .addComponent(jTFConfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(nameFormulaire)
+                                .addComponent(mailFormulaire)
+                                .addComponent(serviceFormulaire, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(salonFavorisFormulaire, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pwdFormulaire)
+                                .addComponent(pwdConfirmFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLVerifMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,7 +180,7 @@ public class Formulaire extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(retourFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
         );
         layout.setVerticalGroup(
@@ -194,14 +193,14 @@ public class Formulaire extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTFFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(firstNameFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mailFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLVerifMail))
                 .addGap(18, 18, 18)
@@ -210,41 +209,41 @@ public class Formulaire extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTFPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pwdFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTFConfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pwdConfirmFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLConfPass))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(salonFavorisFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(serviceFormulaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(jBValider)
+                .addComponent(validerFormulaire)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBRetour)
+                .addComponent(retourFormulaire)
                 .addGap(53, 53, 53))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNameActionPerformed
+    private void nameFormulaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFormulaireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNameActionPerformed
+    }//GEN-LAST:event_nameFormulaireActionPerformed
 
-    private void jBValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBValiderActionPerformed
+    private void validerFormulaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerFormulaireActionPerformed
         // TODO add your handling code here:
-        String firstName = jTFFirstName.getText();
-        String name = jTFName.getText();
-        String mail = jTFMail.getText();
-        String pass = jTFPass.getText();
-        String confPass = jTFConfPass.getText();
+        String firstName = firstNameFormulaire.getText();
+        String name = nameFormulaire.getText();
+        String mail = mailFormulaire.getText();
+        String pass = pwdFormulaire.getText();
+        String confPass = pwdConfirmFormulaire.getText();
         boolean exist = false;
         
         if(!pass.equals(confPass))
@@ -273,26 +272,26 @@ public class Formulaire extends javax.swing.JFrame {
             }
         }
         
-    }//GEN-LAST:event_jBValiderActionPerformed
+    }//GEN-LAST:event_validerFormulaireActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void serviceFormulaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceFormulaireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_serviceFormulaireActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void salonFavorisFormulaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonFavorisFormulaireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_salonFavorisFormulaireActionPerformed
 
-    private void jBRetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetourActionPerformed
+    private void retourFormulaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retourFormulaireActionPerformed
         // TODO add your handling code here:
         dispose();
         Acceuil accueil = new Acceuil();
         accueil.setVisible(true);
-    }//GEN-LAST:event_jBRetourActionPerformed
+    }//GEN-LAST:event_retourFormulaireActionPerformed
 
-    private void jTFPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPassActionPerformed
+    private void pwdFormulaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdFormulaireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFPassActionPerformed
+    }//GEN-LAST:event_pwdFormulaireActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,10 +330,7 @@ public class Formulaire extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBRetour;
-    private javax.swing.JButton jBValider;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JTextField firstNameFormulaire;
     private javax.swing.JLabel jLConfPass;
     private javax.swing.JLabel jLVerifMail;
     private javax.swing.JLabel jLabel1;
@@ -347,13 +343,16 @@ public class Formulaire extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JTextField jTFConfPass;
-    private javax.swing.JTextField jTFFirstName;
-    private javax.swing.JTextField jTFMail;
-    private javax.swing.JTextField jTFName;
-    private javax.swing.JTextField jTFPass;
+    private javax.swing.JTextField mailFormulaire;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.MenuBar menuBar1;
+    private javax.swing.JTextField nameFormulaire;
+    private javax.swing.JTextField pwdConfirmFormulaire;
+    private javax.swing.JTextField pwdFormulaire;
+    private javax.swing.JButton retourFormulaire;
+    private javax.swing.JComboBox<String> salonFavorisFormulaire;
+    private javax.swing.JComboBox<String> serviceFormulaire;
+    private javax.swing.JButton validerFormulaire;
     // End of variables declaration//GEN-END:variables
 }
