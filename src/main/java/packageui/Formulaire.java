@@ -8,7 +8,7 @@ package packageui;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import packagebdd.selectBDD;
+import packagebdd.insertBDD;
 
 /**
  *
@@ -254,7 +254,7 @@ public class Formulaire extends javax.swing.JFrame {
             jLConfPass.setText("OK");
         
             try {
-                exist = selectBDD.adduser(firstName, name, mail, pass);
+                exist = insertBDD.adduser(firstName, name, mail, pass);
             } catch (SQLException ex) {
                 Logger.getLogger(Formulaire.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -322,10 +322,8 @@ public class Formulaire extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Formulaire().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Formulaire().setVisible(true);
         });
     }
 

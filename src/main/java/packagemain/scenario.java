@@ -6,6 +6,10 @@ import packageapi.Utilisateur;
 import packagebdd.MainBDDmin;
 import packagebdd.createTableBDD;
 import packageui.Accueil;
+import packageapi.Messages;
+import packageapi.Utilisateur;
+import packagebdd.insertBDD;
+import static packagebdd.insertBDD.addmsg;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

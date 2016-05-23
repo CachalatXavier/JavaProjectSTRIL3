@@ -27,6 +27,15 @@ public class Utilisateur {
         this.mail = mail;
     }
 
+    public Utilisateur(String nom, String prenom, String mail, String Service, String droit) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.Service = Service;
+        this.droit = droit;
+    }
+
+    
     
     /**
      * @return the nom

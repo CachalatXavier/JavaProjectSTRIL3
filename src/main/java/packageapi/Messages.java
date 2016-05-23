@@ -5,7 +5,7 @@
  */
 package packageapi;
 
-import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,43 +13,47 @@ import java.sql.Date;
  */
 public class Messages {
     
-    private String contenu;
-    private Utilisateur dest;
-    private Utilisateur sender;
-    private Date date;
-    private int id;
+    //attributs
     
-    public Messages(int id, String contenu, Utilisateur send , Utilisateur dest, Date date) {
-        this.id = id;
+    private String contenu; // contenu du message
+    private String dest; // en destinataire on doit retrouver un nom d'utilisateur ou un nom de salon
+    private String sender; //nom de l'utilisateur connecté
+    private String date; // date courante
+    
+    //constructeur
+    
+    public Messages(String contenu, String date, Utilisateur send , Utilisateur dest) throws SQLException {
         this.contenu = contenu;
-        this.sender = send;
-        this.dest = dest;
         this.date = date;
+        this.sender = send.getNom();
+        this.dest = dest.getNom();
     }
+    
+    
+    
+    //getters et tostring
 
     public String getContenu() {
         return contenu;
     }
 
-    public Utilisateur getDest() {
+    public String getDest() {
         return dest;
     }
 
-    public Utilisateur getSender() {
+    public String getSender() {
         return sender;
     }
 
-    public Date getDate() {
+   
+    public String getDate() {
         return date;
     }
 
-    public int getId() {
-        return id;
-    }
     
      @Override
     public String toString() {
-        return "Message{" + "contenu=" + contenu + ", destinataire=" + dest + ", envoyé par=" + sender + ", date=" + date + ", id=" + id + '}';
+        return "Message{" + "contenu=" + contenu + ", destinataire=" + dest + ", envoyé par=" + sender + ", date=" + date + '}';
     }
 
         
