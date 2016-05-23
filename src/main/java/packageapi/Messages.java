@@ -13,11 +13,15 @@ import java.sql.Date;
  */
 public class Messages {
     
-    private String contenu;
-    private Utilisateur dest;
-    private Utilisateur sender;
-    private Date date;
-    private int id;
+    //attributs
+    
+    private String contenu; // contenu du message
+    private Utilisateur dest; // en destinataire on doit retrouver un nom d'utilisateur ou un nom de salon
+    private Utilisateur sender; //nom de l'utilisateur connecté
+    private Date date; // date courante
+    private int id; // id unique du message
+    
+    //constructeur
     
     public Messages(int id, String contenu, Utilisateur send , Utilisateur dest, Date date) {
         this.id = id;
@@ -26,6 +30,10 @@ public class Messages {
         this.dest = dest;
         this.date = date;
     }
+    
+    
+    
+    //getters et tostring
 
     public String getContenu() {
         return contenu;
