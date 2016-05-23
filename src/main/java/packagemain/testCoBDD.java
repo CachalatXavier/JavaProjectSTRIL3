@@ -26,7 +26,11 @@ public class testCoBDD {
         catch (ClassNotFoundException cnfe){
             System.out.println("Connexion Fail..." + cnfe);
         }
-        String url = "jdbc:mysql://localhost:3307/javabdd?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/javabdd?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        //François: 8889 javaBDD root root
+        //Xavier: 3306 javabdd root
+        //Cyril: 3307 javabdd root
+        
         try {
             DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
             System.out.println("Database Connected !");

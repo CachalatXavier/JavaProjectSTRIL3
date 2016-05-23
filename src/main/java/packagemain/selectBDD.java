@@ -117,8 +117,8 @@ public class selectBDD {
 
 
 public static void main(String[] args) throws SQLException {
-         selectBDD select = new selectBDD();
-         System.out.println("titi");
+         //selectBDD select = new selectBDD();
+         //System.out.println("titi");
          
         
         

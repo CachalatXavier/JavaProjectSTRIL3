@@ -140,13 +140,22 @@ public class Utilisateurs {
         this.droit = droit;
     }
     
-    public void setPresence(String nom, String prenom) throws SQLException {
+    public void setPresence(String nom, String prenom , int presence) throws SQLException {
         Connection connect = testCoBDD.connect();
         Statement smt = connect.createStatement();
         
         /*faire ici les requêtes ( insert )*/
-        int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+        if (presence == 1 ){
+            int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 1 WHERE mailU ='"+mail+"'");
+            System.out.println("L'utilisateur " + nom + " " + prenom + " est entré(e) dans le chat");
+        }
+        if (presence == 0 ){
+            int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+                + "SET presentU = 0 WHERE mailU ='"+mail+"'");
+            System.out.println("l'utilisateur" + nom +" "+ prenom +"est deconnecter" );
+        }
+        
         
         System.out.println("L'utilisateur " + nom + " " + prenom + " est entré(e) dans le chat");
     }

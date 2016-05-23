@@ -192,6 +192,15 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String nom = CurrentU.getNom();
+        dispose();
+        setPresence(nom  , prenom , 0 );
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
