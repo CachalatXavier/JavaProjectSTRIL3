@@ -55,7 +55,7 @@ public class insertBDD {
         return tmp;
     }
     
-    // à tester
+    
      public static void addmsg(Messages msg) throws SQLException
     {
         Connection connect = coBDD.connect();

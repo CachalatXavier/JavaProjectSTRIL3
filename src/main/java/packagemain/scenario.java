@@ -25,14 +25,17 @@ public class scenario {
     public static void main(String args[]) throws SQLException {
         createTableBDD creation = new createTableBDD();
         MainBDDmin maBDDmin = new MainBDDmin();
-        java.util.Date testD = new java.util.Date(); 
+        String testD = "2012-09-01"; 
 
         Utilisateur u1 = new Utilisateur("CACHALAT", "Xavier", "xavier.c@upssi.fr",  "ADMIN", "0");
         Utilisateur u2 = new Utilisateur("Lesaichot", "Francois", "francois.c@upssi.fr",  "ADMIN", "0");
         
+        System.out.println("blo");
         
-        Messages monmsg = new Messages("cont", (Date) testD,u1,u2);
+        Messages monmsg = new Messages("contenfqzefzqu", testD,u1,u2);
         addmsg(monmsg);
+        
+        System.out.println("blA");
     }
     
 }

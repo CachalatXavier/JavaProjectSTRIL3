@@ -5,7 +5,6 @@
  */
 package packageapi;
 
-import java.sql.Date;
 import java.sql.SQLException;
 
 /**
@@ -19,11 +18,11 @@ public class Messages {
     private String contenu; // contenu du message
     private String dest; // en destinataire on doit retrouver un nom d'utilisateur ou un nom de salon
     private String sender; //nom de l'utilisateur connecté
-    private Date date; // date courante
+    private String date; // date courante
     
     //constructeur
     
-    public Messages(String contenu, Date date, Utilisateur send , Utilisateur dest) throws SQLException {
+    public Messages(String contenu, String date, Utilisateur send , Utilisateur dest) throws SQLException {
         this.contenu = contenu;
         this.date = date;
         this.sender = send.getNom();
@@ -47,7 +46,7 @@ public class Messages {
     }
 
    
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
