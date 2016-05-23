@@ -31,6 +31,19 @@ public class Chef_Projet extends Utilisateurs{
         
         System.out.println("Le chef de projet " + nom + " " + prenom + " est entré(e) dans le chat");
     }
+     
+    @Override
+     public void Deconnexion(String nom, String prenom) throws SQLException{
+        Connection connect = testCoBDD.connect();
+        Statement smt = connect.createStatement();
+        
+        /*faire ici les requêtes ( insert )*/
+        int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+                + "SET presentU = 0 WHERE mailU ='"+mail+"'");
+        
+        System.out.println("Le chef de projet " + nom + " " + prenom + " a quitté le le chat");
+        
+    }
     
     public void addUser(String mail, String service, String nomSalon){
         

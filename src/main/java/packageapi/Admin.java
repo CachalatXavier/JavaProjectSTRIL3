@@ -31,5 +31,18 @@ public class Admin extends Utilisateurs{
         
         System.out.println("L'admin " + nom + " " + prenom + " est entré(e) dans le chat");
     }
+     
+    @Override
+     public void Deconnexion(String nom, String prenom) throws SQLException{
+        Connection connect = testCoBDD.connect();
+        Statement smt = connect.createStatement();
+        
+        /*faire ici les requêtes ( insert )*/
+        int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+                + "SET presentU = 0 WHERE mailU ='"+mail+"'");
+        
+        System.out.println("L'admin " + nom + " " + prenom + " a quitté le le chat");
+        
+    }
     
 }

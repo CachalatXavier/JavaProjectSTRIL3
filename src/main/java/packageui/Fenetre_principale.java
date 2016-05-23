@@ -5,6 +5,17 @@
  */
 package packageui;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+import packageapi.Salon;
+import packageapi.Utilisateurs;
+
 /**
  *
  * @author Francois
@@ -14,9 +25,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
     /**
      * Creates new form Salon
      */
+    
+    Salon SalonGlobal = new Salon();
+    
     public Fenetre_principale() {
         initComponents();
-            }
+    }
             
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,11 +68,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLUser.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jLUser.setModel(SalonGlobal);
         jScrollPane2.setViewportView(jLUser);
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
@@ -78,6 +88,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jList3);
 
         jButton2.setText("Deconnexion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Liste des salons");
@@ -128,7 +143,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(65, 65, 65)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
@@ -178,6 +193,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,7 +228,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Salon().setVisible(true);
+                //new Salon().setVisible(true);
             }
         });
     }
@@ -216,7 +236,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JList<String> jLUser;
+    private javax.swing.JList<Utilisateurs> jLUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
