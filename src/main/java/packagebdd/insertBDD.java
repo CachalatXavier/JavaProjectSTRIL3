@@ -5,12 +5,14 @@
  */
 package packagebdd;
 
+import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import packageapi.Messages;
 import packageapi.Utilisateur;
 
 /**
@@ -54,14 +56,14 @@ public class insertBDD {
     }
     
     // à tester
-     public static void addmsg(int id, String contenu, Utilisateur send , Utilisateur dest, Date date) throws SQLException
+     public static void addmsg(Messages msg) throws SQLException
     {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();            
            
                 int insert_msg = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
-                + "(`idM`, `contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
-                + "VALUES ('"+id+"', '"+contenu+"', '"+send+"', '"+dest+"', '"+date+"');");
+                + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
+                + "VALUES ('"+msg.getContenu()+"', '"+msg.getDate()+"', '"+msg.getSender()+"', '"+msg.getDest()+"');");
     }
     
     
