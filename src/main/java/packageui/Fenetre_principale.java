@@ -6,6 +6,8 @@
 package packageui;
 
 import packageapi.Salon;
+import packageapi.Utilisateurs;
+import packageui.Acceuil ;
 
 /**
  *
@@ -80,6 +82,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jList3);
 
         jButton2.setText("Deconnexion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Liste des salons");
@@ -179,6 +186,15 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String nom = CurrentU.getNom();
+        dispose();
+        setPresence(nom  , prenom , 0 );
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
