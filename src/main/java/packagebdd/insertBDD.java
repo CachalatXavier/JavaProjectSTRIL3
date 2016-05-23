@@ -6,10 +6,12 @@
 package packagebdd;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import packageapi.Utilisateur;
 
 /**
  *
@@ -51,6 +53,16 @@ public class insertBDD {
         return tmp;
     }
     
+    // à tester
+     public static void addmsg(int id, String contenu, Utilisateur send , Utilisateur dest, Date date) throws SQLException
+    {
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();            
+           
+                int insert_msg = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
+                + "(`idM`, `contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
+                + "VALUES ('"+id+"', '"+contenu+"', '"+send+"', '"+dest+"', '"+date+"');");
+    }
     
     
 }

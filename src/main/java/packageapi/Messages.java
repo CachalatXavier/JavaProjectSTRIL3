@@ -23,12 +23,12 @@ public class Messages {
     
     //constructeur
     
-    public Messages(int id, String contenu, Utilisateur send , Utilisateur dest, Date date) {
+    public Messages(int id, String contenu, Date date, Utilisateur send , Utilisateur dest) {
         this.id = id;
         this.contenu = contenu;
+        this.date = date;
         this.sender = send;
         this.dest = dest;
-        this.date = date;
     }
     
     
