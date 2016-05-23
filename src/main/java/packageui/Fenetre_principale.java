@@ -15,6 +15,11 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import packageapi.Salon;
 import packageapi.Utilisateur;
+import packagebdd.selectBDD;
+import static packageui.Accueil.CurrentU;
+import static packageui.Accueil.CurrentCP;
+import static packageui.Accueil.CurrentA;
+import static packageui.Accueil.user;
 
 /**
  *
@@ -27,7 +32,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
      */
     
     Salon SalonGlobal = new Salon();
-    
+   
     public Fenetre_principale() {
         initComponents();
     }
@@ -209,9 +214,84 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
     private void decoButtonSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoButtonSalonActionPerformed
         // TODO add your handling code here:
+       String droit = "";
+       String mail = "";
+       
+       switch(user){
+           case 1 : mail = CurrentA.getMail();break;
+           case 2 : mail = CurrentCP.getMail();break;
+           default : mail = CurrentU.getMail();break;
+           
+       }
+          
+        try {
+            droit = selectBDD.checkright(mail);
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(droit.equals("USER")){
+           try {
+               decoUser(mail);
+           } catch (SQLException ex) {
+               Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+           }
+            
+        }
+        else{
+            if(droit.equals("CHEF_PROJET")){
+                try {
+                    decoChefProjet(mail);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else {
+                if(droit.equals("ADMIN")){
+                    try {
+                        decoAdmin(mail);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+        
+        dispose();
+        Accueil Accueil = new Accueil();
+        Accueil.setVisible(true);
     }//GEN-LAST:event_decoButtonSalonActionPerformed
     
-                                        
+    public void decoUser(String mail) throws SQLException{
+       String nom = "";
+       String prenom = "";
+       
+       nom = CurrentU.getNom();
+       prenom = CurrentU.getPrenom();
+       CurrentU.Deconnexion(nom, prenom);
+       
+    }
+    
+    public void decoChefProjet(String mail) throws SQLException{
+       String nom = "";
+       String prenom = "";
+       
+       nom = CurrentCP.getNom();
+       prenom = CurrentCP.getPrenom();
+       CurrentCP.Deconnexion(nom, prenom);
+       
+    }
+    
+    public void decoAdmin(String mail) throws SQLException{
+       String nom = "";
+       String prenom = "";
+       
+       nom = CurrentA.getNom();
+       prenom = CurrentA.getPrenom();
+       CurrentA.Deconnexion(nom, prenom);
+       
+    }
+  
 
     /**
      * @param args the command line arguments
