@@ -120,7 +120,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(344, 344, 344)
+                        .addGap(347, 347, 347)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -209,7 +209,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
     private void decoButtonSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoButtonSalonActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_decoButtonSalonActionPerformed
     
                                         
