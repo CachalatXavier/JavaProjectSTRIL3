@@ -5,6 +5,7 @@
  */
 package packagebdd;
 
+import java.sql.Array;
 import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
 import java.sql.Connection;
 import java.sql.Date;
@@ -66,5 +67,53 @@ public class insertBDD {
                 + "VALUES ('"+msg.getContenu()+"', '"+msg.getDate()+"', '"+msg.getSender()+"', '"+msg.getDest()+"');");
     }
     
+     public static boolean addUserSalon (String nomChefProjet , String user , int idsalon) throws SQLException{
+          Connection connect = coBDD.connect(); //  a teste 
+         Statement smt = connect.createStatement();
+         boolean tmp = false; 
+         int i=0;
+         boolean acce = true; 
+         try{
+             //requete SQL
+            String sql1 = "SELECT nomU FROM utilisateurs WHERE salonMaster ='"+nomChefProjet+"'";
+            ResultSet resultat1 = smt.executeQuery(sql1);
+            String sql2 = "SELECT nomU FROM utilisateurs WHERE nomU ='"+user+"'";
+            ResultSet resultat2 = smt.executeQuery(sql2);
+            String sql3 = "SELECT listUser FROM salon WHERE idS ='"+idsalon+"'";
+            ResultSet resultat3 = smt.executeQuery(sql3);
+            
+            if (resultat1.next()){  // teste si l'utilisateur est chef de salon
+                if (resultat2.next()){ // teste si l'utilisateur a ajouter existe
+                    while (resultat3.next()) // test si l'utilisateur est deja enregistre dans le salon
+                    {
+                         Array list = resultat3.getArray("ZIPS"); // écupére la liste 
+                         String[] zips = (String[])list.getArray(); // la transforme en un tableau
+                         for (i=0 ; i<zips.length ; i++){   // pour chaque case 
+                             if (zips[i]==user )        // on teste si l'user nest pas dans la liste
+                             {
+                                 JOptionPane.showMessageDialog(null,"l'utilisateur fais deja partie du salon","errreur",JOptionPane.PLAIN_MESSAGE);
+                                 acce = false;
+                             }
+                         }
+                    }
+                    
+                }if (acce== true){
+                    int sql4 = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "   // ajout de l'utilisateur
+                            +"(`'idS' , 'listUser')"
+                            + "VALUES ('"+idsalon+"','"+user+"');");
+            
+                   } else JOptionPane.showMessageDialog(null,"l'utilisateur n'existe pas","errreur",JOptionPane.PLAIN_MESSAGE);
+                
+                
+            }else JOptionPane.showMessageDialog(null,"Vous n'etes pas chef de projet de ce salon","errreur",JOptionPane.PLAIN_MESSAGE);
+                
+            
+         }
+         catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+            }       
+        return tmp;
+     }
     
 }
