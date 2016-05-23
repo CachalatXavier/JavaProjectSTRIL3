@@ -10,6 +10,6 @@ package packageapi;
  *
  * @author Xavier
  */
-public class newClass {
+public class scenario {
     
 }
