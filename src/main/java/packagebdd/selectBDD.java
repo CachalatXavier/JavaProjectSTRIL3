@@ -113,7 +113,7 @@ public class selectBDD {
             ResultSet resultat = smt.executeQuery(sql);
 
             while (resultat.next()) {
-                msg = resultat.getString(0);
+                msg = msg +"&"+ resultat.getString(1);
              //   System.out.prinln("passage");
             }
 

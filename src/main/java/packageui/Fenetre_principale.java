@@ -33,7 +33,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    Salon SalonGlobal = new Salon("SalonGlobal");
+    Salon SalonGlobal = new Salon("Salon Global");
    
     public Fenetre_principale() {
         initComponents();
@@ -637,6 +637,8 @@ try {
             // TODO add your handling code here:
 
             selectBDD.getListSalonUtilisateur(CurrentA);
+            String tampon = selectBDD.getMessageSalon("Salon Global");
+            System.out.println(tampon);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
         }        // TODO add your handling code here:
