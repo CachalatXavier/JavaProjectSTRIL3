@@ -85,11 +85,17 @@ public class selectBDD {
         
         return droit;
     }
+    
+    
+    
 
-public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a fiinir 
+
+public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a finir
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
+        
         ArrayList<String> Resultat= new ArrayList<String>();
+        
         String tmp;
         String Nom = Current.getNom();  
         
@@ -97,7 +103,7 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
             String sql = ("SELECT description,listUser FROM salon" );
             ResultSet res = smt.executeQuery(sql);
            
-            // a finir 
+            // a finir
           
         } catch (SQLException e4) {
              
@@ -106,45 +112,50 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
         
 }
 
-
  //recuperer message
-	public static String getMessageSalon(String salon )throws SQLException
-	{
-    	String msg = "";
-   	 
-    	//connexion base de donnée
-    	Connection connect = coBDD.connect();
-    	Statement smt = connect.createStatement();
-   	 
-    	try
-    	{
-        	String sql = "SELECT contenuM FROM Message WHERE destinataireM ='"+salon+"'";
-        	ResultSet resultat = smt.executeQuery(sql);
-            	 
-            	if(resultat.next()){
-                	msg = resultat.getString(1);
-               	 
-            	}else {
-                	 
-                	System.out.println("Problème lors de la récupération du message");
-            	}
+    public static String getMessageSalon(String salon )throws SQLException
+    {
+        String msg = "";
+       
+        //connexion base de donnée
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+       
+        try
+        {
+            String sql = "SELECT contenuM FROM Message WHERE destinataireM ='"+salon+"'";
+            ResultSet resultat = smt.executeQuery(sql);
+                
+                while(resultat.next())
+                {
+                    msg = msg + resultat.getString(1);
+                   
+                
+                    
+                }
  
-        	}catch (SQLException e4) {
-        	 
-            	System.out.println(e4.getMessage());
-        	}
-   	 
-    	return msg;
-	}
-
+            }catch (SQLException e4) {
+            
+                System.out.println(e4.getMessage());
+            }
+       
+        return msg;
+    }
 
 
 public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();
          //System.out.println("titi");
          
-        
-        
-    }
+           
+ 
+}
+
+
 
 }
+
+
+
+
+

@@ -29,6 +29,7 @@ public class scenario {
         Accueil Accueil = new Accueil();
         new Accueil().setVisible(true);
    
+System.out.println("dsd");
     }
     
 }
