@@ -6,15 +6,12 @@
 package packagebdd;
 
 import java.sql.Array;
-import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import packageapi.Messages;
-import packageapi.Utilisateur;
 
 /**
  *
