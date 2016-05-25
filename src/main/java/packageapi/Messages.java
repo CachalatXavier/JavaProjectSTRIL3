@@ -21,7 +21,7 @@ public class Messages {
     private String date; // date courante
     
     //constructeur
-    
+    //un constructeur pour envoie d'un message à une personne
     public Messages(String contenu, String date, Utilisateur send , Utilisateur dest) throws SQLException {
         this.contenu = contenu;
         this.date = date;
@@ -29,6 +29,7 @@ public class Messages {
         this.dest = dest.getNom();
     }
     
+    //un constructeur pour envoie d'un message à un salon
     public Messages(String contenu, String date, Utilisateur send , Salon dest) throws SQLException {
         this.contenu = contenu;
         this.date = date;
