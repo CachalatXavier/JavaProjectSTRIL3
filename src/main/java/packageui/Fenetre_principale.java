@@ -67,7 +67,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ajoutUtilisateur = new javax.swing.JButton();
         nomUtilisateur = new javax.swing.JTextField();
-        refresh = new javax.swing.JButton();
+        refreshB = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
         rechercheMessagerie = new javax.swing.JTextField();
@@ -154,10 +154,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         nomUtilisateur.setText("Nom de l'utilisateur");
 
-        refresh.setText("jButton1");
-        refresh.addActionListener(new java.awt.event.ActionListener() {
+        refreshB.setText("jButton1");
+        refreshB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshActionPerformed(evt);
+                refreshBActionPerformed(evt);
             }
         });
 
@@ -174,7 +174,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(ajoutUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(nomUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(refresh, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(refreshB, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -189,7 +189,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(refreshB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,7 +247,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(refresh))
+                        .addComponent(refreshB))
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -610,7 +610,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_changerMailProfilActionPerformed
 
-
+    
     private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
         // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
@@ -631,25 +631,19 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
-    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        try {
+    private void refreshBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBActionPerformed
+try {
             // TODO add your handling code here:
 
             selectBDD.getListSalonUtilisateur(CurrentA);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_refreshActionPerformed
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshBActionPerformed
 
-    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
-        try {
-            // TODO add your handling code here:
-
-            selectBDD.getListSalonUtilisateur(CurrentA);
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_refreshActionPerformed
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        
+    }                                       
     
     public void decoUser(String mail) throws SQLException{
        String nom = "";
@@ -759,7 +753,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTabbedPane profil;
     private javax.swing.JTextField rechercheMessagerie;
     private javax.swing.JTextField rechercheSalon;
-    private javax.swing.JButton refresh;
+    private javax.swing.JButton refreshB;
     private javax.swing.JList<String> repertoirMessagerie;
     private javax.swing.JTextArea sendMessageMessagerie;
     private javax.swing.JButton sendSalonSend;

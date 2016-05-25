@@ -59,7 +59,7 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="refresh" max="32767" attributes="0"/>
+                                  <Component id="refreshB" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -138,7 +138,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="refresh" min="-2" max="-2" attributes="0"/>
+                              <Component id="refreshB" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -311,12 +311,12 @@
                 <Property name="text" type="java.lang.String" value="Nom de l&apos;utilisateur"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="refresh">
+            <Component class="javax.swing.JButton" name="refreshB">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshBActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
