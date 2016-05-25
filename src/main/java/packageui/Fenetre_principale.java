@@ -200,13 +200,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
                             .addComponent(rechercheSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                                 .addComponent(ajoutUtilisateur)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
+                                .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
+                                .addGap(66, 66, 66)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sendSalonSend))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
@@ -249,7 +250,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(refreshB))
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ajoutUtilisateur)
                     .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -379,7 +380,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         profil.addTab("MESSAGERIE", jLayeredPane2);
@@ -531,7 +532,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changerServiceProfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(validerProfil)
                 .addGap(49, 49, 49))
         );
@@ -618,7 +619,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         Messages msg = null;
         try {
-            msg = new Messages(salonText, testD, CurrentU, SalonGlobal);
+            msg = new Messages(salonText, testD, CurrentA, SalonGlobal);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -641,9 +642,11 @@ try {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_refreshBActionPerformed
 
+    /*
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {                                        
         
     }                                       
+    */
     
     public void decoUser(String mail) throws SQLException{
        String nom = "";
