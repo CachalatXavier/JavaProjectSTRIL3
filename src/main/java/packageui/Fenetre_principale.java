@@ -633,13 +633,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
     private void refreshBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBActionPerformed
-try {
+/* try {
             // TODO add your handling code here:
 
-            selectBDD.getListSalonUtilisateur(CurrentA);
+           selectBDD.getListSalonUtilisateur(CurrentA);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        } */       // TODO add your handling code here:
     }//GEN-LAST:event_refreshBActionPerformed
 
     /*

@@ -85,7 +85,7 @@ public class selectBDD {
         
         return droit;
     }
-
+/*
 public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
@@ -107,7 +107,7 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
                 System.out.println(e4.getMessage());
          }
 }
-
+*/
 
 public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();
