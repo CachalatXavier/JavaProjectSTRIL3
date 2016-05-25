@@ -86,7 +86,7 @@ public class selectBDD {
         return droit;
     }
 
-public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{
+public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a fiinir 
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         ArrayList<String> Resultat= new ArrayList<String>();
@@ -94,15 +94,12 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
         String Nom = Current.getNom();  
         
         try {
-            String sql = "SELECT description,listUser FROM salon" ;
+            String sql = ("SELECT description,listUser FROM salon" );
             ResultSet res = smt.executeQuery(sql);
            
             // a finir 
-        
-            
-        }
-        }
-        catch (SQLException e4) {
+          
+        } catch (SQLException e4) {
              
                 System.out.println(e4.getMessage());
          }
