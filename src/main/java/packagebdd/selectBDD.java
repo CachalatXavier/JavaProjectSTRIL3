@@ -10,6 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import packageapi.Admin;
+import packageapi.Chef_Projet;
+import packageapi.Utilisateur;
+
 
 /**
  *
@@ -80,7 +84,23 @@ public class selectBDD {
         
         return droit;
     }
-
+public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+       
+        String Nom = Current.getNom();  
+        
+        try {
+            String sql = "SELECT description,listUser FROM salon" ;
+            ResultSet resultat = smt.executeQuery(sql);
+            
+            System.out.println(Nom);
+        }
+        catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+}
 
 public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();
