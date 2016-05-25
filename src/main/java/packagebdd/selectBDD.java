@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import packageapi.Admin;
 import packageapi.Chef_Projet;
@@ -88,14 +89,18 @@ public class selectBDD {
 public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
-       
+        ArrayList<String> Resultat= new ArrayList<String>();
+        String tmp;
         String Nom = Current.getNom();  
         
         try {
             String sql = "SELECT description,listUser FROM salon" ;
-            ResultSet resultat = smt.executeQuery(sql);
+            ResultSet res = smt.executeQuery(sql);
+           
+            // a finir 
+        
             
-            System.out.println(Nom);
+        }
         }
         catch (SQLException e4) {
              
