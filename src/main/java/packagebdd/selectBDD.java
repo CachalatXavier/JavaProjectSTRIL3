@@ -109,11 +109,21 @@ public class selectBDD {
         Statement smt = connect.createStatement();
 
         try {
-            String sql = "SELECT contenuM FROM message WHERE destinataireM ='" + salon + "'";
+            String sql = "SELECT contenuM, dateM, emetteurM FROM message WHERE destinataireM ='" + salon + "'";
             ResultSet resultat = smt.executeQuery(sql);
-
+            
+            resultat.next();
+            
+            msg = resultat.getString(3)
+                    +" a dit:\n"+resultat.getString(1)
+                    +"\nenvoyé le "
+                    +resultat.getDate(2)+"\n";
+            
             while (resultat.next()) {
-                msg = msg +"&"+ resultat.getString(1);
+                msg = msg +"\n"+ resultat.getString(3)
+                    +" a dit:\n"+resultat.getString(1)
+                    +"\nenvoyé le "
+                    +resultat.getDate(2)+"\n";
              //   System.out.prinln("passage");
             }
 
