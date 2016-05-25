@@ -236,10 +236,10 @@ public class Formulaire extends javax.swing.JFrame {
         
         if(!pass.equals(confPass))
         {
-            jLConfPass.setText("Mot de passe non identiques");
+            pwdFormulaire.setText("Mot de passe non identiques");
         }
         else {
-            jLConfPass.setText("OK");
+            pwdFormulaire.setText("OK");
         
             try {
                 exist = insertBDD.adduser(firstName, name, mail, pass);
@@ -249,11 +249,11 @@ public class Formulaire extends javax.swing.JFrame {
         
             if(exist == true)
             {
-                jLVerifMail.setText("Adresse mail deja utilisee");
+                mailFormulaire.setText("Adresse mail deja utilisee");
             }
             else
             {
-                jLVerifMail.setText("OK");
+                mailFormulaire.setText("OK");
                 dispose();
                 Accueil accueil = new Accueil();
                 accueil.setVisible(true);
