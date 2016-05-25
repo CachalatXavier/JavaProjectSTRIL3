@@ -67,6 +67,7 @@ public class insertBDD {
                 + "VALUES ('"+msg.getContenu()+"', '"+msg.getDate()+"', '"+msg.getSender()+"', '"+msg.getDest()+"');");
     }
     
+     
      public static boolean addUserSalon (String nomChefProjet , String user , int idsalon) throws SQLException{
           Connection connect = coBDD.connect(); //  a teste 
          Statement smt = connect.createStatement();

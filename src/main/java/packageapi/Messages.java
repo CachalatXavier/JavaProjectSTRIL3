@@ -29,6 +29,12 @@ public class Messages {
         this.dest = dest.getNom();
     }
     
+    public Messages(String contenu, String date, Utilisateur send , Salon dest) throws SQLException {
+        this.contenu = contenu;
+        this.date = date;
+        this.sender = send.getNom();
+        this.dest = dest.getDescription();
+    }
     
     
     //getters et tostring

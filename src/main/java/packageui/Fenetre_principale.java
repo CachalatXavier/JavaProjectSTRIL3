@@ -13,8 +13,10 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
+import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
 import static packageui.Accueil.CurrentU;
 import static packageui.Accueil.CurrentCP;
@@ -31,7 +33,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    Salon SalonGlobal = new Salon();
+    Salon SalonGlobal = new Salon("SalonGlobal");
    
     public Fenetre_principale() {
         initComponents();
@@ -124,6 +126,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         sendSalonSend.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sendSalonSend.setText("Send");
+        sendSalonSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendSalonSendActionPerformed(evt);
+            }
+        });
 
         jList3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jScrollPane4.setViewportView(jList3);
@@ -582,6 +589,26 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private void changerMailProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changerMailProfilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_changerMailProfilActionPerformed
+
+    private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
+        // TODO add your handling code here:
+        String salonText = sendSalontexte.getText();
+        String testD = "2012-09-01"; // la dates faudra la récupérer
+        
+        Messages msg = null;
+        try {
+            msg = new Messages(salonText, testD, CurrentU, SalonGlobal);
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            addmsg(msg);
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+    }//GEN-LAST:event_sendSalonSendActionPerformed
     
     public void decoUser(String mail) throws SQLException{
        String nom = "";

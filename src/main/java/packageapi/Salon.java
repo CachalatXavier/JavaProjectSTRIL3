@@ -16,12 +16,24 @@ import javax.swing.AbstractListModel;
  * @author Cyril
  */
 public class Salon extends AbstractListModel<Utilisateur>{
-    private String name;
+
     private String description;
     List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     List<Messages> listeMessages = new ArrayList<Messages>();
+    
+    //constructeur 1
+    public Salon(String description, List listeU, List listeM) {
+        this.description = description;
+        this.listeUsers = listeU;
+        this.listeMessages = listeM;
+    }
 
+    //constructeur 2
+    public Salon(String description) {
+        this.description = description;
+    }  
    
+    
     public void adduser(Utilisateur CurrentU) {
         listeUsers.add(CurrentU);
         fireContentsChanged(listeUsers, 0, listeUsers.size());
@@ -36,6 +48,12 @@ public class Salon extends AbstractListModel<Utilisateur>{
     public Utilisateur getElementAt(int index) {
         return listeUsers.get(index);
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    
     
 }
 

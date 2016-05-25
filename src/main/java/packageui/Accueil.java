@@ -207,7 +207,7 @@ public class Accueil extends javax.swing.JFrame {
         String droit = "";
         boolean exist = false;
         Salon SalonGlobal;
-        SalonGlobal = new Salon();
+        SalonGlobal = new Salon("SalonGlobal");
         
        
         try {
