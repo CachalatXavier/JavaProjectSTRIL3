@@ -85,8 +85,8 @@ public class selectBDD {
         
         return droit;
     }
-/*
-public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{
+
+public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a fiinir 
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         ArrayList<String> Resultat= new ArrayList<String>();
@@ -94,20 +94,50 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
         String Nom = Current.getNom();  
         
         try {
-            String sql = "SELECT description,listUser FROM salon" ;
+            String sql = ("SELECT description,listUser FROM salon" );
             ResultSet res = smt.executeQuery(sql);
            
             // a finir 
-        
-            
-        }
-        }
-        catch (SQLException e4) {
+          
+        } catch (SQLException e4) {
              
                 System.out.println(e4.getMessage());
          }
+        
 }
-*/
+
+
+ //recuperer message
+	public static String getMessageSalon(String salon )throws SQLException
+	{
+    	String msg = "";
+   	 
+    	//connexion base de donnée
+    	Connection connect = coBDD.connect();
+    	Statement smt = connect.createStatement();
+   	 
+    	try
+    	{
+        	String sql = "SELECT contenuM FROM Message WHERE destinataireM ='"+salon+"'";
+        	ResultSet resultat = smt.executeQuery(sql);
+            	 
+            	if(resultat.next()){
+                	msg = resultat.getString(1);
+               	 
+            	}else {
+                	 
+                	System.out.println("Problème lors de la récupération du message");
+            	}
+ 
+        	}catch (SQLException e4) {
+        	 
+            	System.out.println(e4.getMessage());
+        	}
+   	 
+    	return msg;
+	}
+
+
 
 public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();
