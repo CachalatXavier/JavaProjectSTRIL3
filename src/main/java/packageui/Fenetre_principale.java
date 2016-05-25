@@ -641,6 +641,15 @@ public class Fenetre_principale extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_refreshActionPerformed
 
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            selectBDD.getListSalonUtilisateur(CurrentA);
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_refreshActionPerformed
     
     public void decoUser(String mail) throws SQLException{
        String nom = "";
