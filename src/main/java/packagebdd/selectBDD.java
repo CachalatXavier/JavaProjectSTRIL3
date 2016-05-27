@@ -120,27 +120,29 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
         //connexion base de donnée
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
+
        
-        try
-        {
-            String sql = "SELECT contenuM FROM Message WHERE destinataireM ='"+salon+"'";
+            String sql = "SELECT contenuM, dateM, emetteurM FROM message WHERE destinataireM ='" + salon + "'";
             ResultSet resultat = smt.executeQuery(sql);
-                
-                while(resultat.next())
-                {
-                    msg = msg + resultat.getString(1);
-                   
-                
-                    
-                }
- 
-            }catch (SQLException e4) {
             
-                System.out.println(e4.getMessage());
+            resultat.next();
+            
+            msg = resultat.getString(3)
+                    +" a dit:\n"+resultat.getString(1)
+                    +"\nenvoyé le "
+                    +resultat.getDate(2)+"\n";
+            
+            while (resultat.next()) {
+                msg = msg +"\n"+ resultat.getString(3)
+                    +" a dit:\n"+resultat.getString(1)
+                    +"\nenvoyé le "
+                    +resultat.getDate(2)+"\n";
+             //   System.out.prinln("passage");
             }
        
         return msg;
     }
+    
 
 
 public static void main(String[] args) throws SQLException {

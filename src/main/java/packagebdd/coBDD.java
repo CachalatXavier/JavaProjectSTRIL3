@@ -28,6 +28,7 @@ public class coBDD {
         }
         
         String url = "jdbc:mysql://localhost:8889/javaBDD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
         //François: 8889 javaBDD root root
         //Xavier: 3306 javabdd root
         //Cyril: 3307 javabdd root

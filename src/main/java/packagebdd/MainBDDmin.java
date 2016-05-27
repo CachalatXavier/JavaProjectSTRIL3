@@ -74,10 +74,42 @@ public class MainBDDmin {
         System.out.println("Users ajoutés");
         
         int salon_global = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
-                + "(`idS`, `description`) "
-                + "VALUES ('1', 'Salon gobal');");
+                + "(`description`) "
+                + "VALUES ('Salon Global');");
         
          System.out.println("Salon global créé");
+        
+        
+        int salon_informatique = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
+                + "(`description`) "
+                + "VALUES ( 'Salon Informatique');");
+        
+        System.out.println("Salon Informatique créé");
+          
+        
+          int salon_hacking = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
+                + "( `description`) "
+                + "VALUES ( 'Salon Hacking');");
+          
+          System.out.println("Salon Hacking créé");
+          
+          // rajout de quelques messages dans la bdd
+          int msg1 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
+                + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
+                + "VALUES ('Bonjour la compagnie', '25/05/16', 'ELOUARIACHI', 'CACHALAT');");
+          
+          int msg2 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
+                + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
+                + "VALUES ('Salut Najim', '25/05/16', 'CACHALAT', 'ELOUARIACHI');");
+          
+          
+          
+          // Envoi message dans un salon
+          int msg3 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
+                + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
+                + "VALUES ('Hello World', '25/05/16', 'CACHALAT', 'Salon Global');");
+        
+        System.out.println("Messages envoyés");
         
         
         

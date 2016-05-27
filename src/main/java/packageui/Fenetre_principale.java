@@ -33,7 +33,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    Salon SalonGlobal = new Salon("SalonGlobal");
+    Salon SalonGlobal = new Salon("Salon Global");
    
     public Fenetre_principale() {
         initComponents();
@@ -60,14 +60,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         sendSalonSend = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
         decoButtonSalon = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ajoutUtilisateur = new javax.swing.JButton();
         nomUtilisateur = new javax.swing.JTextField();
         refreshB = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jMessageSalon = new javax.swing.JTextArea();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
         rechercheMessagerie = new javax.swing.JTextField();
@@ -133,9 +133,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
-        jList3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jScrollPane4.setViewportView(jList3);
-
         decoButtonSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         decoButtonSalon.setText("Deconnexion");
         decoButtonSalon.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +158,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
+        jMessageSalon.setColumns(20);
+        jMessageSalon.setRows(5);
+        jScrollPane7.setViewportView(jMessageSalon);
+
         jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -168,13 +169,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(sendSalonSend, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(decoButtonSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(ajoutUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(nomUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(refreshB, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -201,19 +202,20 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                    .addComponent(ajoutUtilisateur)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                                    .addGap(66, 66, 66)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(sendSalonSend)))
                             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(ajoutUtilisateur)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                                 .addGap(66, 66, 66)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sendSalonSend))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(130, 130, 130)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(155, 155, 155)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
@@ -235,11 +237,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addComponent(rechercheSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -250,7 +251,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(refreshB))
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ajoutUtilisateur)
                     .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -360,7 +361,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(156, 156, 156))
         );
@@ -476,7 +477,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addGroup(jLayeredPane3Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
                                         .addComponent(jLabel16)))))
                         .addGap(18, 18, 18)
                         .addComponent(changerMailProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -628,19 +629,27 @@ public class Fenetre_principale extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        //on vide la zone de texte 
+        sendSalontexte.setText("");
+        
         
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
     private void refreshBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBActionPerformed
         try {
             // TODO add your handling code here:
-            
-            String tampon = selectBDD.getMessageSalon("SalonGlobal");
+
+            selectBDD.getListSalonUtilisateur(CurrentA);
+            String tampon = selectBDD.getMessageSalon("Salon Global");
             System.out.println(tampon);
+            
+            //faut afficher les messages dans le textarea
+            jMessageSalon.setText(tampon);
+            
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        // TODO add your handling code here:
+
     }//GEN-LAST:event_refreshBActionPerformed
 
     /*
@@ -743,14 +752,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
-    private javax.swing.JList<String> jList3;
+    private javax.swing.JTextArea jMessageSalon;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JList<String> listSalon;
     private javax.swing.JList<packageapi.Utilisateur> listeUtilisateurSalon;
     private javax.swing.JTextField nomUtilisateur;
