@@ -645,7 +645,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
             selectBDD.getListSalonUtilisateur(CurrentA);
             String tampon = selectBDD.getMessageSalon("Salon Global");
-            System.out.println(tampon);
 
             //faut afficher les messages dans le textarea
             jMessageSalon.setText(tampon);
