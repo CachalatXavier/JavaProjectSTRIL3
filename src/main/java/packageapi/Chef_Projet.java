@@ -20,7 +20,7 @@ public class Chef_Projet extends Utilisateur{
         super(mail);
     }
     
-     public void setPresence(String nom, String prenom) throws SQLException {
+     /*public void setPresence(String nom, String prenom) throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
@@ -36,13 +36,13 @@ public class Chef_Projet extends Utilisateur{
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
-        /*faire ici les requêtes ( insert )*/
+        
         int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 0 WHERE mailU ='"+mail+"'");
         
         System.out.println("Le chef de projet " + nom + " " + prenom + " a quitté le chat");
         
-    }
+    }*/
     
 
     public void addUser(String mail, String service, String nomSalon){

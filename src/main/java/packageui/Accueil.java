@@ -27,16 +27,18 @@ import packagebdd.selectBDD;
  * @author Xavier
  */
 public class Accueil extends javax.swing.JFrame {
-    static Utilisateur CurrentU = new Utilisateur("");
-    static Chef_Projet CurrentCP = new Chef_Projet("");
-    static Admin CurrentA = new Admin("");
+    //static Utilisateur CurrentU = new Utilisateur("");
+   // static Chef_Projet CurrentCP = new Chef_Projet("");
+    //static Admin CurrentA = new Admin("");
     static int user = 0;
     static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     static List<Messages> listeMessages = new ArrayList<Messages>();
-    static Salon SalonGlobal = new Salon("Salon Global, listeUSers, listeMessages");
+    static Salon SalonGlobal = new Salon("Salon Global");
     static ArrayList<Utilisateur> tempU = new ArrayList<Utilisateur>();
     static List<Utilisateur> listeAllUsers = new ArrayList<Utilisateur>();
     static Messagerie Mess = new Messagerie();
+    static Utilisateur Current = new Utilisateur("");
+    
     /**
      * Creates new form Acceuil
      */
@@ -236,30 +238,28 @@ public class Accueil extends javax.swing.JFrame {
                 Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+      
             
             if(droit.equals("USER")){
-                CurrentU = recupUser(mail);
                 user = 3;
+                Current = recupUser(mail, user);
+       
             }
             else{
                 if(droit.equals("CHEF_PROJET")){
-                    CurrentCP = recupChefProjet(mail);
                     user = 2;
+                    Current = recupUser(mail, user);
                 }
                 else {
                     if(droit.equals("ADMIN")){
-                        try {
-                            CurrentA = recupAdmin(mail);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-                        }
                         user = 1;
+                        Current = recupUser(mail, user);
                     }
                 }
             }
             
             try {
-                createSalon();
+                SalonGlobal.adduser(Current);
             } catch (SQLException ex) {
                 Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -279,9 +279,10 @@ public class Accueil extends javax.swing.JFrame {
     /**
      *
      * @param mail
+     * @param type
      * @return
      */
-   public Admin recupAdmin(String mail) throws SQLException{
+   /*public Admin recupAdmin(String mail) throws SQLException{
         String nom = "";
         String prenom = "";
 
@@ -318,44 +319,49 @@ public class Accueil extends javax.swing.JFrame {
         }
                 //SalonGlobal.adduser(CurrentU);
         return CurrentCP;
-    }
+    }*/
    
-   public Utilisateur recupUser(String mail){
+   public Utilisateur recupUser(String mail, int type){
        String nom = "";
        String prenom = "";
        
-       CurrentU.setMail(mail);
+       Current.setMail(mail);
        try {
-           nom = CurrentU.getNom();
+           nom = Current.getNom();
         } catch (SQLException ex) {
            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
-            prenom = CurrentU.getPrenom();
+            prenom = Current.getPrenom();
         } catch (SQLException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
-            CurrentU.setPresence(nom, prenom);
+            Current.setPresence(nom, prenom, type);
         } catch (SQLException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
                 //SalonGlobal.adduser(CurrentU);
-        return CurrentU;
+        return Current;
     }
    
-   public void createSalon() throws SQLException{
+   /*public void addUserSalonGlobal() throws SQLException{
        
-        SalonGlobal.adduser(CurrentU);
-   }
+        /*switch(user){
+            case 1 : SalonGlobal.addadmin(CurrentA);break;
+            case 2 : SalonGlobal.addChefProjet(CurrentCP);break;
+            default : SalonGlobal.adduser(CurrentU);break;
+        }
+        SalonGlobal.adduser(Current);
+   }*/
    
    public void userMess() throws SQLException{
        List<Utilisateur> tempList = new ArrayList<Utilisateur>();
        tempList = selectBDD.getListUtilisateur();
        //listeAllUsers = selectBDD.getListUtilisateur();
-       for(int i=0; i<=tempList.size();i++){
+       for(int i=0; i<tempList.size();i++){
            tempU.add(tempList.get(i));
            System.out.println(tempU.get(i).getNom());
            System.out.println("JE SUIS LA");
