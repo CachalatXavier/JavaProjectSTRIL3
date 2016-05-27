@@ -22,6 +22,9 @@ import static packageui.Accueil.CurrentU;
 import static packageui.Accueil.CurrentCP;
 import static packageui.Accueil.CurrentA;
 import static packageui.Accueil.user;
+import static packageui.Accueil.listeUsers;
+import static packageui.Accueil.listeMessages;
+import static packageui.Accueil.SalonGlobal;
 
 /**
  *
@@ -33,10 +36,27 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    Salon SalonGlobal = new Salon("Salon Global");
+    /*Salon SalonGlobal = new Salon("Salon Global");*/
+    
    
     public Fenetre_principale() {
         initComponents();
+        listeUtilisateurSalon.setCellRenderer(new ListCellRenderer<Utilisateur>() {
+            @Override
+            public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
+
+                JLabel l = new JLabel();
+                if (isSelected) {
+                    l.setForeground(Color.red);
+                }
+                try {
+                    l.setText(index + 1 + " - " + CurrentU.getNom() + " "+CurrentU.getPrenom()+"");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return l;
+            }
+        });
     }
             
     /**
@@ -761,7 +781,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JList<String> listSalon;
-    private javax.swing.JList<packageapi.Utilisateur> listeUtilisateurSalon;
+    private javax.swing.JList<Utilisateur> listeUtilisateurSalon;
     private javax.swing.JTextField nomUtilisateur;
     private javax.swing.JTabbedPane profil;
     private javax.swing.JTextField rechercheMessagerie;
