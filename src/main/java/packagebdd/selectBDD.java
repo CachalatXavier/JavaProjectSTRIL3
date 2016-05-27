@@ -7,108 +7,127 @@ package packagebdd;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import packageapi.Admin;
 import packageapi.Chef_Projet;
 import packageapi.Utilisateur;
+
 
 /**
  *
  * @author Francois
  */
 public class selectBDD {
-
+    static DefaultListModel<String> listUser = new DefaultListModel<String>();
+    
+    
     public static boolean isuservalid(String mail, String pass) throws SQLException {
-        boolean tmp = false;
-        /*createTableBDD creation = new createTableBDD();
+    boolean tmp =false;
+    /*createTableBDD creation = new createTableBDD();
     MainBDDmin maBDDmin = new MainBDDmin();*/
-
-        Connection connect = coBDD.connect();
-        Statement smt = connect.createStatement();
-        try {
-            String sql = "SELECT mdpU FROM utilisateurs WHERE mailU ='" + mail + "'";
-            ResultSet resultat = smt.executeQuery(sql);
-
-            if (resultat.next()) {
-
-                String motDePasse = resultat.getString(1);
-
-                if (motDePasse.equals(pass)) {
-
-                    JOptionPane.showMessageDialog(null, "Connexion réussie ! ", "Success", JOptionPane.PLAIN_MESSAGE);
+    
+    Connection connect = coBDD.connect();
+    Statement smt = connect.createStatement();
+    try{
+                String sql = "SELECT mdpU FROM utilisateurs WHERE mailU ='"+mail+"'";
+                ResultSet resultat = smt.executeQuery(sql);
+                 
+                if(resultat.next()){
+                     
+                    String motDePasse = resultat.getString(1);
+         
+                if(motDePasse.equals(pass)){
+             
+                    JOptionPane.showMessageDialog(null,"Connexion réussie ! ","Success",JOptionPane.PLAIN_MESSAGE);
                     tmp = true;
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "Mot de passe incorrect ! ", "Error", 1);
+                }else {
+                     
+                    JOptionPane.showMessageDialog(null,"Mot de passe incorrect ! ","Error",1);
                 }
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Login incorrect ! ", "Error", 1);
+                }else {
+                     
+                    JOptionPane.showMessageDialog(null,"Login incorrect ! ","Error",1);
+                }
+ 
+                   
+         
+            }catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
             }
-
-        } catch (SQLException e4) {
-
-            System.out.println(e4.getMessage());
-        }
-        return tmp;
+    return tmp;
     }
-
-    public static String checkright(String mail) throws SQLException {
+    
+    
+    
+    public static String checkright(String mail) throws SQLException{
         String droit = "";
-
+        
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
-        try {
-            String sql = "SELECT droitU FROM utilisateurs WHERE mailU ='" + mail + "'";
-            ResultSet resultat = smt.executeQuery(sql);
-
-            if (resultat.next()) {
-                droit = resultat.getString(1);
-
-            } else {
-
-                System.out.println("Problème lors de la récupération des droits");
+        try{
+                String sql = "SELECT droitU FROM utilisateurs WHERE mailU ='"+mail+"'";
+                ResultSet resultat = smt.executeQuery(sql);
+                 
+                if(resultat.next()){
+                    droit = resultat.getString(1);
+                    
+                }else {
+                     
+                    System.out.println("Problème lors de la récupération des droits");
+                }
+ 
+            }catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
             }
-
-        } catch (SQLException e4) {
-
-            System.out.println(e4.getMessage());
-        }
-
+        
         return droit;
     }
+    
+    
+    
 
-    public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException {    // a fiinir 
+
+public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a finir
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
-        ArrayList<String> Resultat = new ArrayList<String>();
+        
+        ArrayList<String> Resultat= new ArrayList<String>();
+        
         String tmp;
-        String Nom = Current.getNom();
-
+        String Nom = Current.getNom();  
+        
         try {
-            String sql = ("SELECT description,listUser FROM salon");
+            String sql = ("SELECT description,listUser FROM salon" );
             ResultSet res = smt.executeQuery(sql);
-
-            // a finir 
+           
+            // a finir
+          
         } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+        
+}
 
-            System.out.println(e4.getMessage());
-        }
-
-    }
-
-    //recuperer message
-    public static String getMessageSalon(String salon) throws SQLException {
+ //recuperer message
+    public static String getMessageSalon(String salon )throws SQLException
+    {
         String msg = "";
-        //8System.out.prinln("yoyo");
+       
         //connexion base de donnée
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
 
-        try {
+       // requete 
             String sql = "SELECT contenuM, dateM, emetteurM FROM message WHERE destinataireM ='" + salon + "'";
             ResultSet resultat = smt.executeQuery(sql);
             
@@ -124,21 +143,51 @@ public class selectBDD {
                     +" a dit:\n"+resultat.getString(1)
                     +"\nenvoyé le "
                     +resultat.getDate(2)+"\n";
-             //   System.out.prinln("passage");
             }
-
-        } catch (SQLException e4) {
-
-            System.out.println(e4.getMessage());
-        }
-
+       
         return msg;
     }
-
-    public static void main(String[] args) throws SQLException {
-        //selectBDD select = new selectBDD();
-        //System.out.println("titi");
-
+    
+    // recuperer liste utilisateur
+    public  DefaultListModel<String> getListUtilisateur () throws SQLException{
+        
+         Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+         
+                
+         try {
+            String sql = ("SELECT NomU FROM utilisateurs" );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                  listUser.addElement((String)res.getObject(i));
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         
+         return listUser ; 
     }
 
+
+public static void main(String[] args) throws SQLException {
+         //selectBDD select = new selectBDD();
+         //System.out.println("titi");
+         
+           
+ 
 }
+
+
+
+}
+
+
+
+
+

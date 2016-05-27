@@ -28,13 +28,14 @@ public class coBDD {
         }
         
         String url = "jdbc:mysql://localhost:3306/javabdd?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
         //François: 8889 javaBDD root root
         //Xavier: 3306 javabdd root
         //Cyril: 3307 javabdd root
         //Najim: 3306 javaBDD root root
         
         try {
-            DBConnection = (Connection) DriverManager.getConnection(url, "root", "root");
+            DBConnection = (Connection) DriverManager.getConnection(url, "root", "bdd");
             System.out.println("Database Connected !");
         }
         catch (SQLException se){
