@@ -32,6 +32,7 @@ import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.coBDD;
+import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
 import static packagebdd.selectBDD.*;
@@ -759,7 +760,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     if ( userMail.equals(userNameMail) )
                     {
                         // l'utilisateur existe
-                        //addUserSalon();
+                        addUserSalon(userNameMail, CurrentSalon);
                         System.out.println("User added to salon");
                         JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
                     }
