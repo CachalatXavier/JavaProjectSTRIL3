@@ -420,7 +420,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel15.setText("Mail: ");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel16.setText("Changer Mail");
+        jLabel16.setText("Changer Mail :");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Changer de password: ");
@@ -703,9 +703,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private void serviceprofilHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_serviceprofilHierarchyChanged
         // TODO add your handling code here:
         String service;
-        CurrentU.setService("test");
-        service = CurrentU.getService();
-        serviceprofil.setText(service); 
+        
+        try {
+            service = CurrentU.getService();
+            serviceprofil.setText(service);
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
     }//GEN-LAST:event_serviceprofilHierarchyChanged
 
     /*
