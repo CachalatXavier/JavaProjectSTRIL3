@@ -761,6 +761,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         // l'utilisateur existe
                         //addUserSalon();
                         System.out.println("User added to salon");
+                        JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 catch (SQLException ex)
