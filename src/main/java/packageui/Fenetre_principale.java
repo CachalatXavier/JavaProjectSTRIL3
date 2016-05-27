@@ -24,6 +24,7 @@ import packageapi.Salon;
 import packageapi.Utilisateur;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
+import static packagebdd.selectBDD.*;
 import static packageui.Accueil.CurrentU;
 import static packageui.Accueil.CurrentCP;
 import static packageui.Accueil.CurrentA;
@@ -163,6 +164,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel4.setText("Liste d'utilisateurs");
 
         ajoutUtilisateur.setText("Ajouter un utilisateur à mon salon");
+        ajoutUtilisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoutUtilisateurActionPerformed(evt);
+            }
+        });
 
         nomUtilisateur.setText("Nom de l'utilisateur");
 
@@ -637,6 +643,33 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
+    private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
+                // TODO add your handling code here:
+                
+                // on prend juste le nom de l'utilisateur
+                String userName = nomUtilisateur.getText();
+                String userMail = "";
+                
+                //select pour vérifier un utilisateur avec l'aadresse mail existe
+                try
+                {
+                    userMail = selectBDD.getUtilisateur(userName);
+                    // on teste 
+                    System.out.println("User added to salon, "+userName);
+                    if ( userMail == null ? userName == null : userMail.equals(userName) )
+                    {
+                        // l'utilisateur existe
+                        System.out.println("User added to salon");
+                    }
+                }
+                catch (SQLException ex)
+                {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+    }//GEN-LAST:event_ajoutUtilisateurActionPerformed
+
     
     
     private void refreshActionSalon()
@@ -718,6 +751,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //new Salon().setVisible(true);
             }

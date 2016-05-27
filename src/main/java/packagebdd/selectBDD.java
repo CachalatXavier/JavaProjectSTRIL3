@@ -92,7 +92,35 @@ public class selectBDD {
         return droit;
     }
     
+    // recupere l'utilisateur à l'aide d'une adresse mail
+public static String getUtilisateur(String email) throws SQLException{
+    Connection connect = coBDD.connect();
+    Statement smt = connect.createStatement();
     
+    String user = "";
+    
+    try {
+        String sql = "SELECT * FROM utilisateurs WHERE (mailU) IN (SELECT mailU FROM utilisateurs WHERE mailU='"
+            +email+"')";
+        ResultSet resultat = smt.executeQuery(sql);
+        
+        if(resultat.next()){
+                    user = resultat.getString(4);
+                    //System.out.println(user);
+                    return user;
+                }else {
+                     
+                    System.out.println("Problème lors de la récupération de l'utilisateur!");
+                    
+                }
+    }
+    catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+    }
+     
+    return "NO";
+}
     
 
 

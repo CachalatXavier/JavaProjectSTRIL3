@@ -60,16 +60,16 @@ public class createTableBDD {
         
         int initialisation4 = smt.executeUpdate("DROP TABLE IF EXISTS `javabdd`.`appartenir`");
         
-        int tab_appartenir = smt.executeUpdate("CREATE TABLE `javabdd`.`appartenir` "
+        /*int tab_appartenir = smt.executeUpdate("CREATE TABLE `javabdd`.`appartenir` "
                 + "( `NumClient` INT NOT NULL, "
-                + "`NumSalon` INT NOT NULL ) "
-                /*+ "PRIMARY KEY (`NumClient`)) "
+                + "`NumSalon` INT NOT NULL , "
+                + "PRIMARY KEY (`NumClient`, `NumSalon`) "
                 + "CONSTRAINT `FK_numClient` FOREIGN KEY (`NumClient`) " 
-                + "REFERENCES `javabdd`.`utilisateurs`(`idU`)"
-                + "CONSTRAINT `FK_numSalon` FOREIGN KEY (`NumSalon`) "
-                + "REFERENCES `javabdd`.`salon`(`idS`)"*/
-                + "ENGINE = Inno DB;");
-        // ON DELETE RESTRICT ON UPDATE RESTRICT; 
+                + "REFERENCES `javabdd`.`utilisateurs`(`idU`))"
+                + "ENGINE = InnoDB; ");
+        // ON DELETE RESTRICT ON UPDATE RESTRICT;
+        //*/
+
         System.out.println("Table créée");
         
     }
