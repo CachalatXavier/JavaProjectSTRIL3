@@ -54,6 +54,17 @@ public class Fenetre_principale extends javax.swing.JFrame {
    
     public Fenetre_principale(){
         initComponents();
+        
+        Timer timerSalon = new Timer();
+        timerSalon.schedule (new TimerTask() {
+            @Override
+            public void run()
+            {
+                refreshActionSalon();
+            }
+        }, 0, 1000);
+     }
+        
         repertoireMessagerie.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
