@@ -63,7 +63,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 refreshActionSalon();
             }
         }, 0, 1000);
-     }
+     
         
         repertoireMessagerie.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override

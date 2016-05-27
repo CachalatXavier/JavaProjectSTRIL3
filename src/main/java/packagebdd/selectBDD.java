@@ -135,11 +135,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
             ResultSet res = smt.executeQuery(sql);
             ResultSetMetaData resUserMeta = res.getMetaData();
             
-           while ( res.next()){
-               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
-                  listUser.addElement((String)res.getObject(i));
-               }
-           }
+           //) finir
           
         } catch (SQLException e4) {
              
