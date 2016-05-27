@@ -58,13 +58,18 @@ public class createTableBDD {
                 + "PRIMARY KEY (`idM`)) "
                 + "ENGINE = InnoDB DEFAULT CHARSET = latin1;");
         
-        /*
-        int tab_fairePartie = smt.executeUpdate("CREATE TABLE `javabdd`.`fairePartie` "
-                + "( `idU` INT NOT NULL , "
-                + "`idS` INT NOT NULL , "
-                + "PRIMARY KEY (`idS`)) "
-                + "ENGINE = InnoDB;");*/
+        int initialisation4 = smt.executeUpdate("DROP TABLE IF EXISTS `javabdd`.`appartenir`");
         
+        int tab_appartenir = smt.executeUpdate("CREATE TABLE `javabdd`.`appartenir` "
+                + "( `NumClient` INT NOT NULL, "
+                + "`NumSalon` INT NOT NULL ) "
+                /*+ "PRIMARY KEY (`NumClient`)) "
+                + "CONSTRAINT `FK_numClient` FOREIGN KEY (`NumClient`) " 
+                + "REFERENCES `javabdd`.`utilisateurs`(`idU`)"
+                + "CONSTRAINT `FK_numSalon` FOREIGN KEY (`NumSalon`) "
+                + "REFERENCES `javabdd`.`salon`(`idS`)"*/
+                + "ENGINE = Inno DB;");
+        // ON DELETE RESTRICT ON UPDATE RESTRICT; 
         System.out.println("Table créée");
         
     }

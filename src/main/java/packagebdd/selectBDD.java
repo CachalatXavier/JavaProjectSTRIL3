@@ -100,21 +100,23 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
-        ArrayList<String> Resultat= new ArrayList<String>();
-        
-        String tmp;
-        String Nom = Current.getNom();  
-        
         try {
-            String sql = ("SELECT description,listUser FROM salon" );
+            String sql = ("SELECT NomU FROM utilisateurs" );
             ResultSet res = smt.executeQuery(sql);
-           
-            // a finir
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                  listUser.addElement((String)res.getObject(i));
+               }
+           }
           
         } catch (SQLException e4) {
              
                 System.out.println(e4.getMessage());
          }
+         
+         return listUser ; 
         
 }
 
