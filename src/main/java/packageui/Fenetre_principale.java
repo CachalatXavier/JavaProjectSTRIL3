@@ -437,6 +437,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
+        firstnameprofil.setEditable(false);
         firstnameprofil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 firstnameprofilActionPerformed(evt);
@@ -671,7 +672,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private void firstnameprofilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstnameprofilActionPerformed
         try {
             // TODO add your handling code here:
-            String name = CurrentU.getNom();
+            String name = CurrentA.getNom();
             firstnameprofil.setText(name);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
