@@ -720,18 +720,32 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 // TODO add your handling code here:
                 
                 // on prend juste le nom de l'utilisateur
-                String userName = nomUtilisateur.getText();
+                String userNameMail = nomUtilisateur.getText();
                 String userMail = "";
                 
-                //select pour vérifier un utilisateur avec l'aadresse mail existe
+                
+        try {
+            //vérifie si l'utilisateur est verifier admin
+            String droitU = selectBDD.checkright(CurrentU.getMail());
+            
+            String bdd= getNomSalon(CurrentU.getMail());
+            String CurrentSalon = SalonGlobal.getDescription();
+        
+        if( ( droitU.equals("ADMIN") || ( droitU.equals("CHEF_PROJET") && (bdd.equals(CurrentSalon))) ) )
+        {
+            
+            System.out.println(droitU);
+                
+                //select pour vérifier un utilisateur avec l'adresse mail existe
                 try
                 {
-                    userMail = selectBDD.getUtilisateur(userName);
+                    userMail = selectBDD.getUtilisateur(userNameMail);
                     // on teste 
-                    System.out.println("User added to salon, "+userName);
-                    if ( userMail == null ? userName == null : userMail.equals(userName) )
+                    //System.out.println("User added to salon, "+userNameMail);
+                    if ( userMail.equals(userNameMail) )
                     {
                         // l'utilisateur existe
+                        //addUserSalon();
                         System.out.println("User added to salon");
                     }
                 }
@@ -740,7 +754,19 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                
+            }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Vous n'êtes pas autoriser à ajouter un utilisateur à se salon", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_ajoutUtilisateurActionPerformed
 
     

@@ -185,9 +185,6 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
     public static List<Utilisateur> getListUtilisateur () throws SQLException{
 
 
-    
-
-        
          Connection connect = coBDD.connect();
          Statement smt = connect.createStatement();
          
@@ -217,7 +214,31 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
     }
    
     
+public static String getNomSalon( String userMail) throws SQLException
+{
+    String salonName = "";
+       
+        //connexion base de donnée
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
 
+       // requete 
+       
+            String sql = "SELECT salonMaster FROM utilisateurs WHERE mailU='" +userMail+"'";
+            ResultSet resultat = smt.executeQuery(sql);
+            
+            if(resultat.next()){
+                   salonName  = resultat.getString(1);
+                    //System.out.println(user);
+                    return salonName;
+                }else {
+                     
+                    System.out.println("Problème lors de la récupération du nom Salon !");
+                   
+                }
+            
+           return "NULL";
+}
 
 public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();
