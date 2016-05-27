@@ -6,10 +6,13 @@
  */
 package packageapi;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.AbstractListModel;
+import packagebdd.selectBDD;
+
 
 /**
  *
@@ -34,10 +37,12 @@ public class Salon extends AbstractListModel<Utilisateur>{
     }  
    
     
-    public void adduser(Utilisateur CurrentU) {
+    public void adduser(Utilisateur CurrentU) throws SQLException {
+        
         listeUsers.add(CurrentU);
         fireContentsChanged(listeUsers, 0, listeUsers.size());
     }
+    
 
     @Override
     public int getSize() {

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -24,7 +25,7 @@ import packageapi.Utilisateur;
  * @author Francois
  */
 public class selectBDD {
-    static DefaultListModel<String> listUser = new DefaultListModel<String>();
+    static List<Utilisateur> listUser = new ArrayList<>();
     
     
     public static boolean isuservalid(String mail, String pass) throws SQLException {
@@ -146,22 +147,37 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
        
         return msg;
     }
+
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public static List<Utilisateur> getListUtilisateur () throws SQLException{
+
     
     // recuperer liste utilisateur
-    public  DefaultListModel<String> getListUtilisateur () throws SQLException{
+    
+
         
          Connection connect = coBDD.connect();
          Statement smt = connect.createStatement();
          
                 
          try {
-            String sql = ("SELECT NomU FROM utilisateurs" );
+            String sql = ("SELECT mailU FROM utilisateurs" );
             ResultSet res = smt.executeQuery(sql);
             ResultSetMetaData resUserMeta = res.getMetaData();
+            String mail = "";
             
            while ( res.next()){
                for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
-                  listUser.addElement((String)res.getObject(i));
+                   mail = res.getString(i);
+                   //System.out.println(mail);
+                   Utilisateur U = new Utilisateur(mail);
+                   listUser.add(U);
+               
                }
            }
           
@@ -170,8 +186,10 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
                 System.out.println(e4.getMessage());
          }
          
-         return listUser ; 
+         return listUser ;
     }
+   
+    
 
 
 public static void main(String[] args) throws SQLException {
