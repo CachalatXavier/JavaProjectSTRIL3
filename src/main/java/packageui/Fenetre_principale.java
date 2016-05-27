@@ -151,13 +151,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         nomUtilisateur.setText("Nom de l'utilisateur");
 
-        refreshB.setText("jButton1");
+        refreshB.setText("Rafraichir");
         refreshB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBActionPerformed(evt);
             }
         });
 
+        jMessageSalon.setEditable(false);
         jMessageSalon.setColumns(20);
         jMessageSalon.setRows(5);
         jScrollPane7.setViewportView(jMessageSalon);
