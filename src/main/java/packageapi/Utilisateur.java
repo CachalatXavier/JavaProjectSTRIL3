@@ -12,6 +12,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import packagebdd.coBDD;
 
+
 /**
  *
  * @author Cyril
@@ -121,8 +122,29 @@ public class Utilisateur {
 
     /**
      * @return the Service
+     * @throws java.sql.SQLException
      */
-    public String getService() {
+    public String getService() throws SQLException {
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+        
+        try {
+            String sql = "SELECT serviceU FROM utilisateurs WHERE mailU ='"+mail+"'";
+            ResultSet resultat = smt.executeQuery(sql);
+            
+            if(resultat.next()){
+                Service = resultat.getString(1);
+            }
+            else
+            {
+                System.out.println("Service non trouvé");
+            }
+            
+        }catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+            }
+        
         return Service;
     }
 
@@ -133,6 +155,8 @@ public class Utilisateur {
         this.Service = Service;
     }
 
+    
+    
    
 
     /**

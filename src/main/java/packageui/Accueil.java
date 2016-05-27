@@ -6,16 +6,21 @@
 package packageui;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.U;
 import packageapi.Admin;
 import packageapi.Chef_Projet;
+import packageapi.Messagerie;
+import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.MainBDDmin;
 import packagebdd.createTableBDD;
 import packagebdd.selectBDD;
+
 
 /**
  *
@@ -26,6 +31,12 @@ public class Accueil extends javax.swing.JFrame {
     static Chef_Projet CurrentCP = new Chef_Projet("");
     static Admin CurrentA = new Admin("");
     static int user = 0;
+    static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
+    static List<Messages> listeMessages = new ArrayList<Messages>();
+    static Salon SalonGlobal = new Salon("Salon Global, listeUSers, listeMessages");
+    static ArrayList<Utilisateur> tempU = new ArrayList<Utilisateur>();
+    static List<Utilisateur> listeAllUsers = new ArrayList<Utilisateur>();
+    static Messagerie Mess = new Messagerie();
     /**
      * Creates new form Acceuil
      */
@@ -204,10 +215,9 @@ public class Accueil extends javax.swing.JFrame {
         String pass = motDePasse.getText();
         String nom =  "";
         String prenom = "";
+        String service = "";
         String droit = "";
         boolean exist = false;
-        Salon SalonGlobal;
-        SalonGlobal = new Salon("SalonGlobal");
         
        
         try {
@@ -248,6 +258,22 @@ public class Accueil extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            try {
+                createSalon();
+            } catch (SQLException ex) {
+                Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                userMess();
+            } catch (SQLException ex) {
+                Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
+               
         }    
     }//GEN-LAST:event_connexionActionPerformed
 
@@ -272,6 +298,7 @@ public class Accueil extends javax.swing.JFrame {
    public Chef_Projet recupChefProjet(String mail){
        String nom = "";
        String prenom = "";
+       String service = "";
 
        CurrentCP.setMail(mail);
        try {
@@ -287,6 +314,13 @@ public class Accueil extends javax.swing.JFrame {
         }
         
         try {
+            service = CurrentCP.getService();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        try {
             CurrentCP.setPresence(nom, prenom);
         } catch (SQLException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
@@ -298,6 +332,7 @@ public class Accueil extends javax.swing.JFrame {
    public Utilisateur recupUser(String mail){
        String nom = "";
        String prenom = "";
+       String service = "";
        
        CurrentU.setMail(mail);
        try {
@@ -312,6 +347,12 @@ public class Accueil extends javax.swing.JFrame {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+         try {
+            service = CurrentCP.getService();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         try {
             CurrentU.setPresence(nom, prenom);
         } catch (SQLException ex) {
@@ -320,6 +361,25 @@ public class Accueil extends javax.swing.JFrame {
                 //SalonGlobal.adduser(CurrentU);
         return CurrentU;
     }
+   
+   public void createSalon() throws SQLException{
+       
+        SalonGlobal.adduser(CurrentU);
+   }
+   
+   public void userMess() throws SQLException{
+       List<Utilisateur> tempList = new ArrayList<Utilisateur>();
+       tempList = selectBDD.getListUtilisateur();
+       //listeAllUsers = selectBDD.getListUtilisateur();
+       for(int i=0; i<=tempList.size();i++){
+           tempU.add(tempList.get(i));
+           System.out.println(tempU.get(i).getNom());
+           System.out.println("JE SUIS LA");
+           Mess.addAllUsers(tempU.get(i));
+       }
+      
+   }
+ 
     
    
     private void motDePasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motDePasseActionPerformed

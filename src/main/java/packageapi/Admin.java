@@ -42,6 +42,13 @@ public class Admin extends Utilisateur{
                 + "SET presentU = 0 WHERE mailU ='"+mail+"'");
         
         System.out.println("L'admin " + nom + " " + prenom + " a quitté le chat");
+       
+    }
+     
+    public void declarNewCP(Utilisateur u) throws SQLException{
+        u.setDroit("CHEF_PROJET");
+        
+        System.out.println("L'utilisateur: "+ u.getNom() +", avec l'adresse"+ u.getMail() +"est maintenant chef de projet.");
         
     }
     
