@@ -346,7 +346,7 @@
                           <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel7" alignment="0" pref="84" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="269" max="32767" attributes="0"/>
+                      <EmptySpace pref="392" max="32767" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                   </Group>
@@ -551,47 +551,59 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
-                              <Component id="titreProfil" min="-2" pref="92" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
-                                  <Component id="confirmChangerPwdProfil" min="-2" pref="133" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="changerMailProfil" min="-2" pref="177" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="firstnameprofil" alignment="1" min="-2" pref="117" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
+                                          <Component id="titreProfil" min="-2" pref="92" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="nameprofil" alignment="1" min="-2" pref="117" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="serviceprofil" min="-2" pref="124" max="-2" attributes="0"/>
-                                      <Component id="changerPwdProfil" min="-2" pref="133" max="-2" attributes="0"/>
-                                      <Component id="mailprofil" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                                      <Component id="firstnameprofil" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                                      <Component id="nameprofil" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
+                                          <Component id="confirmChangerPwdProfil" min="-2" pref="133" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="changerMailProfil" min="-2" pref="177" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="changerPwdProfil" min="-2" pref="133" max="-2" attributes="0"/>
+                                              <Component id="serviceprofil" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+                              <Component id="mailprofil" min="-2" pref="178" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="666" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="588" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -600,27 +612,27 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="titreProfil" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="firstnameprofil" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="firstnameprofil" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nameprofil" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          <Component id="nameprofil" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="mailprofil" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                          <Component id="mailprofil" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="serviceprofil" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="serviceprofil" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="changerPwdProfil" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -635,7 +647,7 @@
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="changerMailProfil" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                       <Component id="validerProfil" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
@@ -657,7 +669,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Services :"/>
+                <Property name="text" type="java.lang.String" value="Service :"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="changerMailProfil">
@@ -734,27 +746,44 @@
                 <Property name="text" type="java.lang.String" value="Changer de password: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="serviceprofil">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="serviceprofilActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="mailprofil">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mailprofilActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="firstnameprofil">
+            <Component class="javax.swing.JLabel" name="firstnameprofil">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstnameprofilActionPerformed"/>
+                <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="firstnameprofilHierarchyChanged"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="nameprofil">
+            <Component class="javax.swing.JLabel" name="mailprofil">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+              </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameprofilActionPerformed"/>
+                <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="mailprofilHierarchyChanged"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="nameprofil">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="nameprofilHierarchyChanged"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="serviceprofil">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="serviceprofilHierarchyChanged"/>
               </Events>
             </Component>
           </SubComponents>
