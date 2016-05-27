@@ -27,11 +27,7 @@ public class coBDD {
             System.out.println("Connexion Fail..." + cnfe);
         }
         
-
-        String url = "jdbc:mysql://localhost:3307/javabdd?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-
-        
-
+        String url = "jdbc:mysql://localhost:8889/javaBDD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
         //François: 8889 javaBDD root root
         //Xavier: 3306 javabdd root
@@ -39,7 +35,9 @@ public class coBDD {
         //Najim: 3306 javaBDD root root
         
         try {
+
             DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
+
             System.out.println("Database Connected !");
         }
         catch (SQLException se){

@@ -217,6 +217,7 @@ public class Accueil extends javax.swing.JFrame {
         String pass = motDePasse.getText();
         String nom =  "";
         String prenom = "";
+        String service = "";
         String droit = "";
         boolean exist = false;
         
@@ -298,6 +299,7 @@ public class Accueil extends javax.swing.JFrame {
    public Chef_Projet recupChefProjet(String mail){
        String nom = "";
        String prenom = "";
+       String service = "";
 
        CurrentCP.setMail(mail);
        try {
@@ -313,6 +315,13 @@ public class Accueil extends javax.swing.JFrame {
         }
         
         try {
+            service = CurrentCP.getService();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        try {
             CurrentCP.setPresence(nom, prenom);
         } catch (SQLException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
@@ -324,6 +333,7 @@ public class Accueil extends javax.swing.JFrame {
    public Utilisateur recupUser(String mail, int type){
        String nom = "";
        String prenom = "";
+       String service = "";
        
        Current.setMail(mail);
        try {
@@ -334,6 +344,12 @@ public class Accueil extends javax.swing.JFrame {
         
         try {
             prenom = Current.getPrenom();
+        } catch (SQLException ex) {
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         try {
+            service = Current.getService();
         } catch (SQLException ex) {
             Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -16,9 +16,8 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import packageapi.Admin;
-import packageapi.Chef_Projet;
 import packageapi.Utilisateur;
+
 
 
 /**
