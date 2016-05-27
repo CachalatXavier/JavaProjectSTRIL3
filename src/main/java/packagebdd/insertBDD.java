@@ -129,15 +129,18 @@ public class insertBDD {
                  idUser = resultat1.getInt(1);
                 }
         
+        Statement smt2 = connect.createStatement(); 
+        
         String select_idSalon = "SELECT idS FROM Salon WHERE mailU ='"+nomsalon+"');";
-        ResultSet resultat2 = smt.executeQuery(select_idSalon);
+        ResultSet resultat2 = smt2.executeQuery(select_idSalon);
                 
             if(resultat2.next()){
                     
                  idSalon = resultat2.getInt(1);
                 }
  
-            int insert_UserToSalon = smt.executeUpdate("INSERT INTO `javabdd`.`fairePartie` "
+            Statement smt3 = connect.createStatement(); 
+            int insert_UserToSalon = smt3.executeUpdate("INSERT INTO `javabdd`.`fairePartie` "
                 + "(`idU`, `idS`) "
                 + "VALUES ('"+idUser+"', '"+idSalon+"');");
 
