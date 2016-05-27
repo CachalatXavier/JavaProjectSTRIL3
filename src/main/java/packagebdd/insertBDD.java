@@ -121,7 +121,7 @@ public class insertBDD {
         int idUser=0;
         int idSalon=0;
         
-        String select_idUser = "SELECT idU FROM utilisateurs WHERE mailU ='"+usermail+"');";
+        String select_idUser = "SELECT idU FROM utilisateurs WHERE mailU ='"+usermail+"'";
         ResultSet resultat1 = smt.executeQuery(select_idUser);
         
              if(resultat1.next()){
@@ -130,8 +130,7 @@ public class insertBDD {
                 }
         
         Statement smt2 = connect.createStatement(); 
-        
-        String select_idSalon = "SELECT idS FROM Salon WHERE mailU ='"+nomsalon+"');";
+        String select_idSalon = "SELECT idS FROM salon WHERE description ='"+nomsalon+"'";
         ResultSet resultat2 = smt2.executeQuery(select_idSalon);
                 
             if(resultat2.next()){
@@ -139,12 +138,13 @@ public class insertBDD {
                  idSalon = resultat2.getInt(1);
                 }
  
-            Statement smt3 = connect.createStatement(); 
-            int insert_UserToSalon = smt3.executeUpdate("INSERT INTO `javabdd`.`fairePartie` "
-                + "(`idU`, `idS`) "
-                + "VALUES ('"+idUser+"', '"+idSalon+"');");
-
-    
+            
+        Statement smt3 = connect.createStatement(); 
+        int insert_UserToSalon = smt3.executeUpdate("INSERT INTO `javabdd`.`fairePartie` "
+            + "(`idU`, `idS`) "
+            + "VALUES ('"+idUser+"', '"+idSalon+"')");
+        
+       
     }
     
 }

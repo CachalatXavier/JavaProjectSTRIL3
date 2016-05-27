@@ -58,7 +58,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    //Salon SalonGlobal = new Salon("Salon Global");
+    Salon SalonGlobal = new Salon("Salon Global");
     
    
     public Fenetre_principale(){
