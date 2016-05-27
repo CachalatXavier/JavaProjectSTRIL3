@@ -282,9 +282,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nomUtilisateur">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nom de l&apos;utilisateur"/>
-              </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane7">
               <AuxValues>

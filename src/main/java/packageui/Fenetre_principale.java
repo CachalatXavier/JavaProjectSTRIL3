@@ -57,7 +57,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    //Salon SalonGlobal = new Salon("Salon Global");
+    Salon SalonGlobal = new Salon("Salon Global");
     
    
     public Fenetre_principale(){
@@ -234,8 +234,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
-        nomUtilisateur.setText("Nom de l'utilisateur");
-
+        jMessageSalon.setEditable(false);
         jMessageSalon.setColumns(20);
         jMessageSalon.setRows(5);
         jScrollPane7.setViewportView(jMessageSalon);
@@ -759,7 +758,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     if ( userMail.equals(userNameMail) )
                     {
                         // l'utilisateur existe
-                        //addUserSalon();
+                        addUserSalon( userNameMail, CurrentSalon);
                         System.out.println("User added to salon");
                         JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -1009,7 +1008,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JList<String> listSalon;
-    private javax.swing.JList<packageapi.Utilisateur> listeUtilisateurSalon;
+    private javax.swing.JList<Utilisateur> listeUtilisateurSalon;
     private javax.swing.JLabel mailprofil;
     private javax.swing.JLabel nameprofil;
     private javax.swing.JTextField nomUtilisateur;
