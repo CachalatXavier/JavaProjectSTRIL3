@@ -73,6 +73,10 @@ public class createTableBDD {
             + "ADD FOREIGN KEY (idU) REFERENCES utilisateurs(idU),"
             + "ADD FOREIGN KEY (idS) REFERENCES salon(idS);");
         
+        // ajout de la clé étranfgère salonMaster
+        /*int tab_messageP3 = smt.executeUpdate ("ALTER TABLE `javabdd`.`salon` "
+            + "ADD FOREIGN KEY (idU) REFERENCES salon(idU);");*/
+        
         
         
         

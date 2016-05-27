@@ -277,6 +277,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter un utilisateur &#xe0; mon salon"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ajoutUtilisateurActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nomUtilisateur">
               <Properties>

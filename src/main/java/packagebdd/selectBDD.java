@@ -16,6 +16,8 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import packageapi.Admin;
+import packageapi.Chef_Projet;
 import packageapi.Utilisateur;
 
 
@@ -92,29 +94,55 @@ public class selectBDD {
         return droit;
     }
     
+    // recupere l'utilisateur à l'aide d'une adresse mail
+public static String getUtilisateur(String email) throws SQLException{
+    Connection connect = coBDD.connect();
+    Statement smt = connect.createStatement();
     
+    String user = "";
+    
+    try {
+        String sql = "SELECT * FROM utilisateurs WHERE (mailU) IN (SELECT mailU FROM utilisateurs WHERE mailU='"
+            +email+"')";
+        ResultSet resultat = smt.executeQuery(sql);
+        
+        if(resultat.next()){
+                    user = resultat.getString(4);
+                    //System.out.println(user);
+                    return user;
+                }else {
+                     
+                    System.out.println("Problème lors de la récupération de l'utilisateur!");
+                    
+                }
+    }
+    catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+    }
+     
+    return "NO";
+}
     
 
 
-public static void getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a finir
+public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a finir
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
-        ArrayList<String> Resultat= new ArrayList<String>();
-        
-        String tmp;
-        String Nom = Current.getNom();  
-        
         try {
-            String sql = ("SELECT description,listUser FROM salon" );
+            String sql = ("SELECT NomU FROM utilisateurs" );
             ResultSet res = smt.executeQuery(sql);
-           
-            // a finir
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            
+           //) finir
           
         } catch (SQLException e4) {
              
                 System.out.println(e4.getMessage());
          }
+         
+         return listUser ; 
         
 }
 
@@ -156,11 +184,7 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
      */
     public static List<Utilisateur> getListUtilisateur () throws SQLException{
 
-    
-    // recuperer liste utilisateur
-    
 
-        
          Connection connect = coBDD.connect();
          Statement smt = connect.createStatement();
          
@@ -190,7 +214,31 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
     }
    
     
+public static String getNomSalon( String userMail) throws SQLException
+{
+    String salonName = "";
+       
+        //connexion base de donnée
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
 
+       // requete 
+       
+            String sql = "SELECT salonMaster FROM utilisateurs WHERE mailU='" +userMail+"'";
+            ResultSet resultat = smt.executeQuery(sql);
+            
+            if(resultat.next()){
+                   salonName  = resultat.getString(1);
+                    //System.out.println(user);
+                    return salonName;
+                }else {
+                     
+                    System.out.println("Problème lors de la récupération du nom Salon !");
+                   
+                }
+            
+           return "NULL";
+}
 
 public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();

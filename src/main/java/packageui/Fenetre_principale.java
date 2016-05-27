@@ -34,6 +34,7 @@ import packageapi.Utilisateur;
 import packagebdd.coBDD;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
+import static packagebdd.selectBDD.*;
 //import static packageui.Accueil.CurrentU;
 //import static packageui.Accueil.CurrentCP;
 //import static packageui.Accueil.CurrentA;
@@ -227,6 +228,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel4.setText("Liste d'utilisateurs");
 
         ajoutUtilisateur.setText("Ajouter un utilisateur à mon salon");
+        ajoutUtilisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoutUtilisateurActionPerformed(evt);
+            }
+        });
 
         nomUtilisateur.setText("Nom de l'utilisateur");
 
@@ -724,6 +730,64 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
+    private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
+                // TODO add your handling code here:
+                
+                // on prend juste le nom de l'utilisateur
+                String userNameMail = nomUtilisateur.getText();
+                String userMail = "";
+                
+                
+        try {
+            //vérifie si l'utilisateur est verifier admin
+            String droitU = selectBDD.checkright(Current.getMail());
+            
+            String bdd= getNomSalon(Current.getMail());
+            String CurrentSalon = SalonGlobal.getDescription();
+        
+        if( ( droitU.equals("ADMIN") || ( droitU.equals("CHEF_PROJET") && (bdd.equals(CurrentSalon))) ) )
+        {
+            
+            System.out.println(droitU);
+                
+                //select pour vérifier un utilisateur avec l'adresse mail existe
+                try
+                {
+                    userMail = selectBDD.getUtilisateur(userNameMail);
+                    // on teste 
+                    //System.out.println("User added to salon, "+userNameMail);
+                    if ( userMail.equals(userNameMail) )
+                    {
+                        // l'utilisateur existe
+                        //addUserSalon();
+                        System.out.println("User added to salon");
+                        JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                catch (SQLException ex)
+                {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Vous n'êtes pas autoriser à ajouter un utilisateur à se salon", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_ajoutUtilisateurActionPerformed
+
     
     
     private void refreshActionSalon()
@@ -903,6 +967,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 //new Salon().setVisible(true);
             }
