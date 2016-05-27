@@ -173,7 +173,7 @@ public class Utilisateur {
         this.droit = droit;
     }
     
-    public void setPresence(String nom, String prenom) throws SQLException {
+    public void setPresence(String nom, String prenom, int type) throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
@@ -181,11 +181,21 @@ public class Utilisateur {
       
         int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 1 WHERE mailU ='"+mail+"'");
-        System.out.println("L'utilisateur " + nom + " " + prenom + " est entré(e) dans le chat");
+        switch (type) {
+            case 3:
+                System.out.println("L'utilisateur " + nom + " " + prenom + " est entré(e) dans le tchat");
+                break;
+            case 2:
+                System.out.println("Le chef de projet " + nom + " " + prenom + " est entré(e) dans le tchat");
+                break;
+            default:
+                System.out.println("L'admin " + nom + " " + prenom + " est entré(e) dans le tchat");
+                break;
+        }
       
     }
     
-    public void Deconnexion(String nom, String prenom) throws SQLException{
+    public void Deconnexion(String nom, String prenom, int type) throws SQLException{
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
@@ -193,7 +203,17 @@ public class Utilisateur {
         int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 0 WHERE mailU ='"+mail+"'");
         
-        System.out.println("L'utilisateur " + nom + " " + prenom + " a quitté le chat");
+         switch (type) {
+            case 3:
+                System.out.println("L'utilisateur " + nom + " " + prenom + " a quitté le tchat");
+                break;
+            case 2:
+                System.out.println("Le chef de projet " + nom + " " + prenom + " a quitté le tchat");
+                break;
+            default:
+                System.out.println("L'admin " + nom + " " + prenom + " a quitté le tchat");
+                break;
+        }
         
     }
     

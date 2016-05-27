@@ -43,6 +43,18 @@ public class Salon extends AbstractListModel<Utilisateur>{
         fireContentsChanged(listeUsers, 0, listeUsers.size());
     }
     
+    /*public void addChefProjet(Chef_Projet CurrentCP) throws SQLException {
+        
+        listeUsers.add(CurrentCP);
+        fireContentsChanged(listeUsers, 0, listeUsers.size());
+    }
+    
+    public void addadmin(Admin CurrentA) throws SQLException {
+        
+        listeUsers.add(CurrentA);
+        fireContentsChanged(listeUsers, 0, listeUsers.size());
+    }*/
+    
 
     @Override
     public int getSize() {

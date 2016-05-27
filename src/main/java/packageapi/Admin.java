@@ -20,11 +20,11 @@ public class Admin extends Utilisateur{
         super(mail);
     }
     
-     public void setPresence(String nom, String prenom) throws SQLException {
+     /*public void setPresence(String nom, String prenom) throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
-        /*faire ici les requêtes ( insert )*/
+        
        
         int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 1 WHERE mailU ='"+mail+"'");
@@ -37,7 +37,7 @@ public class Admin extends Utilisateur{
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
-        /*faire ici les requêtes ( insert )*/
+       
         int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
                 + "SET presentU = 0 WHERE mailU ='"+mail+"'");
         
@@ -50,6 +50,6 @@ public class Admin extends Utilisateur{
         
         System.out.println("L'utilisateur: "+ u.getNom() +", avec l'adresse"+ u.getMail() +"est maintenant chef de projet.");
         
-    }
+    }*/
     
 }

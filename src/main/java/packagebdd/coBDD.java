@@ -35,7 +35,9 @@ public class coBDD {
         //Najim: 3306 javaBDD root root
         
         try {
-            DBConnection = (Connection) DriverManager.getConnection(url, "root", "root");
+
+            DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
+
             System.out.println("Database Connected !");
         }
         catch (SQLException se){

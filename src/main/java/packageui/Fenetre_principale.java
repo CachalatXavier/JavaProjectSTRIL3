@@ -9,10 +9,15 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.TimerTask;
 import java.util.Timer;
 import java.util.logging.Level;
@@ -22,6 +27,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.*;
+//import packageapi.Admin;
 import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
@@ -29,15 +35,16 @@ import packagebdd.coBDD;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
 import static packagebdd.selectBDD.*;
-import static packageui.Accueil.CurrentU;
-import static packageui.Accueil.CurrentCP;
-import static packageui.Accueil.CurrentA;
+//import static packageui.Accueil.CurrentU;
+//import static packageui.Accueil.CurrentCP;
+//import static packageui.Accueil.CurrentA;
+import static packageui.Accueil.Current;
 import static packageui.Accueil.user;
-import static packageui.Accueil.listeMessages;
+//import static packageui.Accueil.listeMessages;
 import static packageui.Accueil.SalonGlobal;
 import static packageui.Accueil.Mess;
 import static packageui.Accueil.tempU;
-import static packageui.Accueil.listeAllUsers;
+//import static packageui.Accueil.listeAllUsers;
 //import static packagebdd.selectBDD.getListUtilisateur;
 
 /**
@@ -50,7 +57,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    Salon SalonGlobal = new Salon("Salon Global");
+    //Salon SalonGlobal = new Salon("Salon Global");
+    
    
     public Fenetre_principale(){
         initComponents();
@@ -58,12 +66,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
         Timer timerSalon = new Timer();
         timerSalon.schedule (new TimerTask() {
             @Override
-            public void run()
-            {
+            public void run(){
                 refreshActionSalon();
             }
-        }, 0, 1000);
-     
+        },0, 1000);
         
         repertoireMessagerie.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
@@ -87,7 +93,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 return l;
             }
         });
-        
         listeUtilisateurSalon.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -99,7 +104,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
                 //for(int i=0; i<=2; i++){
                     try {
-                        l.setText(index + 1 + " - " + CurrentU.getNom() + " "+CurrentU.getPrenom()+"");
+                        l.setText(index + 1 + " - " + Current.getNom() + " "+Current.getPrenom()+"");
                     } catch (SQLException ex) {
                         Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -110,6 +115,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 return l;
             }
         });
+        
              
         
     }
@@ -644,12 +650,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
        String droit = "";
        String mail = "";
        
-       switch(user){
+       
+       
+      /* switch(user){
            case 1 : mail = CurrentA.getMail();break;
            case 2 : mail = CurrentCP.getMail();break;
            default : mail = CurrentU.getMail();break;
            
-       }
+       }*/
           
         try {
             droit = selectBDD.checkright(mail);
@@ -659,7 +667,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         if(droit.equals("USER")){
            try {
-               decoUser(mail);
+               Current.Deconnexion(Current.getNom(), Current.getPrenom(), user);
            } catch (SQLException ex) {
                Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -668,7 +676,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         else{
             if(droit.equals("CHEF_PROJET")){
                 try {
-                    decoChefProjet(mail);
+                    Current.Deconnexion(Current.getNom(), Current.getPrenom(), user);
                 } catch (SQLException ex) {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -676,7 +684,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             else {
                 if(droit.equals("ADMIN")){
                     try {
-                        decoAdmin(mail);
+                       Current.Deconnexion(Current.getNom(), Current.getPrenom(), user);
                     } catch (SQLException ex) {
                         Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -697,23 +705,29 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
         // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
-        String testD = "2012-09-01"; // la dates faudra la récupérer
         
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	   //get current date time with Date()
+	  java.util.Date date = new java.util.Date();
+          String testD = dateFormat.format(date);
+           
         Messages msg = null;
-        try {
-            msg = new Messages(salonText, testD, CurrentA, SalonGlobal);
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            addmsg(msg);
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //on vide la zone de texte 
-        sendSalontexte.setText("");
-        refreshActionSalon();
         
+                try {
+                msg = new Messages(salonText, testD, Current, SalonGlobal);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    addmsg(msg);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //on vide la zone de texte 
+                sendSalontexte.setText("");
+                refreshActionSalon();
+           
+
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
     private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
@@ -726,9 +740,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
         try {
             //vérifie si l'utilisateur est verifier admin
-            String droitU = selectBDD.checkright(CurrentU.getMail());
+            String droitU = selectBDD.checkright(Current.getMail());
             
-            String bdd= getNomSalon(CurrentU.getMail());
+            String bdd= getNomSalon(Current.getMail());
             String CurrentSalon = SalonGlobal.getDescription();
         
         if( ( droitU.equals("ADMIN") || ( droitU.equals("CHEF_PROJET") && (bdd.equals(CurrentSalon))) ) )
@@ -775,7 +789,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     {
         try {// TODO add your handling code here:
 
-            selectBDD.getListSalonUtilisateur(CurrentA);
+            selectBDD.getListSalonUtilisateur(Current);
             String tampon = selectBDD.getMessageSalon("Salon Global");
 
             //faut afficher les messages dans le textarea
@@ -791,7 +805,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // TODO add your handling code here:
              String name;
         try {
-            name = CurrentU.getNom();
+            name = Current.getNom();
             firstnameprofil.setText(name);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
@@ -801,7 +815,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private void mailprofilHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_mailprofilHierarchyChanged
         // TODO add your handling code here:
         String mail;
-        mail = CurrentU.getMail();
+        mail = Current.getMail();
         mailprofil.setText(mail); 
     }//GEN-LAST:event_mailprofilHierarchyChanged
 
@@ -809,7 +823,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // TODO add your handling code here:
         String prename;
         try {
-            prename = CurrentU.getPrenom();
+            prename = Current.getPrenom();
             nameprofil.setText(prename);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
@@ -821,7 +835,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         String service;
         
         try {
-            service = CurrentU.getService();
+            service = Current.getService();
             serviceprofil.setText(service);
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
@@ -835,7 +849,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             Statement smt;
         try {
             smt = connect.createStatement();
-            String sql = "SELECT mdpU FROM utilisateurs WHERE mailU ='"+CurrentU.getMail()+"'";
+            String sql = "SELECT mdpU FROM utilisateurs WHERE mailU ='"+Current.getMail()+"'";
             ResultSet resultat = smt.executeQuery(sql);
             if(resultat.next()){
                 
@@ -845,14 +859,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 String ancienmdp = pwdancien.getText();
                 
                 
-                System.out.println("blo");
-                System.out.println(ancienmdp);
-                System.out.println(motPasseUtilisateur);
-                System.out.println(confirmnouveaumdp);
-                System.out.println(nouveaumdp);
-                System.out.println("blo");
-                
-                System.out.println(CurrentU.getMail());
+                System.out.println(Current.getMail());
             
                 if (motPasseUtilisateur.equals(ancienmdp) ) { 
                     System.out.println(ancienmdp);
@@ -863,7 +870,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         String query = "UPDATE utilisateurs SET mdpU = ? WHERE mailU = ?";
                         PreparedStatement preparedStmt = connect.prepareStatement(query);
                         preparedStmt.setString(1, nouveaumdp);
-                        preparedStmt.setString(2, CurrentU.getMail());
+                        preparedStmt.setString(2, Current.getMail());
  
                         // execute the java preparedstatement
                         preparedStmt.executeUpdate();
@@ -893,7 +900,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }                                       
     */
     
-    public void decoUser(String mail) throws SQLException{
+    /*public void decoUser(String mail) throws SQLException{
        String nom = "";
        String prenom = "";
        
@@ -921,7 +928,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
        prenom = CurrentA.getPrenom();
        CurrentA.Deconnexion(nom, prenom);
        
-    }
+    }*/
   
      
     /**
@@ -1005,7 +1012,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextField pwdancien;
     private javax.swing.JTextField rechercheMessagerie;
     private javax.swing.JTextField rechercheSalon;
-    private javax.swing.JButton refreshB;
     private javax.swing.JList<Utilisateur> repertoireMessagerie;
     private javax.swing.JTextArea sendMessageMessagerie;
     private javax.swing.JButton sendSalonSend;
