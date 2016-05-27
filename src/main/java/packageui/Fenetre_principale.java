@@ -7,15 +7,21 @@ package packageui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
+import packagebdd.coBDD;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
 import static packageui.Accueil.CurrentU;
@@ -84,20 +90,20 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        changerMailProfil = new javax.swing.JTextField();
         validerProfil = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         titreProfil = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        changerPwdProfil = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        confirmChangerPwdProfil = new javax.swing.JPasswordField();
         jLabel17 = new javax.swing.JLabel();
         firstnameprofil = new javax.swing.JLabel();
         mailprofil = new javax.swing.JLabel();
         nameprofil = new javax.swing.JLabel();
         serviceprofil = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        changerpwd = new javax.swing.JTextField();
+        confirmpwd = new javax.swing.JTextField();
+        pwdancien = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -394,15 +400,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Service :");
 
-        changerMailProfil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        changerMailProfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changerMailProfilActionPerformed(evt);
-            }
-        });
-
         validerProfil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         validerProfil.setText("Valider");
+        validerProfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validerProfilActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setText("First name: ");
@@ -414,13 +418,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setText("Name: ");
 
-        changerPwdProfil.setToolTipText("");
-
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setText("Mail: ");
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel16.setText("Changer Mail :");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setText("Changer de password: ");
@@ -453,35 +452,59 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setText("Ancien mot de passe:");
+        jLabel11.setToolTipText("");
+
+        changerpwd.setText("Nouveau pwd");
+
+        confirmpwd.setText("Confirmation");
+
+        pwdancien.setText("Verif");
+        pwdancien.setToolTipText("");
+
         jLayeredPane3.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(changerMailProfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(validerProfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(titreProfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(changerPwdProfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(jLabel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(confirmChangerPwdProfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(firstnameprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(mailprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(nameprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(serviceprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(changerpwd, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(confirmpwd, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(pwdancien, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
         jLayeredPane3.setLayout(jLayeredPane3Layout);
         jLayeredPane3Layout.setHorizontalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                .addGap(353, 353, 353)
-                .addComponent(validerProfil)
+                .addGap(113, 113, 113)
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(validerProfil))
+                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10))
+                        .addGap(80, 80, 80)
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(confirmpwd)
+                            .addComponent(changerpwd, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                            .addComponent(pwdancien))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jLayeredPane3Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
                         .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(firstnameprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -489,31 +512,19 @@ public class Fenetre_principale extends javax.swing.JFrame {
                                     .addGap(283, 283, 283)
                                     .addComponent(titreProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(nameprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(169, 169, 169)
-                                    .addComponent(confirmChangerPwdProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                                    .addComponent(jLabel16)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(changerMailProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane3Layout.createSequentialGroup()
-                                    .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
-                                            .addComponent(jLabel12)
-                                            .addGap(164, 164, 164))
-                                        .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                                            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel17)
-                                                .addComponent(jLabel9))
-                                            .addGap(76, 76, 76)))
-                                    .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(changerPwdProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(serviceprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel14)
+                            .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(164, 164, 164))
+                                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(191, 191, 191)))
+                                .addComponent(serviceprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel15)
                         .addGap(215, 215, 215)
                         .addComponent(mailprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -540,21 +551,21 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9)
                     .addComponent(serviceprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(62, 62, 62)
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(changerPwdProfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(changerpwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
-                    .addComponent(confirmChangerPwdProfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmpwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(changerMailProfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                    .addComponent(jLabel11)
+                    .addComponent(pwdancien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(validerProfil)
-                .addGap(49, 49, 49))
+                .addGap(33, 33, 33))
         );
 
         profil.addTab("PROFIL", jLayeredPane3);
@@ -626,10 +637,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private void rechercheMessagerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheMessagerieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rechercheMessagerieActionPerformed
-
-    private void changerMailProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changerMailProfilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_changerMailProfilActionPerformed
 
     
     private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
@@ -713,6 +720,64 @@ public class Fenetre_principale extends javax.swing.JFrame {
          
     }//GEN-LAST:event_serviceprofilHierarchyChanged
 
+    private void validerProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerProfilActionPerformed
+        // TODO add your handling code here:
+            Connection connect = coBDD.connect();
+            Statement smt;
+        try {
+            smt = connect.createStatement();
+            String sql = "SELECT mdpU FROM utilisateurs WHERE mailU ='"+CurrentU.getMail()+"'";
+            ResultSet resultat = smt.executeQuery(sql);
+            if(resultat.next()){
+                
+                String motPasseUtilisateur = resultat.getString(1);
+                String nouveaumdp = changerpwd.getText();
+                String confirmnouveaumdp = confirmpwd.getText();              
+                String ancienmdp = pwdancien.getText();
+                
+                
+                System.out.println("blo");
+                System.out.println(ancienmdp);
+                System.out.println(motPasseUtilisateur);
+                System.out.println(confirmnouveaumdp);
+                System.out.println(nouveaumdp);
+                System.out.println("blo");
+                
+                System.out.println(CurrentU.getMail());
+            
+                if (motPasseUtilisateur.equals(ancienmdp) ) { 
+                    System.out.println(ancienmdp);
+                    if(confirmnouveaumdp.equals(nouveaumdp)){
+                    System.out.println("fesf");
+                    
+                        // create the java mysql update preparedstatement
+                        String query = "UPDATE utilisateurs SET mdpU = ? WHERE mailU = ?";
+                        PreparedStatement preparedStmt = connect.prepareStatement(query);
+                        preparedStmt.setString(1, nouveaumdp);
+                        preparedStmt.setString(2, CurrentU.getMail());
+ 
+                        // execute the java preparedstatement
+                        preparedStmt.executeUpdate();
+                        
+                        
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Les mots de passes ne sont pas identiques", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                    }
+                }              
+                else{
+                    JOptionPane.showMessageDialog(this,"Le mot de passe pour autoriser le changement est invalide", "Mauvais mot de passe", JOptionPane.ERROR_MESSAGE);
+                }
+ 
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+              
+                
+    }//GEN-LAST:event_validerProfilActionPerformed
+
     /*
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {                                        
         
@@ -788,17 +853,16 @@ public class Fenetre_principale extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.TextArea affichageMessageMessagerie;
     private javax.swing.JButton ajoutUtilisateur;
-    private javax.swing.JTextField changerMailProfil;
-    private javax.swing.JPasswordField changerPwdProfil;
-    private javax.swing.JPasswordField confirmChangerPwdProfil;
+    private javax.swing.JTextField changerpwd;
+    private javax.swing.JTextField confirmpwd;
     private javax.swing.JButton decoButtonSalon;
     private javax.swing.JLabel firstnameprofil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -824,6 +888,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel nameprofil;
     private javax.swing.JTextField nomUtilisateur;
     private javax.swing.JTabbedPane profil;
+    private javax.swing.JTextField pwdancien;
     private javax.swing.JTextField rechercheMessagerie;
     private javax.swing.JTextField rechercheSalon;
     private javax.swing.JButton refreshB;

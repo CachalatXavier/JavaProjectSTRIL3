@@ -11,9 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import packageapi.Admin;
-import packageapi.Chef_Projet;
 import packageapi.Utilisateur;
+
 
 
 /**
@@ -142,6 +141,8 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
        
         return msg;
     }
+    
+    
     
 
 

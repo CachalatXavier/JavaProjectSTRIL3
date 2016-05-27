@@ -12,6 +12,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import packagebdd.coBDD;
 
+
 /**
  *
  * @author Cyril
@@ -154,6 +155,8 @@ public class Utilisateur {
         this.Service = Service;
     }
 
+    
+    
    
 
     /**
