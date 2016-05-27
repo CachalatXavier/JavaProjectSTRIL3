@@ -9,10 +9,15 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.TimerTask;
 import java.util.Timer;
 import java.util.logging.Level;
@@ -680,8 +685,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
         // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
-        String testD = "2012-09-01"; // la dates faudra la récupérer
         
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	   //get current date time with Date()
+	  java.util.Date date = new java.util.Date();
+          String testD = dateFormat.format(date);
+           
         Messages msg = null;
         try {
             msg = new Messages(salonText, testD, CurrentA, SalonGlobal);
@@ -774,13 +783,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 String confirmnouveaumdp = confirmpwd.getText();              
                 String ancienmdp = pwdancien.getText();
                 
-                
-                System.out.println("blo");
-                System.out.println(ancienmdp);
-                System.out.println(motPasseUtilisateur);
-                System.out.println(confirmnouveaumdp);
-                System.out.println(nouveaumdp);
-                System.out.println("blo");
                 
                 System.out.println(CurrentU.getMail());
             
