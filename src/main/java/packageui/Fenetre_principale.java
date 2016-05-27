@@ -22,9 +22,12 @@ import static packageui.Accueil.CurrentU;
 import static packageui.Accueil.CurrentCP;
 import static packageui.Accueil.CurrentA;
 import static packageui.Accueil.user;
-import static packageui.Accueil.listeUsers;
 import static packageui.Accueil.listeMessages;
 import static packageui.Accueil.SalonGlobal;
+import static packageui.Accueil.Mess;
+import static packageui.Accueil.tempU;
+import static packageui.Accueil.listeAllUsers;
+//import static packagebdd.selectBDD.getListUtilisateur;
 
 /**
  *
@@ -39,8 +42,31 @@ public class Fenetre_principale extends javax.swing.JFrame {
     /*Salon SalonGlobal = new Salon("Salon Global");*/
     
    
-    public Fenetre_principale() {
+    public Fenetre_principale(){
         initComponents();
+        repertoireMessagerie.setCellRenderer(new ListCellRenderer<Utilisateur>() {
+            @Override
+            public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
+
+                JLabel l = new JLabel();
+                if (isSelected) {
+                    l.setForeground(Color.red);
+                }
+                
+                //for(int i=0; i<=2; i++){
+                    try {
+                        l.setText(index + 1 + " - " + tempU.get(index).getNom() + " "+tempU.get(index).getPrenom()+"");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                //}
+                    
+                
+                
+                return l;
+            }
+        });
+        
         listeUtilisateurSalon.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -49,14 +75,22 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 if (isSelected) {
                     l.setForeground(Color.red);
                 }
-                try {
-                    l.setText(index + 1 + " - " + CurrentU.getNom() + " "+CurrentU.getPrenom()+"");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
+                //for(int i=0; i<=2; i++){
+                    try {
+                        l.setText(index + 1 + " - " + CurrentU.getNom() + " "+CurrentU.getPrenom()+"");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                //}
+                    
+                
+                
                 return l;
             }
         });
+             
+        
     }
             
     /**
@@ -100,7 +134,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         affichageMessageMessagerie = new java.awt.TextArea();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        repertoirMessagerie = new javax.swing.JList<>();
+        repertoireMessagerie = new javax.swing.JList<>();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -346,15 +380,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Repertoire");
 
-        repertoirMessagerie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        repertoirMessagerie.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        repertoirMessagerie.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        repertoirMessagerie.setToolTipText("");
-        jScrollPane6.setViewportView(repertoirMessagerie);
+        repertoireMessagerie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        repertoireMessagerie.setModel(Mess);
+        repertoireMessagerie.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        repertoireMessagerie.setToolTipText("");
+        jScrollPane6.setViewportView(repertoireMessagerie);
 
         jLayeredPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(rechercheMessagerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -378,10 +408,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(156, 156, 156))
         );
@@ -400,7 +430,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(27, 27, 27)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -787,7 +817,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextField rechercheMessagerie;
     private javax.swing.JTextField rechercheSalon;
     private javax.swing.JButton refreshB;
-    private javax.swing.JList<String> repertoirMessagerie;
+    private javax.swing.JList<Utilisateur> repertoireMessagerie;
     private javax.swing.JTextArea sendMessageMessagerie;
     private javax.swing.JButton sendSalonSend;
     private javax.swing.JTextArea sendSalontexte;
