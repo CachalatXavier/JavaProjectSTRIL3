@@ -7,9 +7,13 @@ package packagebdd;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import packageapi.Utilisateur;
 
@@ -20,7 +24,9 @@ import packageapi.Utilisateur;
  * @author Francois
  */
 public class selectBDD {
-
+    static DefaultListModel<String> listUser = new DefaultListModel<String>();
+    
+    
     public static boolean isuservalid(String mail, String pass) throws SQLException {
     boolean tmp =false;
     /*createTableBDD creation = new createTableBDD();
@@ -120,7 +126,7 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
 
-       
+       // requete 
             String sql = "SELECT contenuM, dateM, emetteurM FROM message WHERE destinataireM ='" + salon + "'";
             ResultSet resultat = smt.executeQuery(sql);
             
@@ -136,14 +142,36 @@ public static void getListSalonUtilisateur(Utilisateur Current) throws SQLExcept
                     +" a dit:\n"+resultat.getString(1)
                     +"\nenvoyé le "
                     +resultat.getDate(2)+"\n";
-             //   System.out.prinln("passage");
             }
        
         return msg;
     }
     
-    
-    
+    // recuperer liste utilisateur
+    public  DefaultListModel<String> getListUtilisateur () throws SQLException{
+        
+         Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+         
+                
+         try {
+            String sql = ("SELECT NomU FROM utilisateurs" );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                  listUser.addElement((String)res.getObject(i));
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         
+         return listUser ; 
+    }
 
 
 public static void main(String[] args) throws SQLException {
