@@ -22,6 +22,7 @@ import packagebdd.createTableBDD;
 import packagebdd.selectBDD;
 
 
+
 /**
  *
  * @author Xavier
@@ -38,7 +39,7 @@ public class Accueil extends javax.swing.JFrame {
     static List<Utilisateur> listeAllUsers = new ArrayList<Utilisateur>();
     static Messagerie Mess = new Messagerie();
     static Utilisateur Current = new Utilisateur("");
-    
+    static ArrayList<Salon> tempS = new ArrayList<Salon>();
     /**
      * Creates new form Acceuil
      */
@@ -221,7 +222,9 @@ public class Accueil extends javax.swing.JFrame {
         String droit = "";
         boolean exist = false;
         
-       
+        System.out.println(mail);
+        System.out.println(pass);
+        
         try {
              exist = selectBDD.isuservalid(mail,pass);
         } catch (SQLException ex) {
@@ -270,14 +273,18 @@ public class Accueil extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+           
+           try {
+                addSalonUser();
+            } catch (SQLException ex) {
+                Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
                
         }    
     }//GEN-LAST:event_connexionActionPerformed
 
-    /**
+    /*
      *
      * @param mail
      * @param type
@@ -335,12 +342,17 @@ public class Accueil extends javax.swing.JFrame {
        String prenom = "";
        String service = "";
        
+      
+       
        Current.setMail(mail);
-       try {
-           nom = Current.getNom();
+       
+        try {
+            System.out.println(Current.getNom());
+            nom = Current.getNom();
         } catch (SQLException ex) {
-           Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         try {
             prenom = Current.getPrenom();
@@ -386,7 +398,17 @@ public class Accueil extends javax.swing.JFrame {
       
    }
  
-    
+   public void addSalonUser() throws SQLException{
+        List<Salon> S = new ArrayList<Salon>();
+        S = selectBDD.getListSalon(Current);
+       
+       for(int i=0; i<S.size();i++){
+           tempS.add(S.get(i));
+           System.out.println(tempS.get(i).getDescription());
+           System.out.println("JE SUIS LA");
+           Current.salonUser(tempS.get(i));
+       }
+    }
    
     private void motDePasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motDePasseActionPerformed
         // TODO add your handling code here:
