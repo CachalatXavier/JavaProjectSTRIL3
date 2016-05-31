@@ -900,17 +900,22 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
     private void validerSendMessageMessagieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerSendMessageMessagieActionPerformed
         // TODO add your handling code here:
-       /* String mesgText = sendMessageMessagerie.getText();
+       /* String msgText = sendMessageMessagerie.getText();
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat annee = new SimpleDateFormat("YYYY");
+        SimpleDateFormat mois = new SimpleDateFormat("MM");
+        SimpleDateFormat jour = new SimpleDateFormat("dd");
+        SimpleDateFormat heure = new SimpleDateFormat("HH");
+        SimpleDateFormat minute = new SimpleDateFormat("mm");
 	   //get current date time with Date()
 	  java.util.Date date = new java.util.Date();
-          String testD = dateFormat.format(date);
+          String testD;
+        testD = "\n\nEnvoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
            
         Messages msg = null;
         
                 try {
-                msg = new Messages(mesgText, testD, Current, destSelect);
+                msg = new Messages(msgText, testD, Current, destMessagerie);
                 } catch (SQLException ex) {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -920,7 +925,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 //on vide la zone de texte 
-                sendMessageMessagerie.setText("");
+                sendSalontexte.setText("");
                 refreshActionSalon();
            
 */
