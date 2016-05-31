@@ -1070,6 +1070,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 if (tmp==0){   
                     
                     insertBDD.createNewSalon(nomSalon);
+                    JOptionPane.showMessageDialog(this,"Le salon "+nomSalon+" a été créé.", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
 
                 }
             }

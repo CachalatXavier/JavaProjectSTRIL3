@@ -80,11 +80,9 @@ public class insertBDD {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         String nomS = nomSalon;
-        int $i=4;
-        $i++;
         int insert_user = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
-                + "(`description`, `listUser`, `listMessage`) "
-                + "VALUES ('"+nomS+"', 'NULL', 'NULL');");
+                + "(`description`) "
+                + "VALUES ('"+nomS+"');");
      
     }
     
