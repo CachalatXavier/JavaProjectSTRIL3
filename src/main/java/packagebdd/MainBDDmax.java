@@ -115,7 +115,6 @@ public class MainBDDmax {
                   + "('Salut comment vas tu ? ','25/05/16','ELOUARIACHI','CACHALAT');");
           
                   System.out.println("Messages envoyés");
-
           
           // Envoi message dans un salon
           int msg3 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
@@ -124,7 +123,7 @@ public class MainBDDmax {
                   + "('Bientot fini normalement ','25/06/16','ELOUARIACHI','Salon Informatique'),"
                   + "('On est dans les temps','25/06/16','LOUIS-STANISLAS','Salon Informatique'),"
                   + "('Ouais, super','27/06/16','LESAICHOT','Salon Informatique'),"
-                  + "('Plus qu'une semaine !','26/06/16','LESAICHOT','Salon Informatique');");
+                  + "('Plus qu une semaine !','26/06/16','LESAICHOT','Salon Informatique');");
 
           int msg4 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
