@@ -25,7 +25,12 @@ import static packagebdd.decoBDD.deconnect;
  * @author Francois
  */
 public class selectBDD {
-    static List<Utilisateur> listUser = new ArrayList<>();
+
+    /**
+     *
+     */
+    public static List<Utilisateur> listUser = new ArrayList<>();
+    public static List<Utilisateur> listUserPres = new ArrayList<>();
     static List<Salon> listSalon = new ArrayList<>();
     
     public static boolean isuservalid(String mail, String pass) throws SQLException {
@@ -210,7 +215,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
      * @return
      * @throws SQLException
      */
-    public static List<Utilisateur> getListUtilisateur () throws SQLException{
+    public static List<Utilisateur> getListUtilisateur () throws SQLException {
 
 
          Connection connect = coBDD.connect();
@@ -240,7 +245,37 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
          deconnect(connect); 
          return listUser ;
     }
-   
+
+public static List<Utilisateur> getUserPresent () throws SQLException {
+
+
+         Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+         
+                
+         try {
+            String sql = ("SELECT mailU FROM utilisateurs WHERE presentU = 1" );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            String mail = "";
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                   mail = res.getString(i);
+                   //System.out.println(mail);
+                   Utilisateur U = new Utilisateur(mail);
+                   listUserPres.add(U);
+               
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         deconnect(connect); 
+         return listUserPres ;
+    }
     
 public static String getNomSalon( String userMail) throws SQLException
 {

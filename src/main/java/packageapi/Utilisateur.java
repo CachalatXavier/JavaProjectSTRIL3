@@ -203,7 +203,7 @@ import static packagebdd.decoBDD.deconnect;
       deconnect(connect); 
     }
     
-    public void Deconnexion(String nom, String prenom, int type) throws SQLException{
+    public void Deconnexion(String nom, String prenom, String mail, int type) throws SQLException{
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
