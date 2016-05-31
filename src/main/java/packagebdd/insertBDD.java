@@ -44,6 +44,14 @@ public class insertBDD {
                 + "(`nomU`, `prenomU`, `mailU`, `mdpU`, `droitU`, `presentU`) "
                 + "VALUES ('"+firstName+"', '"+name+"', '"+mail+"', '"+pass+"', 'USER', '0');");
                 
+              //   int ajoutSalon = smt.executeUpdate("INSERT INTO `javabdd`.`fairepartie`. ")
+               
+               int idUser= selectBDD.idUser(mail);
+               
+               int insert_Salon = smt.executeUpdate("INSERT INTO `javabdd`.`fairepartie`"
+                       + "(idU,idS)"
+                       + "VALUES('"+idUser+"',1);");
+               
                 JOptionPane.showMessageDialog(null,"User add ! ","Success",JOptionPane.PLAIN_MESSAGE);
                 System.out.println("User add !");
             }                    
@@ -65,6 +73,17 @@ public class insertBDD {
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
                 + "VALUES ('"+msg.getContenu()+"', '"+msg.getDate()+"', '"+msg.getSender()+"', '"+msg.getDest()+"');");
         deconnect(connect); 
+    }
+     
+     public static void createNewSalon(String nomSalon) throws SQLException{
+              
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+        String nomS = nomSalon;
+        int insert_user = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
+                + "(`description`) "
+                + "VALUES ('"+nomS+"');");
+     
     }
     
      /*
