@@ -78,7 +78,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         },0, 1000);
         
-        refreshActionMessagerie();
         
         repertoireMessagerie.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
@@ -143,8 +142,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
          
         });
-             
-        
+            
+      // rafraichir la messagerie 
+        refreshActionMessagerie();
     }
             
     /**
@@ -809,6 +809,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         }        // TODO add your handling code here:
 
     } 
+    
  // refresh lors de la selection de l'utilisateur en privé   
     public void refreshActionMessagerie()
     {
