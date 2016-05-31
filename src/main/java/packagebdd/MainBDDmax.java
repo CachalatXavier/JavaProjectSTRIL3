@@ -25,7 +25,11 @@ import java.util.logging.Logger;
 // votre base de données doit avoir le le nom suivant: javaBDD
 public class MainBDDmax {
     
-        public MainBDDmax() throws SQLException {
+    /**
+     *
+     * @throws SQLException
+     */
+    public MainBDDmax() throws SQLException {
 
         Connection connect = coBDD.connect();
         /*faire ici les requêtes ( insert )*/
@@ -183,6 +187,11 @@ public class MainBDDmax {
         
     }
     
+    /**
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
          MainBDDmax maBDDmax = new MainBDDmax();
         // System.out.println("toto");

@@ -30,7 +30,10 @@ import static packagebdd.decoBDD.deconnect;
 // votre base de données doit avoir le le nom suivant: javaBDD
 public class MainBDDmin {
 
-    
+    /**
+     *
+     * @throws SQLException
+     */
     public MainBDDmin() throws SQLException {
 
         Connection connect = coBDD.connect();
@@ -131,6 +134,11 @@ public class MainBDDmin {
         deconnect(connect); 
     }
     
+    /**
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
          MainBDDmin maBDDmin = new MainBDDmin();
          System.out.println("toto");
