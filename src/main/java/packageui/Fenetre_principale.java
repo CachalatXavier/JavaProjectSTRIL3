@@ -834,7 +834,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }        
 
     } 
     
