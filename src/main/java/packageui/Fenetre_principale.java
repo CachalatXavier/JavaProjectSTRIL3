@@ -739,7 +739,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
                 
         try {
-            //vérifie si l'utilisateur est verifier admin
+            //vérifie si l'utilisateur est admin
             String droitU = selectBDD.checkright(Current.getMail());
             
             String bdd= getNomSalon(Current.getMail());
