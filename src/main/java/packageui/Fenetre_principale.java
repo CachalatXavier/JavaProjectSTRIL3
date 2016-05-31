@@ -45,6 +45,7 @@ import static packageui.Accueil.user;
 import static packageui.Accueil.SalonGlobal;
 import static packageui.Accueil.Mess;
 import static packageui.Accueil.tempU;
+import static packageui.Accueil.tempS;
 //import static packageui.Accueil.listeAllUsers;
 //import static packagebdd.selectBDD.getListUtilisateur;
 
@@ -88,8 +89,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 //}
-                    
-                
+ 
                 
                 return l;
             }
@@ -117,6 +117,23 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
         
+       listSalon.setCellRenderer(new ListCellRenderer<Salon>() {
+            @Override
+            public Component getListCellRendererComponent(JList<? extends Salon> list, Salon value, int index, boolean isSelected, boolean cellHasFocus) {
+
+                JLabel l = new JLabel();
+                if (isSelected) {
+                    l.setForeground(Color.red);
+                }
+                
+                l.setText(index + 1 + " - " + tempS.get(index).getDescription());
+                
+                
+                return l;
+            }
+
+         
+        });
              
         
     }
@@ -191,11 +208,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jScrollPane2.setViewportView(listeUtilisateurSalon);
 
         listSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        listSalon.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        listSalon.setModel(Current);
+        listSalon.setToolTipText("");
         jScrollPane3.setViewportView(listSalon);
 
         rechercheSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -237,6 +251,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         nomUtilisateur.setText("Nom de l'utilisateur");
 
+        jMessageSalon.setEditable(false);
         jMessageSalon.setColumns(20);
         jMessageSalon.setRows(5);
         jScrollPane7.setViewportView(jMessageSalon);
@@ -1009,8 +1024,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JList<String> listSalon;
-    private javax.swing.JList<packageapi.Utilisateur> listeUtilisateurSalon;
+    private javax.swing.JList<Salon> listSalon;
+    private javax.swing.JList<Utilisateur> listeUtilisateurSalon;
     private javax.swing.JLabel mailprofil;
     private javax.swing.JLabel nameprofil;
     private javax.swing.JTextField nomUtilisateur;
