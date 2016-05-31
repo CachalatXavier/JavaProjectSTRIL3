@@ -28,6 +28,7 @@ import static packagebdd.decoBDD.deconnect;
     String mail;
     private String Service;
     private String droit;
+    private int presence;
 
     public Utilisateur(String mail) {
         this.mail = mail;
@@ -104,6 +105,36 @@ import static packagebdd.decoBDD.deconnect;
             }
         deconnect(connect); 
         return prenom;
+    }
+    
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public int getPresence() throws SQLException {
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+            int pres;
+        pres = 0;
+        try {
+            String sql = "SELECT presentU FROM utilisateurs WHERE mailU ='"+mail+"'";
+            ResultSet resultat = smt.executeQuery(sql);
+            
+            if(resultat.next()){
+                pres = resultat.getInt(1);
+            }
+            else
+            {
+                System.out.println("Présence non trouvée");
+            }
+            
+        }catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+            }
+        deconnect(connect); 
+        return pres;
     }
 
     /*
@@ -200,6 +231,15 @@ import static packagebdd.decoBDD.deconnect;
                 System.out.println("L'admin " + nom + " " + prenom + " est entré(e) dans le tchat");
                 break;
         }
+      deconnect(connect); 
+    }
+     public void setPresence(int num) throws SQLException {
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+      
+        int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+                + "SET presentU = '"+num+"' "+" WHERE mailU ='"+mail+"'");
+        
       deconnect(connect); 
     }
     

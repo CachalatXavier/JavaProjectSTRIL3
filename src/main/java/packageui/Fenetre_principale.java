@@ -604,7 +604,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
-        afk.setText("jButton1");
+        afk.setText("Changer mon ETAT (et je parle pas d'alcool)");
         afk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 afkActionPerformed(evt);
@@ -667,7 +667,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                             .addComponent(afk)
                             .addComponent(decoButtonSalon)
                             .addComponent(jLabel4))
-                        .addGap(0, 73, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -1117,7 +1117,22 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }//GEN-LAST:event_NameNewSalonActionPerformed
 
     private void afkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afkActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int pres = Current.getPresence();
+            //on récup l'etat et on l'inverse
+            
+            
+            if(pres==1){
+                Current.setPresence(2);
+            }
+            else if (pres==2){
+                Current.setPresence(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_afkActionPerformed
 
   
