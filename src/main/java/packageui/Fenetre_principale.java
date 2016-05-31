@@ -588,7 +588,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             .addGroup(jLayeredPane3Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
                         .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(firstnameprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -607,10 +607,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
                                         .addGap(191, 191, 191)))
                                 .addComponent(serviceprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(215, 215, 215)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
                         .addComponent(mailprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(666, 666, 666))))
         );
@@ -647,7 +646,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(pwdancien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(validerProfil)
                 .addGap(33, 33, 33))
         );
@@ -850,6 +849,19 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     
                         destMessagerie = repertoireMessagerie.getSelectedValue().getMail();
                         destUser = repertoireMessagerie.getSelectedValue();
+                        
+                    try {
+                        //afficher les messages appropriés
+                        String messMessagerie = selectBDD.getMessageSalon( destMessagerie );
+                        
+                        //faut afficher les messages dans le textarea
+                        affichageMessageMessagerie.setText(messMessagerie);
+                        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                        
                     
                 }
             }
@@ -951,6 +963,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_validerProfilActionPerformed
 
+    
     private void validerSendMessageMessagieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerSendMessageMessagieActionPerformed
         // TODO add your handling code here:
         String msgText = sendMessageMessagerie.getText();
