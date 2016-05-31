@@ -161,14 +161,12 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
             
             msg = resultat.getString(3)
                     +" a dit:\n"+resultat.getString(1)
-                    +"\nenvoyé le "
-                    +resultat.getDate(2)+"\n";
+                    +resultat.getString(2)+"\n";
             
             while (resultat.next()) {
                 msg = msg +"\n"+ resultat.getString(3)
                     +" a dit:\n"+resultat.getString(1)
-                    +"\nenvoyé le "
-                    +resultat.getDate(2)+"\n";
+                    +resultat.getString(2)+"\n";
             }
        deconnect(connect); 
         return msg;

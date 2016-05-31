@@ -2,6 +2,8 @@ package packagemain;
 
 
 import java.sql.SQLException;
+import packagebdd.MainBDDmin;
+import packagebdd.createTableBDD;
 import packageui.Accueil;
 
 /*

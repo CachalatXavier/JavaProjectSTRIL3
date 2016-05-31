@@ -700,10 +700,15 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
         
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm");
+        SimpleDateFormat annee = new SimpleDateFormat("YYYY");
+        SimpleDateFormat mois = new SimpleDateFormat("MM");
+        SimpleDateFormat jour = new SimpleDateFormat("dd");
+        SimpleDateFormat heure = new SimpleDateFormat("HH");
+        SimpleDateFormat minute = new SimpleDateFormat("mm");
 	   //get current date time with Date()
 	  java.util.Date date = new java.util.Date();
-          String testD = dateFormat.format(date);
+          String testD;
+        testD = "\n\nEnvoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
            
         Messages msg = null;
         
