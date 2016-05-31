@@ -18,6 +18,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import packageapi.Admin;
 import packageapi.Chef_Projet;
+import packageapi.Salon;
 import packageapi.Utilisateur;
 
 
@@ -28,7 +29,7 @@ import packageapi.Utilisateur;
  */
 public class selectBDD {
     static List<Utilisateur> listUser = new ArrayList<>();
-    
+    static List<Salon> listSalon = new ArrayList<>();
     
     public static boolean isuservalid(String mail, String pass) throws SQLException {
     boolean tmp =false;
@@ -175,6 +176,36 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
        
         return msg;
     }
+    public static List<Salon> getListSalon (Utilisateur Current) throws SQLException{
+     Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+         
+                
+         try {
+            String sql = ("SELECT description FROM utilisateurs,fairepartie,salon "
+                    + "WHERE (utilisateurs.idU=fairepartie.idU) AND (salon.idS=fairepartie.idS) AND ( NomU='"+Current.getNom()+"');"  );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            String description = "";
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                   description = res.getString(i);
+                   //System.out.println(description);
+                   Salon S = new Salon(description);
+                   listSalon.add(S);
+               
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         
+         return listSalon ;
+    }
+
 
 
     /**

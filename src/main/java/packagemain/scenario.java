@@ -21,11 +21,11 @@ import static packagebdd.insertBDD.addmsg;
  *
  * @author Xavier
  */
-public class scenario {
+public class  scenario {
     
     public static void main(String args[]) throws SQLException {
-        //createTableBDD creation = new createTableBDD();
-        //MainBDDmin maBDDmin = new MainBDDmin();
+       // createTableBDD creation = new createTableBDD();
+     //   MainBDDmin maBDDmin = new MainBDDmin();
         Accueil Accueil = new Accueil();
         new Accueil().setVisible(true);
    
