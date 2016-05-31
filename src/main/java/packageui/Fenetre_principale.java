@@ -17,7 +17,10 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import static java.util.Collections.list;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
 import java.util.logging.Level;
@@ -34,6 +37,7 @@ import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.coBDD;
 import static packagebdd.decoBDD.deconnect;
+import packagebdd.insertBDD;
 import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
@@ -175,6 +179,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
                 //for(int i=0; i<=2; i++){
                     try {
+                        
                         l.setText(index + 1 + " - " + Current.getNom() + " "+Current.getPrenom()+"");
                     } catch (SQLException ex) {
                         Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,6 +242,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         nomUtilisateur = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         jMessageSalon = new javax.swing.JTextArea();
+        NameNewSalon = new javax.swing.JTextField();
+        crationSalon = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -313,16 +320,24 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
-        nomUtilisateur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomUtilisateurActionPerformed(evt);
-            }
-        });
-
         jMessageSalon.setEditable(false);
         jMessageSalon.setColumns(20);
         jMessageSalon.setRows(5);
         jScrollPane7.setViewportView(jMessageSalon);
+
+        NameNewSalon.setText("nom du nouveau salon");
+        NameNewSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameNewSalonActionPerformed(evt);
+            }
+        });
+
+        crationSalon.setText("Création d'un salon");
+        crationSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crationSalonActionPerformed(evt);
+            }
+        });
 
         jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -335,6 +350,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane1.setLayer(ajoutUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(nomUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(NameNewSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(crationSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -352,16 +369,20 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(ajoutUtilisateur)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(sendSalonSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ajoutUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(crationSalon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NameNewSalon)
+                                    .addComponent(nomUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))))))
                 .addGap(90, 90, 90)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -394,7 +415,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ajoutUtilisateur)
                     .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NameNewSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(crationSalon))
+                .addGap(16, 16, 16))
         );
 
         profil.addTab("SALON", jLayeredPane1);
@@ -442,17 +467,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(affichageMessageMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(validerSendMessageMessagie, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(validerSendMessageMessagie, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -565,12 +587,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Ancien mot de passe:");
         jLabel11.setToolTipText("");
-
-        changerpwd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changerpwdActionPerformed(evt);
-            }
-        });
 
         pwdancien.setToolTipText("");
 
@@ -784,37 +800,52 @@ public class Fenetre_principale extends javax.swing.JFrame {
             //vérifie si l'utilisateur est admin
             String droitU = selectBDD.checkright(Current.getMail());
             
-            String bdd= getNomSalon(Current.getMail());
+            //on récupert dans bdd le nom du salon auquel le current user est chef de projet
+            String bdd = getNomSalon(Current.getMail());
+            //on récupert le nom du salon courrant
             String CurrentSalon = SalonGlobal.getDescription();
         
+            //on test les droit de l'utilisateur, s'il n'est pas admin on verifie qu'il soit bien chef de projet du salon courrant
         if( ( droitU.equals("ADMIN") || ( droitU.equals("CHEF_PROJET") && (bdd.equals(CurrentSalon))) ) )
         {
             
-            System.out.println(droitU);
-                
-                //select pour vérifier un utilisateur avec l'adresse mail existe
-                try
-                {
-                    userMail = selectBDD.getUtilisateur(userNameMail);
-                    // on teste 
-                    //System.out.println("User added to salon, "+userNameMail);
-                    if ( userMail.equals(userNameMail) )
+            //on test si l'utilisateur à ajouter n'est pas déjà dans le salon
+           List malistSalon = selectBDD.getListSalonViaMail(userNameMail);
+           int tmp = 0;
+           for(Iterator it = malistSalon.iterator();it.hasNext();){
+              Salon sal;
+               sal = (Salon) it.next();
+              String salnom = sal.getDescription();
+               if(salnom.equals(CurrentSalon)){    
+                  JOptionPane.showMessageDialog(this,"L'utilisateur est déjà dans le salon !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                  tmp = 1;
+               }
+            }
+
+                if (tmp==0){   
+                    //select pour vérifier un utilisateur avec l'adresse mail existe
+                    try
                     {
-                        // l'utilisateur existe
-                        addUserSalon(userNameMail, CurrentSalon);
-                        System.out.println("User added to salon");
-                        JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                        userMail = selectBDD.getUtilisateur(userNameMail);
+                        //on teste 
+                        //System.out.println("User added to salon, "+userNameMail);
+                        if ( userMail.equals(userNameMail) )
+                        {
+                            // l'utilisateur existe
+                            addUserSalon(userNameMail, CurrentSalon);
+                            System.out.println("User added to salon");
+                            JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
-                    else
+                    catch (SQLException ex)
                     {
-                        JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                catch (SQLException ex)
-                {
-                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
             }
         else
         {
@@ -968,16 +999,60 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
 
-    
-    // a effacer
-    private void changerpwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changerpwdActionPerformed
+    private void crationSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crationSalonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_changerpwdActionPerformed
+         // on prend juste le nom de l'utilisateur
+                String nomSalon = NameNewSalon.getText();
+               
+                   
+                
+        try {
+            //vérifie si l'utilisateur est admin
+            String droitU = selectBDD.checkright(Current.getMail());
+            
+            
+        
+            //on test les droit de l'utilisateur, il doit être admin
+        if(droitU.equals("ADMIN"))
+        {
+            
+            //on test si le salon à créer n'est pas déjà existant
+           List malistSalon = selectBDD.getListSalon();
+           int tmp = 0;
+           for(Iterator it = malistSalon.iterator();it.hasNext();){
+              Salon sal;
+               sal = (Salon) it.next();
+              String salnom = sal.getDescription();
+               if(salnom.equals(nomSalon)){    
+                  JOptionPane.showMessageDialog(this,"Le salon existe déjà !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                  tmp = 1;
+               }
+            }
 
-    private void nomUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomUtilisateurActionPerformed
+                if (tmp==0){   
+                    
+                    insertBDD.createNewSalon(nomSalon);
+                    JOptionPane.showMessageDialog(this,"Le salon "+nomSalon+" a été créé.", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Vous n'êtes pas autoriser à créer un salon", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+                
+    }//GEN-LAST:event_crationSalonActionPerformed
+
+    private void NameNewSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameNewSalonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nomUtilisateurActionPerformed
-// a effacer
+    }//GEN-LAST:event_NameNewSalonActionPerformed
+
   
      
     /**
@@ -1017,10 +1092,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField NameNewSalon;
     private java.awt.TextArea affichageMessageMessagerie;
     private javax.swing.JButton ajoutUtilisateur;
     private javax.swing.JTextField changerpwd;
     private javax.swing.JTextField confirmpwd;
+    private javax.swing.JButton crationSalon;
     private javax.swing.JButton decoButtonSalon;
     private javax.swing.JLabel firstnameprofil;
     private javax.swing.JLabel jLabel1;
