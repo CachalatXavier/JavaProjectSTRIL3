@@ -17,7 +17,10 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import static java.util.Collections.list;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
 import java.util.logging.Level;
@@ -112,6 +115,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
                 //for(int i=0; i<=2; i++){
                     try {
+                        
                         l.setText(index + 1 + " - " + Current.getNom() + " "+Current.getPrenom()+"");
                     } catch (SQLException ex) {
                         Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
@@ -768,37 +772,52 @@ public class Fenetre_principale extends javax.swing.JFrame {
             //vérifie si l'utilisateur est admin
             String droitU = selectBDD.checkright(Current.getMail());
             
-            String bdd= getNomSalon(Current.getMail());
+            //on récupert dans bdd le nom du salon auquel le current user est chef de projet
+            String bdd = getNomSalon(Current.getMail());
+            //on récupert le nom du salon courrant
             String CurrentSalon = SalonGlobal.getDescription();
         
+            //on test les droit de l'utilisateur, s'il n'est pas admin on verifie qu'il soit bien chef de projet du salon courrant
         if( ( droitU.equals("ADMIN") || ( droitU.equals("CHEF_PROJET") && (bdd.equals(CurrentSalon))) ) )
         {
             
-            System.out.println(droitU);
-                
-                //select pour vérifier un utilisateur avec l'adresse mail existe
-                try
-                {
-                    userMail = selectBDD.getUtilisateur(userNameMail);
-                    // on teste 
-                    //System.out.println("User added to salon, "+userNameMail);
-                    if ( userMail.equals(userNameMail) )
+            //on test si l'utilisateur à ajouter n'est pas déjà dans le salon
+           List malistSalon = selectBDD.getListSalonViaMail(userNameMail);
+           int tmp = 0;
+           for(Iterator it = malistSalon.iterator();it.hasNext();){
+              Salon sal;
+               sal = (Salon) it.next();
+              String salnom = sal.getDescription();
+               if(salnom.equals(CurrentSalon)){    
+                  JOptionPane.showMessageDialog(this,"L'utilisateur est déjà dans le salon !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                  tmp = 1;
+               }
+            }
+
+                if (tmp==0){   
+                    //select pour vérifier un utilisateur avec l'adresse mail existe
+                    try
                     {
-                        // l'utilisateur existe
-                        addUserSalon(userNameMail, CurrentSalon);
-                        System.out.println("User added to salon");
-                        JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                        userMail = selectBDD.getUtilisateur(userNameMail);
+                        //on teste 
+                        //System.out.println("User added to salon, "+userNameMail);
+                        if ( userMail.equals(userNameMail) )
+                        {
+                            // l'utilisateur existe
+                            addUserSalon(userNameMail, CurrentSalon);
+                            System.out.println("User added to salon");
+                            JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
-                    else
+                    catch (SQLException ex)
                     {
-                        JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                catch (SQLException ex)
-                {
-                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
             }
         else
         {

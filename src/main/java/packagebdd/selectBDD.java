@@ -122,22 +122,22 @@ public static String getUtilisateur(String email) throws SQLException{
     deconnect(connect); 
     return "NO";
 }
+
+
     
-
-
-public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a finir
+public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) throws SQLException{   
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
-        
+
         try {
             String sql = ("SELECT NomU FROM utilisateurs" );
             ResultSet res = smt.executeQuery(sql);
             ResultSetMetaData resUserMeta = res.getMetaData();
-            
+
            //) finir
-          
+
         } catch (SQLException e4) {
-             
+
                 System.out.println(e4.getMessage());
          }
          deconnect(connect); 
@@ -173,11 +173,11 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
         return msg;
     }
     
+    //on recupert les salon d'un utilisateur rentré en parmetre, on retourn donc une list de salon
     public static List<Salon> getListSalon (Utilisateur Current) throws SQLException{
      Connection connect = coBDD.connect();
          Statement smt = connect.createStatement();
-         
-                
+                         
          try {
             String sql = ("SELECT description FROM utilisateurs,fairepartie,salon "
                     + "WHERE (utilisateurs.idU=fairepartie.idU) AND (salon.idS=fairepartie.idS) AND ( NomU='"+Current.getNom()+"');"  );
@@ -203,6 +203,35 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
          return listSalon ;
     }
 
+    //on recupert les salon d'un utilisateur avec son mail rentré en parmetre, on retourne donc une list de salon
+    public static List<Salon> getListSalonViaMail (String usermail) throws SQLException{
+     Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+                         
+         try {
+            String sql = ("SELECT description FROM utilisateurs,fairepartie,salon "
+                    + "WHERE (utilisateurs.idU=fairepartie.idU) AND (salon.idS=fairepartie.idS) AND ( NomU='"+usermail+"');"  );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            String description = "";
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                   description = res.getString(i);
+                   //System.out.println(description);
+                   Salon S = new Salon(description);
+                   listSalon.add(S);
+               
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         deconnect(connect); 
+         return listSalon ;
+    }
 
 
     /**
@@ -241,7 +270,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
          return listUser ;
     }
    
-    
+//ici on récupert le nom du salon auquel l'utilisateur est chef de salon si il l'est.
 public static String getNomSalon( String userMail) throws SQLException
 {
     String salonName = "";
