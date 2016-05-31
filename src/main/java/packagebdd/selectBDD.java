@@ -171,6 +171,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
        deconnect(connect); 
         return msg;
     }
+    
     public static List<Salon> getListSalon (Utilisateur Current) throws SQLException{
      Connection connect = coBDD.connect();
          Statement smt = connect.createStatement();
