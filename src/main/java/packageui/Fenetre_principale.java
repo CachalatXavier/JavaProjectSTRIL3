@@ -93,6 +93,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
     } 
     
      // refresh lors de la selection de l'utilisateur en privé   
+
+    /**
+     *
+     */
     public void refreshActionMessagerie()
     {
         
@@ -125,6 +129,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
     }
     
+    /**
+     *
+     */
     public Fenetre_principale(){
         initComponents();
         
@@ -1017,6 +1024,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
     
+    /**
+     *
+     * @param e
+     */
     public void windowClosing(WindowEvent e){
         String droit = "";
         String mail = "";
