@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import packageapi.Salon;
 import packageapi.Utilisateur;
@@ -156,12 +157,12 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
        // requete 
             String sql = "SELECT contenuM, dateM, emetteurM FROM message WHERE destinataireM ='" + salon + "'";
             ResultSet resultat = smt.executeQuery(sql);
-            
             resultat.next();
             
             msg = resultat.getString(3)
                     +" a dit:\n"+resultat.getString(1)
                     +resultat.getString(2)+"\n";
+                    
             
             while (resultat.next()) {
                 msg = msg +"\n"+ resultat.getString(3)
