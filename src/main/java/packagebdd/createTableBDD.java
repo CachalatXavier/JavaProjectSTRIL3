@@ -7,6 +7,7 @@ package packagebdd;
 
 import packagebdd.coBDD;
 import java.sql.*;
+import static packagebdd.decoBDD.deconnect;
 
 
 /**
@@ -79,7 +80,7 @@ public class createTableBDD {
         
         
         
-        
+      deconnect(connect);   
         
         
         

@@ -20,6 +20,7 @@ import static java.time.Clock.system;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import static packagebdd.decoBDD.deconnect;
 
 /**
  *
@@ -112,7 +113,7 @@ public class MainBDDmin {
         System.out.println("Messages envoyés");
         
         
-        
+        deconnect(connect); 
     }
     
     public static void main(String[] args) throws SQLException {

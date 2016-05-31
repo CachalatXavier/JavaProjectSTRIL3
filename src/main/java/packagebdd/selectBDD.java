@@ -12,14 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import packageapi.Admin;
-import packageapi.Chef_Projet;
 import packageapi.Salon;
 import packageapi.Utilisateur;
+import static packagebdd.decoBDD.deconnect;
 
 
 
@@ -65,6 +61,7 @@ public class selectBDD {
              
                 System.out.println(e4.getMessage());
             }
+    deconnect(connect); 
     return tmp;
     }
     
@@ -91,7 +88,7 @@ public class selectBDD {
              
                 System.out.println(e4.getMessage());
             }
-        
+        deconnect(connect); 
         return droit;
     }
     
@@ -121,7 +118,7 @@ public static String getUtilisateur(String email) throws SQLException{
              
                 System.out.println(e4.getMessage());
     }
-     
+    deconnect(connect); 
     return "NO";
 }
     
@@ -142,7 +139,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
              
                 System.out.println(e4.getMessage());
          }
-         
+         deconnect(connect); 
          return listUser ; 
         
 }
@@ -173,7 +170,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
                     +"\nenvoyé le "
                     +resultat.getDate(2)+"\n";
             }
-       
+       deconnect(connect); 
         return msg;
     }
     public static List<Salon> getListSalon (Utilisateur Current) throws SQLException{
@@ -202,7 +199,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
              
                 System.out.println(e4.getMessage());
          }
-         
+         deconnect(connect); 
          return listSalon ;
     }
 
@@ -240,7 +237,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
              
                 System.out.println(e4.getMessage());
          }
-         
+         deconnect(connect); 
          return listUser ;
     }
    
@@ -267,7 +264,7 @@ public static String getNomSalon( String userMail) throws SQLException
                     System.out.println("Problème lors de la récupération du nom Salon !");
                    
                 }
-            
+           deconnect(connect); 
            return "NULL";
 }
 

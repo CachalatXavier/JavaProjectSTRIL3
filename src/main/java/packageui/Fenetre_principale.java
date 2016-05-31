@@ -32,6 +32,7 @@ import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.coBDD;
+import static packagebdd.decoBDD.deconnect;
 import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
@@ -699,7 +700,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm");
 	   //get current date time with Date()
 	  java.util.Date date = new java.util.Date();
           String testD = dateFormat.format(date);
@@ -889,7 +890,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
         }
               
-                
+          deconnect(connect);      
     }//GEN-LAST:event_validerProfilActionPerformed
 
     private void validerSendMessageMessagieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerSendMessageMessagieActionPerformed
