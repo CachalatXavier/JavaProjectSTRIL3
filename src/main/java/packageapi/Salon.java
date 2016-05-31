@@ -21,7 +21,7 @@ import packagebdd.selectBDD;
 public class Salon extends AbstractListModel<Utilisateur>{
 
     private String description;
-    List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
+    public static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     List<Messages> listeMessages = new ArrayList<Messages>();
     
     //constructeur 1

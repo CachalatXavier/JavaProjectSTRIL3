@@ -30,11 +30,13 @@ public class Accueil extends javax.swing.JFrame {
     static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     static List<Messages> listeMessages = new ArrayList<Messages>();
     static Salon SalonGlobal = new Salon("Salon Global");
-    static ArrayList<Utilisateur> tempU = new ArrayList<Utilisateur>();
     static List<Utilisateur> listeAllUsers = new ArrayList<Utilisateur>();
     static Messagerie Mess = new Messagerie();
+    //static Messagerie Mess2 = new Messagerie();
     static Utilisateur Current = new Utilisateur("");
     static ArrayList<Salon> tempS = new ArrayList<Salon>();
+    static List<Utilisateur> tempList = new ArrayList<Utilisateur>();
+    static List<Utilisateur> tempList2 = new ArrayList<Utilisateur>();
     /**
      * Creates new form Acceuil
      */
@@ -67,13 +69,13 @@ public class Accueil extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bienvenu dans la messagerie STRI ");
+        jLabel1.setText("Bienvenue dans la messagerie STRI ");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Register");
+        jLabel2.setText("S'enregistrer");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Login");
+        jLabel3.setText("Se connecter");
 
         mailAccueil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +87,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel4.setText("Mail");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Password");
+        jLabel5.setText("Mot de passe");
 
         connexion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         connexion.setText("Connexion");
@@ -135,32 +137,32 @@ public class Accueil extends javax.swing.JFrame {
                         .addGap(0, 206, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(197, 197, 197))
+                .addGap(166, 166, 166))
             .addGroup(layout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addComponent(inscription, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(349, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(quitter)
                         .addGap(83, 83, 83))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(mailAccueil, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(connexion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(motDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGap(67, 67, 67)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(motDePasse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mailAccueil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(155, 155, 155))))
         );
         layout.setVerticalGroup(
@@ -172,8 +174,8 @@ public class Accueil extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(inscription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,11 +259,11 @@ public class Accueil extends javax.swing.JFrame {
                 }
             }
             
-            try {
+            /*try {
                 SalonGlobal.adduser(Current);
             } catch (SQLException ex) {
                 Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             
             try {
                 userMess();
@@ -381,14 +383,17 @@ public class Accueil extends javax.swing.JFrame {
    }*/
    
    public void userMess() throws SQLException{
-       List<Utilisateur> tempList = new ArrayList<Utilisateur>();
        tempList = selectBDD.getListUtilisateur();
-       //listeAllUsers = selectBDD.getListUtilisateur();
        for(int i=0; i<tempList.size();i++){
-           tempU.add(tempList.get(i));
-           System.out.println(tempU.get(i).getNom());
-           System.out.println("JE SUIS LA");
-           Mess.addAllUsers(tempU.get(i));
+           Mess.addAllUsers(tempList.get(i));
+       }
+       
+       System.out.println("ICIIIIIIIIIIIIIIII");
+       tempList2 = selectBDD.getUserPresent();
+       for(int i=0; i<tempList2.size();i++){
+           
+           System.out.println(tempList2.get(i).getNom());
+           SalonGlobal.adduser(tempList2.get(i));
        }
       
    }
@@ -399,8 +404,8 @@ public class Accueil extends javax.swing.JFrame {
        
        for(int i=0; i<S.size();i++){
            tempS.add(S.get(i));
-           System.out.println(tempS.get(i).getDescription());
-           System.out.println("JE SUIS LA");
+           /*System.out.println(tempS.get(i).getDescription());
+           System.out.println("JE SUIS LA");*/
            Current.salonUser(tempS.get(i));
        }
     }
