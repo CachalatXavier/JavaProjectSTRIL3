@@ -74,6 +74,19 @@ public class insertBDD {
                 + "VALUES ('"+msg.getContenu()+"', '"+msg.getDate()+"', '"+msg.getSender()+"', '"+msg.getDest()+"');");
         deconnect(connect); 
     }
+     
+     public static void createNewSalon(String nomSalon) throws SQLException{
+              
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+        String nomS = nomSalon;
+        int $i=4;
+        $i++;
+        int insert_user = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
+                + "(`description`, `listUser`, `listMessage`) "
+                + "VALUES ('"+nomS+"', 'NULL', 'NULL');");
+     
+    }
     
      /*
      public static boolean addUserSalon (String nomChefProjet , String user , int idsalon) throws SQLException{

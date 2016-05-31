@@ -38,6 +38,7 @@ import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.coBDD;
 import static packagebdd.decoBDD.deconnect;
+import packagebdd.insertBDD;
 import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
@@ -178,6 +179,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         nomUtilisateur = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         jMessageSalon = new javax.swing.JTextArea();
+        NameNewSalon = new javax.swing.JTextField();
+        crationSalon = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
         rechercheMessagerie = new javax.swing.JTextField();
@@ -261,12 +264,21 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
-        nomUtilisateur.setText("Nom de l'utilisateur");
+        nomUtilisateur.setText("mail utilisateur");
 
         jMessageSalon.setEditable(false);
         jMessageSalon.setColumns(20);
         jMessageSalon.setRows(5);
         jScrollPane7.setViewportView(jMessageSalon);
+
+        NameNewSalon.setText("nom du nouveau salon");
+
+        crationSalon.setText("Création d'un salon");
+        crationSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crationSalonActionPerformed(evt);
+            }
+        });
 
         jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -281,6 +293,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane1.setLayer(ajoutUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(nomUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(NameNewSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(crationSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -302,16 +316,20 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                                .addComponent(ajoutUtilisateur)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(sendSalonSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ajoutUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(crationSalon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(NameNewSalon)
+                                    .addComponent(nomUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))))))
                 .addGap(155, 155, 155)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -345,11 +363,15 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addComponent(sendSalonSend, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ajoutUtilisateur)
-                    .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ajoutUtilisateur, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nomUtilisateur, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NameNewSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(crationSalon))
+                .addGap(16, 16, 16))
         );
 
         profil.addTab("SALON", jLayeredPane1);
@@ -1015,6 +1037,55 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 refreshActionSalon();
     }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
 
+    private void crationSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crationSalonActionPerformed
+        // TODO add your handling code here:
+         // on prend juste le nom de l'utilisateur
+                String nomSalon = NameNewSalon.getText();
+               
+                   
+                
+        try {
+            //vérifie si l'utilisateur est admin
+            String droitU = selectBDD.checkright(Current.getMail());
+            
+            
+        
+            //on test les droit de l'utilisateur, il doit être admin
+        if(droitU.equals("ADMIN"))
+        {
+            
+            //on test si le salon à créer n'est pas déjà existant
+           List malistSalon = selectBDD.getListSalon();
+           int tmp = 0;
+           for(Iterator it = malistSalon.iterator();it.hasNext();){
+              Salon sal;
+               sal = (Salon) it.next();
+              String salnom = sal.getDescription();
+               if(salnom.equals(nomSalon)){    
+                  JOptionPane.showMessageDialog(this,"Le salon existe déjà !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                  tmp = 1;
+               }
+            }
+
+                if (tmp==0){   
+                    
+                    insertBDD.createNewSalon(nomSalon);
+
+                }
+            }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Vous n'êtes pas autoriser à créer un salon", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+                
+    }//GEN-LAST:event_crationSalonActionPerformed
+
   
      
     /**
@@ -1058,10 +1129,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField NameNewSalon;
     private java.awt.TextArea affichageMessageMessagerie;
     private javax.swing.JButton ajoutUtilisateur;
     private javax.swing.JTextField changerpwd;
     private javax.swing.JTextField confirmpwd;
+    private javax.swing.JButton crationSalon;
     private javax.swing.JButton decoButtonSalon;
     private javax.swing.JLabel firstnameprofil;
     private javax.swing.JLabel jLabel1;

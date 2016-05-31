@@ -232,7 +232,41 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
          deconnect(connect); 
          return listSalon ;
     }
+    
+    
+//ici on récupert une liste de tout nos salons.
+public static List<Salon> getListSalon() throws SQLException
+{
+    String salonName = "";
+       
+        //connexion base de donnée
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
 
+            // requete 
+            String sql = "SELECT description FROM salon";
+            ResultSet resultat = smt.executeQuery(sql);
+            ResultSetMetaData resultatUserMeta = resultat.getMetaData();
+          String description = "";
+            
+           while ( resultat.next()){
+               for (int i = 1; i <= resultatUserMeta.getColumnCount(); i++ ){
+                   description = resultat.getString(i);
+                   //System.out.println(description);
+                   Salon S = new Salon(description);
+                   listSalon.add(S);
+               
+               }
+           }
+           
+           
+           
+           deconnect(connect); 
+           return listSalon;
+}
+
+
+    
 
     /**
      *
