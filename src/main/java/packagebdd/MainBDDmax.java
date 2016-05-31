@@ -103,13 +103,11 @@ public class MainBDDmax {
                 + "( `description`) "
                 + "VALUES ( 'Salon Hacking');");
           
-          System.out.println("Salon créé");
           
           // rajout de quelques messages dans la bdd
           int msg1 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
                 + "VALUES ('Bonjour la compagnie', '25/05/16', 'ELOUARIACHI', 'CACHALAT');");
-                    System.out.println("Salon créé");
 
           int msg2 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
@@ -126,17 +124,18 @@ public class MainBDDmax {
                   + "('Bientot fini normalement ','25/06/16','ELOUARIACHI','Salon Informatique'),"
                   + "('On est dans les temps','25/06/16','LOUIS-STANISLAS','Salon Informatique'),"
                   + "('Ouais, super','27/06/16','LESAICHOT','Salon Informatique'),"
-                  + "('Plus qu'une semaine !,'26/06/16','LESAICHOT','Salon Informatique');");
-          
+                  + "('Plus qu'une semaine !','26/06/16','LESAICHOT','Salon Informatique');");
+
           int msg4 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
                 + "VALUES ('Hello World', '25/05/16', 'CACHALAT', 'Salon Global'),"
                   + "('Bonjour tout le monde','25/06/16','ELOUARIACHI','Salon Global'),"
-                  + "('Il fais beau demain','25/06/16','LOUIS-STANISLAS','Salon Global'),"
+                  + "('Il fait beau demain','25/06/16','LOUIS-STANISLAS','Salon Global'),"
                   + "('Ouais, super','25/06/16','CENA','Salon Global'),"
-                  + "('Super, il fais grand soleil','26/06/16','CENA','Salon Global');");
+                  + "('Super, il fait grand soleil','26/06/16','CENA','Salon Global');");
         
-          
+                                      System.out.println("deb1");
+
         // rejout des utilisateurs appartenant a un salon
         int salonUser = smt.executeUpdate("INSERT INTO `javabdd`.`fairepartie`"
                 + "(idU,idS)"
@@ -173,7 +172,8 @@ public class MainBDDmax {
                 + "(19,1),"
                 + "(20,1);");
           
-          
+                                      System.out.println("deb1");
+
         System.out.println("Messages envoyés");
         
         
