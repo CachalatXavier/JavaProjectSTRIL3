@@ -168,8 +168,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jMessageSalon = new javax.swing.JTextArea();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
-        rechercheMessagerie = new javax.swing.JTextField();
-        validerRechercheMessagerie = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         sendMessageMessagerie = new javax.swing.JTextArea();
@@ -351,17 +349,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("Messagerie");
 
-        rechercheMessagerie.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rechercheMessagerie.setText("Recherche");
-        rechercheMessagerie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechercheMessagerieActionPerformed(evt);
-            }
-        });
-
-        validerRechercheMessagerie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        validerRechercheMessagerie.setText("Valider");
-
         sendMessageMessagerie.setColumns(20);
         sendMessageMessagerie.setRows(5);
         jScrollPane5.setViewportView(sendMessageMessagerie);
@@ -421,8 +408,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jScrollPane6.setViewportView(repertoireMessagerie);
 
         jLayeredPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(rechercheMessagerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(validerRechercheMessagerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -432,20 +417,15 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addGap(305, 305, 305)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(rechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(validerRechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(346, 346, 346)
+                .addComponent(jLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(156, 156, 156))
         );
@@ -454,18 +434,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(validerRechercheMessagerie))
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         profil.addTab("MESSAGERIE", jLayeredPane2);
@@ -712,10 +688,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         Accueil Accueil = new Accueil();
         Accueil.setVisible(true);
     }//GEN-LAST:event_decoButtonSalonActionPerformed
-
-    private void rechercheMessagerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheMessagerieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rechercheMessagerieActionPerformed
 
     
     private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
@@ -1031,7 +1003,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextField nomUtilisateur;
     private javax.swing.JTabbedPane profil;
     private javax.swing.JTextField pwdancien;
-    private javax.swing.JTextField rechercheMessagerie;
     private javax.swing.JTextField rechercheSalon;
     private javax.swing.JList<Utilisateur> repertoireMessagerie;
     private javax.swing.JTextArea sendMessageMessagerie;
@@ -1040,7 +1011,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel serviceprofil;
     private javax.swing.JLabel titreProfil;
     private javax.swing.JButton validerProfil;
-    private javax.swing.JButton validerRechercheMessagerie;
     private javax.swing.JButton validerSendMessageMessagie;
     // End of variables declaration//GEN-END:variables
 }
