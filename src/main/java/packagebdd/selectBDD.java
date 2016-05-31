@@ -268,6 +268,20 @@ public static String getNomSalon( String userMail) throws SQLException
            return "NULL";
 }
 
+public static int idUser (String userMail) throws SQLException
+{ 
+    int idUser;
+    Connection connect = coBDD.connect();
+    Statement smt = connect.createStatement();
+    
+    String sql = "SELECT idU FROM utilisateurs WHERE mailU='" +userMail+"'";
+    ResultSet resultat = smt.executeQuery(sql);
+    
+    resultat.next();
+    idUser = resultat.getInt(1);
+    //System.out.println(idUser);
+    return idUser;
+}
 public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();
          //System.out.println("titi");
