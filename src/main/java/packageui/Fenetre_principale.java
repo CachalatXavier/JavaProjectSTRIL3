@@ -78,6 +78,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         },0, 1000);
         
+        refreshActionMessagerie();
+        
         repertoireMessagerie.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
