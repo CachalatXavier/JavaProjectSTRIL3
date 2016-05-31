@@ -827,7 +827,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         try {// TODO add your handling code here:
 
             selectBDD.getListSalonUtilisateur(Current);
-            String tampon = selectBDD.getMessageSalon("Salon Global");
+            String tampon;
+            tampon = selectBDD.getMessageSalon("Salon Global");
 
             //faut afficher les messages dans le textarea
             jMessageSalon.setText(tampon);
