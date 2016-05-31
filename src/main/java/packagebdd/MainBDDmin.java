@@ -20,6 +20,7 @@ import static java.time.Clock.system;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import static packagebdd.decoBDD.deconnect;
 
 /**
  *
@@ -97,18 +98,7 @@ public class MainBDDmin {
           int msg1 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
                 + "VALUES ('Bonjour la compagnie', '25/05/16', 'ELOUARIACHI', 'CACHALAT');");
-          
-          int msg2 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
-                + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
-                + "VALUES ('Salut Najim', '25/05/16', 'CACHALAT', 'ELOUARIACHI');");
-          
-          
-          
-          // Envoi message dans un salon
-          int msg3 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
-                + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
-                + "VALUES ('Hello World', '25/05/16', 'CACHALAT', 'Salon Global');");
-        
+         
           
         // rejout des utilisateurs appartenant a un salon
         int salonUser = smt.executeUpdate("INSERT INTO `javabdd`.`fairepartie`"
@@ -138,7 +128,7 @@ public class MainBDDmin {
         System.out.println("Messages envoyés");
         
         
-        
+        deconnect(connect); 
     }
     
     public static void main(String[] args) throws SQLException {

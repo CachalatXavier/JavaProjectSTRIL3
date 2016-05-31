@@ -36,7 +36,7 @@ public class coBDD {
         
         try {
 
-            DBConnection = (Connection) DriverManager.getConnection(url, "root", "");
+            DBConnection = (Connection) DriverManager.getConnection(url, "root", "root");
 
             System.out.println("Database Connected !");
         }
@@ -47,6 +47,7 @@ public class coBDD {
         return DBConnection;
     }
     
+   
    /*     public static void main(String[] args) {
         Connection testCO = new coBDD().connect();
     }*/

@@ -5,10 +5,19 @@
  */
 package packagebdd;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Francois
  */
 public class decoBDD {
+     
+    public static void deconnect( Connection co) {
+     
+         if(co!=null){try{co.close();}catch(Exception e){}} 
+
+    }
+    
     
 }

@@ -7,6 +7,7 @@ package packagebdd;
 
 import packagebdd.coBDD;
 import java.sql.*;
+import static packagebdd.decoBDD.deconnect;
 
 
 /**
@@ -61,7 +62,7 @@ public class createTableBDD {
         int tab_messageP1 = smt.executeUpdate("CREATE TABLE `javabdd`.`message` "
                 + "( `idM` INT NOT NULL AUTO_INCREMENT , "
                 + "`contenuM` text NOT NULL , "
-                + "`dateM` varchar (30) NOT NULL , "
+                + "`dateM` VARCHAR(50) NOT NULL , "
                 + "`emetteurM` varchar( 100 ) NOT NULL , "
                 + "`destinataireM` varchar( 100 ) NOT NULL , "
                 + "`idU` int , "
@@ -79,7 +80,7 @@ public class createTableBDD {
         
         
         
-        
+      deconnect(connect);   
         
         
         

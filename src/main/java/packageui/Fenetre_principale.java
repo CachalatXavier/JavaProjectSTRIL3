@@ -27,11 +27,14 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 //import packageapi.Admin;
 import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.coBDD;
+import static packagebdd.decoBDD.deconnect;
 import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
@@ -49,6 +52,7 @@ import static packageui.Accueil.tempS;
 //import static packageui.Accueil.listeAllUsers;
 //import static packagebdd.selectBDD.getListUtilisateur;
 
+
 /**
  *
  * @author Francois
@@ -59,8 +63,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    Salon SalonGlobal = new Salon("Salon Global");
-    
+    //Salon SalonGlobal = new Salon("Salon Global");
+        
+    static String destMessagerie = "" ;
+    static Utilisateur destUser;
    
     public Fenetre_principale(){
         initComponents();
@@ -94,6 +100,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 return l;
             }
         });
+        
         listeUtilisateurSalon.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -134,7 +141,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
          
         });
-             
+      // rafraichir la messagerie 
+        refreshActionMessagerie();
         
     }
             
@@ -150,6 +158,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         profil = new javax.swing.JTabbedPane();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
+        rechercheMessagerie = new javax.swing.JTextField();
+        validerRechercheMessagerie = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         sendMessageMessagerie = new javax.swing.JTextArea();
@@ -197,8 +207,169 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        sendSalontexte.setColumns(20);
+        sendSalontexte.setRows(5);
+        jScrollPane1.setViewportView(sendSalontexte);
+
+        listeUtilisateurSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listeUtilisateurSalon.setModel(SalonGlobal);
+        jScrollPane2.setViewportView(listeUtilisateurSalon);
+
+        listSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listSalon.setModel(Current);
+        listSalon.setToolTipText("");
+        jScrollPane3.setViewportView(listSalon);
+
+        rechercheSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("SALON");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Recherche :");
+
+        sendSalonSend.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sendSalonSend.setText("Send");
+        sendSalonSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendSalonSendActionPerformed(evt);
+            }
+        });
+
+        decoButtonSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        decoButtonSalon.setText("Deconnexion");
+        decoButtonSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decoButtonSalonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Liste des salons");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Liste d'utilisateurs");
+
+        ajoutUtilisateur.setText("Ajouter un utilisateur à mon salon");
+        ajoutUtilisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoutUtilisateurActionPerformed(evt);
+            }
+        });
+
+        nomUtilisateur.setText("Nom de l'utilisateur");
+
+        jMessageSalon.setEditable(false);
+        jMessageSalon.setColumns(20);
+        jMessageSalon.setRows(5);
+        jScrollPane7.setViewportView(jMessageSalon);
+
+        jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(rechercheSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(sendSalonSend, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(decoButtonSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(ajoutUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(nomUtilisateur, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
+                            .addGap(100, 100, 100)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27)
+                            .addComponent(rechercheSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                    .addComponent(ajoutUtilisateur)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                                    .addGap(66, 66, 66)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(sendSalonSend)))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(155, 155, 155)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(decoButtonSalon)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(decoButtonSalon))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rechercheSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(sendSalonSend, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ajoutUtilisateur)
+                    .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+        );
+
+        profil.addTab("SALON", jLayeredPane1);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("Messagerie");
+
+        rechercheMessagerie.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rechercheMessagerie.setText("Recherche");
+        rechercheMessagerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechercheMessagerieActionPerformed(evt);
+            }
+        });
+
+        validerRechercheMessagerie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        validerRechercheMessagerie.setText("Valider");
 
         sendMessageMessagerie.setColumns(20);
         sendMessageMessagerie.setRows(5);
@@ -206,6 +377,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         validerSendMessageMessagie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         validerSendMessageMessagie.setText("Valider");
+        validerSendMessageMessagie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validerSendMessageMessagieActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Votre message");
@@ -259,6 +435,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jScrollPane6.setViewportView(repertoireMessagerie);
 
         jLayeredPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(rechercheMessagerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(validerRechercheMessagerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -268,8 +446,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addGap(346, 346, 346)
-                .addComponent(jLabel5)
+                .addGap(305, 305, 305)
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addComponent(rechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(validerRechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
@@ -285,14 +468,18 @@ public class Fenetre_principale extends javax.swing.JFrame {
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel5)
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(validerRechercheMessagerie))
+                .addGap(18, 18, 18)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         profil.addTab("MESSAGERIE", jLayeredPane2);
@@ -638,7 +825,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void decoButtonSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decoButtonSalonActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
        String droit = "";
        String mail = "";
        
@@ -689,15 +876,24 @@ public class Fenetre_principale extends javax.swing.JFrame {
         Accueil.setVisible(true);
     }//GEN-LAST:event_decoButtonSalonActionPerformed
 
+    private void rechercheMessagerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheMessagerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechercheMessagerieActionPerformed
+
     
     private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat annee = new SimpleDateFormat("YYYY");
+        SimpleDateFormat mois = new SimpleDateFormat("MM");
+        SimpleDateFormat jour = new SimpleDateFormat("dd");
+        SimpleDateFormat heure = new SimpleDateFormat("HH");
+        SimpleDateFormat minute = new SimpleDateFormat("mm");
 	   //get current date time with Date()
 	  java.util.Date date = new java.util.Date();
-          String testD = dateFormat.format(date);
+          String testD;
+        testD = "\n\nEnvoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
            
         Messages msg = null;
         
@@ -714,12 +910,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 //on vide la zone de texte 
                 sendSalontexte.setText("");
                 refreshActionSalon();
-           
 
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
     private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
-                // TODO add your handling code here:
+               // TODO add your handling code here:
                 
                 // on prend juste le nom de l'utilisateur
                 String userNameMail = nomUtilisateur.getText();
@@ -727,7 +922,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
                 
         try {
-            //vérifie si l'utilisateur est verifier admin
+            //vérifie si l'utilisateur est admin
             String droitU = selectBDD.checkright(Current.getMail());
             
             String bdd= getNomSalon(Current.getMail());
@@ -772,12 +967,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
         }
         
         
-        
-        
     }//GEN-LAST:event_ajoutUtilisateurActionPerformed
 
     
     
+  // refresh les messages des salons   
     private void refreshActionSalon()
     {
         try {// TODO add your handling code here:
@@ -792,7 +986,33 @@ public class Fenetre_principale extends javax.swing.JFrame {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
         }        // TODO add your handling code here:
 
-    }                                        
+    } 
+    
+     // refresh lors de la selection de l'utilisateur en privé   
+    public void refreshActionMessagerie()
+    {
+        // mise à jour de la messagerie
+        
+        repertoireMessagerie.addListSelectionListener(new ListSelectionListener() {
+             
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); 
+                //To change body of generated methods, choose Tools | Templates.
+                if ( e.getValueIsAdjusting() )
+                {
+                    //rString refreshM = repertoireMessagerie.getSelectedValue().toString();.toString();
+                    //System.out.println(refreshM);
+                    
+                        destMessagerie = repertoireMessagerie.getSelectedValue().getMail();
+                        destUser = repertoireMessagerie.getSelectedValue();
+                    
+                }
+            }
+        }
+        
+        );
+    }
 
     private void firstnameprofilHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_firstnameprofilHierarchyChanged
         // TODO add your handling code here:
@@ -887,41 +1107,37 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_validerProfilActionPerformed
 
-    /*
-    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void validerSendMessageMessagieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerSendMessageMessagieActionPerformed
+        // TODO add your handling code here:
+        String msgText = sendMessageMessagerie.getText();
         
-    }                                       
-    */
-    
-    /*public void decoUser(String mail) throws SQLException{
-       String nom = "";
-       String prenom = "";
-       
-       nom = CurrentU.getNom();
-       prenom = CurrentU.getPrenom();
-       CurrentU.Deconnexion(nom, prenom);
-       
-    }
-    
-    public void decoChefProjet(String mail) throws SQLException{
-       String nom = "";
-       String prenom = "";
-       
-       nom = CurrentCP.getNom();
-       prenom = CurrentCP.getPrenom();
-       CurrentCP.Deconnexion(nom, prenom);
-       
-    }
-    
-    public void decoAdmin(String mail) throws SQLException{
-       String nom = "";
-       String prenom = "";
-       
-       nom = CurrentA.getNom();
-       prenom = CurrentA.getPrenom();
-       CurrentA.Deconnexion(nom, prenom);
-       
-    }*/
+        SimpleDateFormat annee = new SimpleDateFormat("YYYY");
+        SimpleDateFormat mois = new SimpleDateFormat("MM");
+        SimpleDateFormat jour = new SimpleDateFormat("dd");
+        SimpleDateFormat heure = new SimpleDateFormat("HH");
+        SimpleDateFormat minute = new SimpleDateFormat("mm");
+	   //get current date time with Date()
+	  java.util.Date date = new java.util.Date();
+          String testD;
+        testD = "\n\nEnvoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
+           
+        Messages msg = null;
+        
+                try {
+                msg = new Messages(msgText, testD, Current, destUser);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    addmsg(msg);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //on vide la zone de texte 
+                sendSalontexte.setText("");
+                refreshActionSalon();
+    }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
+
   
      
     /**
@@ -1003,6 +1219,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextField nomUtilisateur;
     private javax.swing.JTabbedPane profil;
     private javax.swing.JTextField pwdancien;
+    private javax.swing.JTextField rechercheMessagerie;
     private javax.swing.JTextField rechercheSalon;
     private javax.swing.JList<Utilisateur> repertoireMessagerie;
     private javax.swing.JTextArea sendMessageMessagerie;
@@ -1011,6 +1228,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel serviceprofil;
     private javax.swing.JLabel titreProfil;
     private javax.swing.JButton validerProfil;
+    private javax.swing.JButton validerRechercheMessagerie;
     private javax.swing.JButton validerSendMessageMessagie;
     // End of variables declaration//GEN-END:variables
 }
