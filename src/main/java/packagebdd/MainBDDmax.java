@@ -99,7 +99,7 @@ public class MainBDDmax {
                 + "('Salon web'),"
                 + "('Salon linux');");
         
-       // System.out.println("Salon Informatique créé");
+       System.out.println("Salon Informatique créé");
           
         
           int salon_hacking = smt.executeUpdate("INSERT INTO `javabdd`.`salon` "
@@ -118,7 +118,8 @@ public class MainBDDmax {
                 + "VALUES ('Salut Najim', '25/05/16', 'CACHALAT', 'ELOUARIACHI'),"
                   + "('Salut comment vas tu ? ','25/05/16','ELOUARIACHI','CACHALAT';");
           
-          
+                  System.out.println("Messages envoyés");
+
           
           // Envoi message dans un salon
           int msg3 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
