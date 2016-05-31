@@ -54,17 +54,14 @@ public class MainBDDmax {
         int insert_chef_projet = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `salonMaster`, `presentU`) "
                 + "VALUES ('5', 'BETA1', 'User1', 'user1.b1@upssi.fr', 'user1', 'Informatique', 'CHEF_PROJET', 'Informatique', '0');");
-        
-        System.out.println("Chef de projet ajoutés");
-        
+                
         int insert_user1 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
                 + "VALUES ('6', 'BETA2', 'User2', 'user2.b2@upssi.fr', 'user2', 'Informatique', 'USER', '0');");
-        
         int insert_user2 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
                 + "VALUES ('7', 'BETA3', 'User3', 'user3.b3@upssi.fr', 'user3', 'Informatique', 'USER', '0');");
-        
+
         int insert_user3 = smt.executeUpdate("INSERT INTO `javabdd`.`utilisateurs` "
                 + "(`idU`, `nomU`, `prenomU`, `mailU`, `mdpU`, `serviceU`, `droitU`, `presentU`) "
                 + "VALUES ('8', 'BETA4', 'User4', 'user4.b4@upssi.fr', 'user4', 'RH', 'USER', '0'),"
@@ -72,11 +69,11 @@ public class MainBDDmax {
                 + "('10','COOPER','sly','sly.c@upssi.fr','sly','RH','USER','0'),"
                 + "('11','TSONGA','joe','joe.t@upssi.fr','joe','Informatique','USER','0'),"
                 + "('12','JORDAN','mickael','mickael.j@upssi.fr','mickael','Informatique','USER','0'),"
-                +"('13','SOKO','roko','roko.s@upssi.fr','roko','RH','USER','0'),"
-                + "('14','CENA','john','john.c@upssi.fr','john,'Informatique','USER','0'),"
-                +"('15','MURDOCK','rick','rick.m@upssi.fr','rick','Informatique','USER','0'),"
+                + "('13','SOKO','roko','roko.s@upssi.fr','roko','RH','USER','0'),"
+                + "('14','CENA','john','john.c@upssi.fr','john','Informatique','USER','0'),"
+                + "('15','MURDOCK','rick','rick.m@upssi.fr','rick','Informatique','USER','0'),"
                 + "('16','MANDALA','nelson','nelson.m@upssi.fr','nelson','RH','USER','0'),"
-                + "('17','MATHIEU,'jeremy','jeremy.m@upssi.fr','jeremy','RH','USER','0'),"
+                + "('17','MATHIEU','jeremy','jeremy.m@upssi.fr','jeremy','RH','USER','0'),"
                 + "('18','BARNARBY','inp','ins.b@upssi.fr','ins','RH','USER','0'),"
                 + "('19','MORGANA','clara','clara.m@upssi.fr','clara','RH','USER','0'),"
                 + "('20','DUPONT','jean','jean.d@upssi.fr','jean','RH','USER','0'),"
@@ -112,11 +109,12 @@ public class MainBDDmax {
           int msg1 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
                 + "VALUES ('Bonjour la compagnie', '25/05/16', 'ELOUARIACHI', 'CACHALAT');");
-          
+                    System.out.println("Salon créé");
+
           int msg2 = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
                 + "VALUES ('Salut Najim', '25/05/16', 'CACHALAT', 'ELOUARIACHI'),"
-                  + "('Salut comment vas tu ? ','25/05/16','ELOUARIACHI','CACHALAT';");
+                  + "('Salut comment vas tu ? ','25/05/16','ELOUARIACHI','CACHALAT');");
           
                   System.out.println("Messages envoyés");
 
