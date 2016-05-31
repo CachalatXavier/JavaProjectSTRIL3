@@ -16,6 +16,10 @@ import packagebdd.coBDD;
  */
 public class Chef_Projet extends Utilisateur{
     
+    /**
+     *
+     * @param mail
+     */
     public Chef_Projet(String mail) {
         super(mail);
     }
@@ -44,7 +48,12 @@ public class Chef_Projet extends Utilisateur{
         
     }*/
     
-
+    /**
+     *
+     * @param mail
+     * @param service
+     * @param nomSalon
+     */
     public void addUser(String mail, String service, String nomSalon){
         
     }

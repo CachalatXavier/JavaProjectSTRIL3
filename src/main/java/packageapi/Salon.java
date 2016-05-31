@@ -21,10 +21,21 @@ import packagebdd.selectBDD;
 public class Salon extends AbstractListModel<Utilisateur>{
 
     private String description;
+
+    /**
+     *
+     */
     public static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     List<Messages> listeMessages = new ArrayList<Messages>();
     
     //constructeur 1
+
+    /**
+     *
+     * @param description
+     * @param listeU
+     * @param listeM
+     */
     public Salon(String description, List listeU, List listeM) {
         this.description = description;
         this.listeUsers = listeU;
@@ -32,11 +43,20 @@ public class Salon extends AbstractListModel<Utilisateur>{
     }
 
     //constructeur 2
+
+    /**
+     *
+     * @param description
+     */
     public Salon(String description) {
         this.description = description;
     }  
    
-    
+    /**
+     *
+     * @param CurrentU
+     * @throws SQLException
+     */
     public void adduser(Utilisateur CurrentU) throws SQLException {
         
         listeUsers.add(CurrentU);
@@ -66,6 +86,10 @@ public class Salon extends AbstractListModel<Utilisateur>{
         return listeUsers.get(index);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
