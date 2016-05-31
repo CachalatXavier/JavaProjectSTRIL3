@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.JOptionPane;
 import packagebdd.coBDD;
+import static packagebdd.decoBDD.deconnect;
 
 
 /*
@@ -66,6 +67,7 @@ import packagebdd.coBDD;
              
                 System.out.println(e4.getMessage());
             }
+        deconnect(connect); 
         return nom;
     }
 
@@ -100,6 +102,7 @@ import packagebdd.coBDD;
              
                 System.out.println(e4.getMessage());
             }
+        deconnect(connect); 
         return prenom;
     }
 
@@ -149,6 +152,7 @@ import packagebdd.coBDD;
                 System.out.println(e4.getMessage());
             }
         
+        deconnect(connect); 
         return Service;
     }
 
@@ -196,7 +200,7 @@ import packagebdd.coBDD;
                 System.out.println("L'admin " + nom + " " + prenom + " est entré(e) dans le tchat");
                 break;
         }
-      
+      deconnect(connect); 
     }
     
     public void Deconnexion(String nom, String prenom, int type) throws SQLException{
@@ -218,7 +222,7 @@ import packagebdd.coBDD;
                 System.out.println("L'admin " + nom + " " + prenom + " a quitté le tchat");
                 break;
         }
-        
+        deconnect(connect); 
     }
     
        public void salonUser(Salon tempS) throws SQLException {

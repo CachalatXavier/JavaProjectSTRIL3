@@ -34,6 +34,7 @@ import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.coBDD;
+import static packagebdd.decoBDD.deconnect;
 import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
@@ -360,6 +361,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         validerSendMessageMessagie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         validerSendMessageMessagie.setText("Valider");
+        validerSendMessageMessagie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validerSendMessageMessagieActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Votre message");
@@ -429,7 +435,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(156, 156, 156))
         );
@@ -438,7 +444,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel5)
-                .addGap(59, 59, 59)
+                .addGap(64, 64, 64)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -446,8 +452,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(27, 27, 27)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         profil.addTab("MESSAGERIE", jLayeredPane2);
@@ -700,10 +706,15 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
         
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat annee = new SimpleDateFormat("YYYY");
+        SimpleDateFormat mois = new SimpleDateFormat("MM");
+        SimpleDateFormat jour = new SimpleDateFormat("dd");
+        SimpleDateFormat heure = new SimpleDateFormat("HH");
+        SimpleDateFormat minute = new SimpleDateFormat("mm");
 	   //get current date time with Date()
 	  java.util.Date date = new java.util.Date();
-          String testD = dateFormat.format(date);
+          String testD;
+        testD = "\n\nEnvoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
            
         Messages msg = null;
         
@@ -911,8 +922,36 @@ public class Fenetre_principale extends javax.swing.JFrame {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
         }
               
-                
+          deconnect(connect);      
     }//GEN-LAST:event_validerProfilActionPerformed
+
+    private void validerSendMessageMessagieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerSendMessageMessagieActionPerformed
+        // TODO add your handling code here:
+       /* String mesgText = sendMessageMessagerie.getText();
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	   //get current date time with Date()
+	  java.util.Date date = new java.util.Date();
+          String testD = dateFormat.format(date);
+           
+        Messages msg = null;
+        
+                try {
+                msg = new Messages(mesgText, testD, Current, destSelect);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    addmsg(msg);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //on vide la zone de texte 
+                sendMessageMessagerie.setText("");
+                refreshActionSalon();
+           
+*/
+    }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
 
     /*
     private void refreshActionPerformed(java.awt.event.ActionEvent evt) {                                        

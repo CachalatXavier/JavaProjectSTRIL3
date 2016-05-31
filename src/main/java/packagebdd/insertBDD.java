@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import packageapi.Messages;
+import static packagebdd.decoBDD.deconnect;
 
 /**
  *
@@ -49,7 +50,8 @@ public class insertBDD {
         }catch (SQLException e4) {
              
                 System.out.println(e4.getMessage());
-            }       
+            } 
+        deconnect(connect); 
         return tmp;
     }
     
@@ -62,6 +64,7 @@ public class insertBDD {
                 int insert_msg = smt.executeUpdate("INSERT INTO `javabdd`.`message` "
                 + "(`contenuM`, `dateM`, `emetteurM`, `destinataireM`) "
                 + "VALUES ('"+msg.getContenu()+"', '"+msg.getDate()+"', '"+msg.getSender()+"', '"+msg.getDest()+"');");
+        deconnect(connect); 
     }
     
      /*
@@ -144,7 +147,7 @@ public class insertBDD {
             + "(`idU`, `idS`) "
             + "VALUES ('"+idUser+"', '"+idSalon+"')");
         
-       
+       deconnect(connect); 
     }
     
 }
