@@ -900,7 +900,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
     private void validerSendMessageMessagieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerSendMessageMessagieActionPerformed
         // TODO add your handling code here:
-       /* String msgText = sendMessageMessagerie.getText();
+       String msgText = sendMessageMessagerie.getText();
         
         SimpleDateFormat annee = new SimpleDateFormat("YYYY");
         SimpleDateFormat mois = new SimpleDateFormat("MM");
@@ -928,7 +928,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 sendSalontexte.setText("");
                 refreshActionSalon();
            
-*/
+
     }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
 
     /*
