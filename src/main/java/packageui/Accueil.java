@@ -334,6 +334,14 @@ public class Accueil extends javax.swing.JFrame {
                 //SalonGlobal.adduser(CurrentU);
         return CurrentCP;
     }*/
+
+    /**
+     *
+     * @param mail
+     * @param type
+     * @return
+     */
+
    
    public Utilisateur recupUser(String mail, int type){
        String nom = "";
@@ -382,6 +390,12 @@ public class Accueil extends javax.swing.JFrame {
         }
         SalonGlobal.adduser(Current);
    }*/
+
+    /**
+     *
+     * @throws SQLException
+     */
+
    
    public void userMess() throws SQLException{
        tempList = selectBDD.getListUtilisateur();
@@ -399,7 +413,11 @@ public class Accueil extends javax.swing.JFrame {
       
    }
  
-   public void addSalonUser() throws SQLException{
+    /**
+     *
+     * @throws SQLException
+     */
+    public void addSalonUser() throws SQLException{
         List<Salon> S = new ArrayList<Salon>();
         S = selectBDD.getListSalon(Current);
        
@@ -421,6 +439,7 @@ public class Accueil extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
     public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */

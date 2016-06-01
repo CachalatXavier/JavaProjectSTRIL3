@@ -79,21 +79,29 @@ public class Fenetre_principale extends javax.swing.JFrame {
     // refresh les messages des salons   
     private void refreshActionSalon()
     {
-        try {// TODO add your handling code here:
-
-            selectBDD.getListSalonUtilisateur(Current);
-            String tampon = selectBDD.getMessageSalon("Salon Global");
-
-            //faut afficher les messages dans le textarea
-            jMessageSalon.setText(tampon);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
-
-    } 
-    
+            listeUtilisateurSalon.addListSelectionListener((ListSelectionEvent e) -> {
+            //throw new UnsupportedOperationException("Not supported yet.");
+            //To change body of generated methods, choose Tools | Templates.
+            if ( e.getValueIsAdjusting() )
+            {
+                 
+                try {
+                    selectBDD.getListSalonUtilisateur(Current);
+                    String tampon = selectBDD.getMessageSalon("Salon Global");
+                    //faut afficher les messages dans le textarea
+                jMessageSalon.setText(tampon);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+  
+         }
+    }  );
+                    }
      // refresh lors de la selection de l'utilisateur en privé   
+
+    /**
+     *
+     */
     public void refreshActionMessagerie()
     {
         
@@ -150,6 +158,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
 	}
 
     
+    /**
+     *
+     */
     public Fenetre_principale(){
         initComponents();
         
@@ -159,7 +170,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             public void run(){
                 refreshActionSalon();
                 // on rafraichir;
-                try
+                /*try
                 {
                     affichageMessageMessagerie.setText("");
                     destUser = repertoireMessagerie.getSelectedValue();
@@ -173,7 +184,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 }
                 catch (SQLException ex) {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }*/
             }
         },0, 1000);
         
@@ -181,10 +192,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         repertoireMessagerie.setCellRenderer(new MaListeUserPerso());
         listeUtilisateurSalon.setCellRenderer(new MaListeUserPerso());
-        
-        
-        
-        
+       
        /* listeUtilisateurSalon.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -441,7 +449,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decoButtonSalon))
-                .addGap(58, 58, 58)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
@@ -523,7 +531,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(validerSendMessageMessagie, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -590,20 +598,20 @@ public class Fenetre_principale extends javax.swing.JFrame {
         });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel12.setText("Prénom :");
+        jLabel12.setText("First name: ");
 
         titreProfil.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titreProfil.setText("Profil");
         titreProfil.setToolTipText("");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel14.setText("Nom :");
+        jLabel14.setText("Name: ");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setText("Mail: ");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel17.setText("Changer de mot de passe: ");
+        jLabel17.setText("Changer de password: ");
 
         firstnameprofil.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         firstnameprofil.addHierarchyListener(new java.awt.event.HierarchyListener() {
@@ -1060,6 +1068,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
     
+    /**
+     *
+     * @param e
+     */
     public void windowClosing(WindowEvent e){
         String droit = "";
         String mail = "";
@@ -1164,7 +1176,22 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }//GEN-LAST:event_NameNewSalonActionPerformed
 
     private void afkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afkActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            int pres = Current.getPresence();
+            //on récup l'etat et on l'inverse
+            
+            
+            if(pres==1){
+                Current.setPresence(2);
+            }
+            else if (pres==2){
+                Current.setPresence(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_afkActionPerformed
 
     private void RefreshUserPresentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshUserPresentActionPerformed

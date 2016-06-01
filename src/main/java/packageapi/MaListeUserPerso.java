@@ -24,24 +24,50 @@ public class MaListeUserPerso implements ListCellRenderer {
     
     public static DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
     
+    @Override
     public Component getListCellRendererComponent(JList list, Object value, int index,
       boolean isSelected, boolean cellHasFocus) {
-    JLabel monLabel;
+        
+        JLabel monLabel;
         monLabel = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index,
                 isSelected, cellHasFocus);
-    if (isSelected) {
-                    monLabel.setForeground(Color.red);
-                }
+    
     if(value instanceof Utilisateur)
     {
         Utilisateur actualUsers = (Utilisateur) value;
-        
         try {
-            monLabel.setText(index + 1 + " - " + actualUsers.getNom() + " "+actualUsers.getPrenom()+"");
+            if(actualUsers.getPresence()==1){
+                try {
+                    monLabel.setText(index + 1 + " - " + actualUsers.getNom() + " "+actualUsers.getPrenom()+"");
+                    monLabel.setForeground(Color.blue);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MaListeUserPerso.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else if (actualUsers.getPresence()==2){
+            try {
+                    monLabel.setText(index + 1 + " - " + actualUsers.getNom() + " "+actualUsers.getPrenom()+"");
+                    monLabel.setForeground(Color.green);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MaListeUserPerso.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else{
+            try {
+                    monLabel.setText(index + 1 + " - " + actualUsers.getNom() + " "+actualUsers.getPrenom()+"");
+                } catch (SQLException ex) {
+                    Logger.getLogger(MaListeUserPerso.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MaListeUserPerso.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    if (isSelected) {
+                    monLabel.setForeground(Color.red);
+                }
+    
     return monLabel;
   }
     

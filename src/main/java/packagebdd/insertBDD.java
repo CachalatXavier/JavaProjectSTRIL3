@@ -20,7 +20,15 @@ import static packagebdd.decoBDD.deconnect;
  */
 public class insertBDD {
     
-    
+    /**
+     *
+     * @param firstName
+     * @param name
+     * @param mail
+     * @param pass
+     * @return
+     * @throws SQLException
+     */
     public static boolean adduser(String firstName, String name, String mail, String pass) throws SQLException
     {
         boolean tmp = false;
@@ -63,8 +71,12 @@ public class insertBDD {
         return tmp;
     }
     
-    
-     public static void addmsg(Messages msg) throws SQLException
+    /**
+     *
+     * @param msg
+     * @throws SQLException
+     */
+    public static void addmsg(Messages msg) throws SQLException
     {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();            
@@ -75,7 +87,12 @@ public class insertBDD {
         deconnect(connect); 
     }
      
-     public static void createNewSalon(String nomSalon) throws SQLException{
+    /**
+     *
+     * @param nomSalon
+     * @throws SQLException
+     */
+    public static void createNewSalon(String nomSalon) throws SQLException{
               
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
@@ -135,6 +152,14 @@ public class insertBDD {
             }       
         return tmp;
      }*/
+
+    /**
+     *
+     * @param usermail
+     * @param nomsalon
+     * @throws SQLException
+     */
+
      
       public static void addUserSalon(String usermail, String nomsalon) throws SQLException{
         Connection connect = coBDD.connect();
