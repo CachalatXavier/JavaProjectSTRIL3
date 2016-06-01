@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.AbstractListModel;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import packagebdd.selectBDD;
 
 

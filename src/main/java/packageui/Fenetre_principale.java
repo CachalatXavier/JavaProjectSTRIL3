@@ -31,6 +31,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.*;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import packageapi.MaListeUserPerso;
@@ -157,6 +159,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         	}
     	});
 	}
+    
+    
 
     
     /**
@@ -187,6 +191,33 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 }
             }   
         },0, 1000);
+        //----------------------------------------------------------------------------------------------------------//
+        //----****  DECOMMENTER CE CODE POUR LE RAFRAICHISSEMENT DE LA LISTE DES USERS PRESENTS SANS BOUTON ****----//
+        //----------------------------------------------------------------------------------------------------------//
+        /*Timer timerUserPres = new Timer();
+        timerUserPres.schedule (new TimerTask() {
+            @Override
+            public void run(){
+               tempList2.clear();
+                defaultRenderer.removeAll();
+                SalonGlobal.deleteuser();
+                try {
+                    tempList2 = selectBDD.getUserPresent();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                for(int i=0; i<tempList2.size();i++){
+           
+                try {
+                    //System.out.println(tempList2.get(i).getNom());
+                 SalonGlobal.adduser(tempList2.get(i));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+                }
+            }   
+        },0, 1000);*/
         
         
         
@@ -239,6 +270,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // rafraichir la messagerie 
         refreshActionMessagerie();
         refreshActionListSalon();
+        
+      
     }
     
     /**
