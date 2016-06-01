@@ -21,6 +21,12 @@ import static packagebdd.decoBDD.deconnect;
  *
  * @author Cyril
  */
+
+/**
+ *
+ * @author Francois
+ */
+
  public class Utilisateur extends AbstractListModel<Salon> {
     static List<Salon> listSalonUser = new ArrayList<Salon>();
     private String nom;
@@ -28,11 +34,24 @@ import static packagebdd.decoBDD.deconnect;
     String mail;
     private String Service;
     private String droit;
+    private int presence;
 
+    /**
+     *
+     * @param mail
+     */
     public Utilisateur(String mail) {
         this.mail = mail;
     }
 
+    /**
+     *
+     * @param nom
+     * @param prenom
+     * @param mail
+     * @param Service
+     * @param droit
+     */
     public Utilisateur(String nom, String prenom, String mail, String Service, String droit) {
         this.nom = nom;
         this.prenom = prenom;
@@ -47,6 +66,13 @@ import static packagebdd.decoBDD.deconnect;
      * @return the nom
      * @throws java.sql.SQLException
      */
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+
     public String getNom() throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
@@ -74,6 +100,12 @@ import static packagebdd.decoBDD.deconnect;
     /*
      * @param nom the nom to set
      */
+
+    /**
+     *
+     * @param nom
+     */
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -82,6 +114,13 @@ import static packagebdd.decoBDD.deconnect;
      * @return the prenom
      * @throws java.sql.SQLException
      */
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+
     public String getPrenom() throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
@@ -105,10 +144,46 @@ import static packagebdd.decoBDD.deconnect;
         deconnect(connect); 
         return prenom;
     }
+    
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public int getPresence() throws SQLException {
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+            int pres;
+        pres = 0;
+        try {
+            String sql = "SELECT presentU FROM utilisateurs WHERE mailU ='"+mail+"'";
+            ResultSet resultat = smt.executeQuery(sql);
+            
+            if(resultat.next()){
+                pres = resultat.getInt(1);
+            }
+            else
+            {
+                System.out.println("Présence non trouvée");
+            }
+            
+        }catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+            }
+        deconnect(connect); 
+        return pres;
+    }
 
     /*
      * @param prenom the prenom to set
      */
+
+    /**
+     *
+     * @param prenom
+     */
+
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
@@ -116,6 +191,12 @@ import static packagebdd.decoBDD.deconnect;
     /*
      * @return the mail
      */
+
+    /**
+     *
+     * @return
+     */
+
     public String getMail() {
         return mail;
     }
@@ -123,6 +204,12 @@ import static packagebdd.decoBDD.deconnect;
     /*
      * @param mail the mail to set
      */
+
+    /**
+     *
+     * @param mail
+     */
+
     public void setMail(String mail) {
         this.mail = mail;
     }
@@ -131,6 +218,13 @@ import static packagebdd.decoBDD.deconnect;
      * @return the Service
      * @throws java.sql.SQLException
      */
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+
     public String getService() throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
@@ -159,6 +253,12 @@ import static packagebdd.decoBDD.deconnect;
     /*
      * @param Service the Service to set
      */
+
+    /**
+     *
+     * @param Service
+     */
+
     public void setService(String Service) {
         this.Service = Service;
     }
@@ -170,6 +270,12 @@ import static packagebdd.decoBDD.deconnect;
     /*
      * @return the droit
      */
+
+    /**
+     *
+     * @return
+     */
+
     public String getDroit() {
         return droit;
     }
@@ -177,10 +283,23 @@ import static packagebdd.decoBDD.deconnect;
     /*
      * @param droit the droit to set
      */
+
+    /**
+     *
+     * @param droit
+     */
+
     public void setDroit(String droit) {
         this.droit = droit;
     }
     
+    /**
+     *
+     * @param nom
+     * @param prenom
+     * @param type
+     * @throws SQLException
+     */
     public void setPresence(String nom, String prenom, int type) throws SQLException {
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
@@ -202,8 +321,31 @@ import static packagebdd.decoBDD.deconnect;
         }
       deconnect(connect); 
     }
+
+    /**
+     *
+     * @param num
+     * @throws SQLException
+     */
+    public void setPresence(int num) throws SQLException {
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+      
+        int present = smt.executeUpdate("UPDATE `javabdd`.`utilisateurs` "
+                + "SET presentU = '"+num+"' "+" WHERE mailU ='"+mail+"'");
+        
+      deconnect(connect); 
+    }
     
-    public void Deconnexion(String nom, String prenom, int type) throws SQLException{
+    /**
+     *
+     * @param nom
+     * @param prenom
+     * @param mail
+     * @param type
+     * @throws SQLException
+     */
+    public void Deconnexion(String nom, String prenom, String mail, int type) throws SQLException{
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
@@ -225,7 +367,12 @@ import static packagebdd.decoBDD.deconnect;
         deconnect(connect); 
     }
     
-       public void salonUser(Salon tempS) throws SQLException {
+    /**
+     *
+     * @param tempS
+     * @throws SQLException
+     */
+    public void salonUser(Salon tempS) throws SQLException {
         
         listSalonUser.add(tempS);
         fireContentsChanged(listSalonUser, 0, listSalonUser.size());

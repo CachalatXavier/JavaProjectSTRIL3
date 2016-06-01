@@ -25,9 +25,25 @@ import static packagebdd.decoBDD.deconnect;
  * @author Francois
  */
 public class selectBDD {
-    static List<Utilisateur> listUser = new ArrayList<>();
+
+    /**
+     *
+     */
+    public static List<Utilisateur> listUser = new ArrayList<>();
+
+    /**
+     *
+     */
+    public static List<Utilisateur> listUserPres = new ArrayList<>();
     static List<Salon> listSalon = new ArrayList<>();
     
+    /**
+     *
+     * @param mail
+     * @param pass
+     * @return
+     * @throws SQLException
+     */
     public static boolean isuservalid(String mail, String pass) throws SQLException {
     boolean tmp =false;
     /*createTableBDD creation = new createTableBDD();
@@ -66,8 +82,12 @@ public class selectBDD {
     return tmp;
     }
     
-    
-    
+    /**
+     *
+     * @param mail
+     * @return
+     * @throws SQLException
+     */
     public static String checkright(String mail) throws SQLException{
         String droit = "";
         
@@ -94,6 +114,13 @@ public class selectBDD {
     }
     
     // recupere l'utilisateur à l'aide d'une adresse mail
+
+    /**
+     *
+     * @param email
+     * @return
+     * @throws SQLException
+     */
 public static String getUtilisateur(String email) throws SQLException{
     Connection connect = coBDD.connect();
     Statement smt = connect.createStatement();
@@ -122,22 +149,26 @@ public static String getUtilisateur(String email) throws SQLException{
     deconnect(connect); 
     return "NO";
 }
-    
 
-
-public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) throws SQLException{ 
+    /**
+     *
+     * @param Current
+     * @return
+     * @throws SQLException
+     */
+    public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) throws SQLException{   
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
-        
+
         try {
             String sql = ("SELECT NomU FROM utilisateurs" );
             ResultSet res = smt.executeQuery(sql);
             ResultSetMetaData resUserMeta = res.getMetaData();
-            
+
            //) finir
-          
+
         } catch (SQLException e4) {
-             
+
                 System.out.println(e4.getMessage());
          }
          deconnect(connect); 
@@ -146,6 +177,13 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
 }
 
  //recuperer message d'un salon
+
+    /**
+     *
+     * @param salon
+     * @return
+     * @throws SQLException
+     */
     public static String getMessageSalon(String salon )throws SQLException
     {
         String msg = "";
@@ -174,6 +212,13 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
         return msg;
     }
     
+    /**
+     *
+     * @param dest
+     * @param emet
+     * @return
+     * @throws SQLException
+     */
     public static String getMessageMessagerie(String dest, String emet )throws SQLException
     {
         String msg = "";
@@ -206,11 +251,18 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
         return msg;
     }
     
+    //on recupert les salon d'un utilisateur rentré en parmetre, on retourn donc une list de salon
+
+    /**
+     *
+     * @param Current
+     * @return
+     * @throws SQLException
+     */
     public static List<Salon> getListSalon (Utilisateur Current) throws SQLException{
      Connection connect = coBDD.connect();
          Statement smt = connect.createStatement();
-         
-                
+                         
          try {
             String sql = ("SELECT description FROM utilisateurs,fairepartie,salon "
                     + "WHERE (utilisateurs.idU=fairepartie.idU) AND (salon.idS=fairepartie.idS) AND ( NomU='"+Current.getNom()+"');"  );
@@ -236,14 +288,90 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
          return listSalon ;
     }
 
+    //on recupert les salon d'un utilisateur avec son mail rentré en parmetre, on retourne donc une list de salon
 
+    /**
+     *
+     * @param usermail
+     * @return
+     * @throws SQLException
+     */
+    public static List<Salon> getListSalonViaMail (String usermail) throws SQLException{
+     Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+                         
+         try {
+            String sql = ("SELECT description FROM utilisateurs,fairepartie,salon "
+                    + "WHERE (utilisateurs.idU=fairepartie.idU) AND (salon.idS=fairepartie.idS) AND ( NomU='"+usermail+"');"  );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            String description = "";
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                   description = res.getString(i);
+                   //System.out.println(description);
+                   Salon S = new Salon(description);
+                   listSalon.add(S);
+               
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         deconnect(connect); 
+         return listSalon ;
+    }
+    
+    
+//ici on récupert une liste de tout nos salons.
 
     /**
      *
      * @return
      * @throws SQLException
      */
-    public static List<Utilisateur> getListUtilisateur () throws SQLException{
+public static List<Salon> getListSalon() throws SQLException
+{
+    String salonName = "";
+       
+        //connexion base de donnée
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+
+            // requete 
+            String sql = "SELECT description FROM salon";
+            ResultSet resultat = smt.executeQuery(sql);
+            ResultSetMetaData resultatUserMeta = resultat.getMetaData();
+          String description = "";
+            
+           while ( resultat.next()){
+               for (int i = 1; i <= resultatUserMeta.getColumnCount(); i++ ){
+                   description = resultat.getString(i);
+                   //System.out.println(description);
+                   Salon S = new Salon(description);
+                   listSalon.add(S);
+               
+               }
+           }
+           
+           
+           
+           deconnect(connect); 
+           return listSalon;
+}
+
+
+    
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public static List<Utilisateur> getListUtilisateur () throws SQLException {
 
 
          Connection connect = coBDD.connect();
@@ -273,9 +401,50 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
          deconnect(connect); 
          return listUser ;
     }
-   
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public static List<Utilisateur> getUserPresent () throws SQLException {
+
+
+         Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+         
+                
+         try {
+            String sql = ("SELECT mailU FROM utilisateurs WHERE presentU = 1" );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            String mail = "";
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                   mail = res.getString(i);
+                   //System.out.println(mail);
+                   Utilisateur U = new Utilisateur(mail);
+                   listUserPres.add(U);
+               
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         deconnect(connect); 
+         return listUserPres ;
+    }
     
-public static String getNomSalon( String userMail) throws SQLException
+    /**
+     *
+     * @param userMail
+     * @return
+     * @throws SQLException
+     */
+    public static String getNomSalon( String userMail) throws SQLException
 {
     String salonName = "";
        
@@ -301,7 +470,13 @@ public static String getNomSalon( String userMail) throws SQLException
            return "NULL";
 }
 
-public static int idUser (String userMail) throws SQLException
+    /**
+     *
+     * @param userMail
+     * @return
+     * @throws SQLException
+     */
+    public static int idUser (String userMail) throws SQLException
 { 
     int idUser;
     Connection connect = coBDD.connect();
@@ -315,7 +490,13 @@ public static int idUser (String userMail) throws SQLException
     //System.out.println(idUser);
     return idUser;
 }
-public static void main(String[] args) throws SQLException {
+
+    /**
+     *
+     * @param args
+     * @throws SQLException
+     */
+    public static void main(String[] args) throws SQLException {
          //selectBDD select = new selectBDD();
          //System.out.println("titi");
          

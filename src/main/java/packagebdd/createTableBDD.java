@@ -16,6 +16,10 @@ import static packagebdd.decoBDD.deconnect;
  */
 public class createTableBDD {
     
+    /**
+     *
+     * @throws SQLException
+     */
     public createTableBDD () throws SQLException {
     Connection connect = coBDD.connect();
     

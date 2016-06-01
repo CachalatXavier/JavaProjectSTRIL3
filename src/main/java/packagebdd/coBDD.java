@@ -17,7 +17,10 @@ public class coBDD {
     
     private static Connection DBConnection;
     
-    
+    /**
+     *
+     * @return
+     */
     public static  Connection connect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");

@@ -23,9 +23,14 @@ import static packagebdd.insertBDD.addmsg;
  */
 public class  scenario {
     
+    /**
+     *
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String args[]) throws SQLException {
         //createTableBDD creation = new createTableBDD();
-        //MainBDDmin maBDDmin = new MainBDDmin();
+        //MainBDDmax maBDDmin = new MainBDDmax();
         Accueil Accueil = new Accueil();
         new Accueil().setVisible(true);
    

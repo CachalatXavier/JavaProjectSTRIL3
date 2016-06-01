@@ -16,12 +16,25 @@ import packagebdd.selectBDD;
  * @author Cyril
  */
 public class Messagerie extends AbstractListModel<Utilisateur>{
-    List<Utilisateur> allUsers = new ArrayList<Utilisateur>();
+
+    /**
+     *
+     */
+    public static List<Utilisateur> allUsers = new ArrayList<Utilisateur>();
     List<Salon> allSalonUser = new ArrayList<Salon>();
+
+    /**
+     *
+     */
     public Messagerie(){
         //this.allUsers = allU;
     }
     
+    /**
+     *
+     * @param tempU
+     * @throws SQLException
+     */
     public void addAllUsers(Utilisateur tempU) throws SQLException {
         
         allUsers.add(tempU);

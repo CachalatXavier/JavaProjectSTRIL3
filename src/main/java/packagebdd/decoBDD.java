@@ -13,6 +13,10 @@ import java.sql.Connection;
  */
 public class decoBDD {
      
+    /**
+     *
+     * @param co
+     */
     public static void deconnect( Connection co) {
      
          if(co!=null){try{co.close();}catch(Exception e){}} 

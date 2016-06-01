@@ -22,6 +22,15 @@ public class Messages {
     
     //constructeur
     //un constructeur pour envoie d'un message à une personne
+
+    /**
+     *
+     * @param contenu
+     * @param date
+     * @param send
+     * @param dest
+     * @throws SQLException
+     */
     public Messages(String contenu, String date, Utilisateur send , Utilisateur dest) throws SQLException {
         this.contenu = contenu;
         this.date = date;
@@ -30,6 +39,15 @@ public class Messages {
     }
     
     //un constructeur pour envoie d'un message à un salon
+
+    /**
+     *
+     * @param contenu
+     * @param date
+     * @param send
+     * @param dest
+     * @throws SQLException
+     */
     public Messages(String contenu, String date, Utilisateur send , Salon dest) throws SQLException {
         this.contenu = contenu;
         this.date = date;
@@ -40,19 +58,35 @@ public class Messages {
     
     //getters et tostring
 
+    /**
+     *
+     * @return
+     */
+
     public String getContenu() {
         return contenu;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDest() {
         return dest;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSender() {
         return sender;
     }
 
-   
+    /**
+     *
+     * @return
+     */
     public String getDate() {
         return date;
     }

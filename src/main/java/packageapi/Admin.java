@@ -16,6 +16,10 @@ import packagebdd.coBDD;
  */
 public class Admin extends Utilisateur{
     
+    /**
+     *
+     * @param mail
+     */
     public Admin(String mail) {
         super(mail);
     }
