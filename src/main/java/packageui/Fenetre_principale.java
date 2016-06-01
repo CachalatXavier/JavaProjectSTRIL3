@@ -79,24 +79,24 @@ public class Fenetre_principale extends javax.swing.JFrame {
     // refresh les messages des salons   
     private void refreshActionSalon()
     {
-            listeUtilisateurSalon.addListSelectionListener((ListSelectionEvent e) -> {
+            /*listeUtilisateurSalon.addListSelectionListener((ListSelectionEvent e) -> {
             //throw new UnsupportedOperationException("Not supported yet.");
             //To change body of generated methods, choose Tools | Templates.
             if ( e.getValueIsAdjusting() )
-            {
+            {*/
                  
                 try {
                     selectBDD.getListSalonUtilisateur(Current);
-                    String tampon = selectBDD.getMessageSalon("Salon Global");
+                    String tampon = selectBDD.getMessageSalon(SalonGlobal.getDescription());
                     //faut afficher les messages dans le textarea
                 jMessageSalon.setText(tampon);
                 } catch (SQLException ex) {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
   
-         }
-    }  );
-                    }
+         //}
+    }  //);
+                    //}
      // refresh lors de la selection de l'utilisateur en privé   
 
     /**
@@ -819,7 +819,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
         listeUsers.clear();
         allUsers.clear();
         //tempS.clear();
-        System.out.println("Contenu "+tempList);
+        Current.InitSalonUser();
+        
+        //System.out.println("Contenu "+tempList);
         dispose();
         Accueil Accueil = new Accueil();
         Accueil.setVisible(true);
