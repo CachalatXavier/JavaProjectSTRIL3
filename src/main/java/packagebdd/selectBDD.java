@@ -166,13 +166,13 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
             
             msg = resultat.getString(3)
                     +" a dit:\n"+resultat.getString(1)
-                    +resultat.getString(2)+"\n";
+                    +"\n"+resultat.getString(2)+"\n";
                     
             
             while (resultat.next()) {
                 msg = msg +"\n"+ resultat.getString(3)
                     +" a dit:\n"+resultat.getString(1)
-                    +resultat.getString(2)+"\n";
+                    +"\n"+resultat.getString(2)+"\n";
             }
             
         deconnect(connect); 
@@ -198,13 +198,13 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
             
             msg = resultat.getString(3)
                     +" a dit:\n"+resultat.getString(1)
-                    +"\n\n"+resultat.getString(2)+"\n";
+                    +"\n"+resultat.getString(2)+"\n";
                     
             
             while (resultat.next()) {
                 msg = msg +"\n"+ resultat.getString(3)
                     +" a dit:\n"+resultat.getString(1)
-                    +"\n\n"+resultat.getString(2)+"\n";
+                    +"\n"+resultat.getString(2)+"\n";
             }
             
         deconnect(connect); 
