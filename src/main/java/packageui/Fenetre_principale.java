@@ -29,7 +29,6 @@ import javax.swing.ListCellRenderer;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-//import packageapi.Admin;
 import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
@@ -39,18 +38,12 @@ import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
 import packagebdd.selectBDD;
 import static packagebdd.selectBDD.*;
-//import static packageui.Accueil.CurrentU;
-//import static packageui.Accueil.CurrentCP;
-//import static packageui.Accueil.CurrentA;
 import static packageui.Accueil.Current;
 import static packageui.Accueil.user;
-//import static packageui.Accueil.listeMessages;
 import static packageui.Accueil.SalonGlobal;
 import static packageui.Accueil.Mess;
 import static packageui.Accueil.tempU;
 import static packageui.Accueil.tempS;
-//import static packageui.Accueil.listeAllUsers;
-//import static packagebdd.selectBDD.getListUtilisateur;
 
 
 /**
@@ -63,11 +56,63 @@ public class Fenetre_principale extends javax.swing.JFrame {
      * Creates new form Salon
      */
     
-    //Salon SalonGlobal = new Salon("Salon Global");
-        
+    // variable globale
+/* destinataire de message pour la messagerie privée*/    
     static String destMessagerie = "" ;
+/*  utilisateur destinataire des messages */
     static Utilisateur destUser;
    
+      /*methode crée*/
+    // refresh les messages des salons   
+    private void refreshActionSalon()
+    {
+        try {// TODO add your handling code here:
+
+            selectBDD.getListSalonUtilisateur(Current);
+            String tampon = selectBDD.getMessageSalon("Salon Global");
+
+            //faut afficher les messages dans le textarea
+            jMessageSalon.setText(tampon);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+
+    } 
+    
+     // refresh lors de la selection de l'utilisateur en privé   
+    public void refreshActionMessagerie()
+    {
+        
+        // mise à jour de la messagerie
+        repertoireMessagerie.addListSelectionListener((ListSelectionEvent e) -> {
+            //throw new UnsupportedOperationException("Not supported yet.");
+            //To change body of generated methods, choose Tools | Templates.
+            if ( e.getValueIsAdjusting() )
+            {
+                // d'abord on clean les messages
+                
+                // on recuper juste l'utilisateur et le nom de l'utilisateur
+                try {
+                    affichageMessageMessagerie.setText("");
+                    destUser = repertoireMessagerie.getSelectedValue();
+                    destMessagerie = destUser.getNom();
+                    
+                    //afficher les messages appropriés
+                    String messMessagerie = selectBDD.getMessageMessagerie( destMessagerie, Current.getNom() );
+                    
+                    //faut afficher les messages dans le textarea
+                    affichageMessageMessagerie.setText(messMessagerie);
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        });
+        
+    }
+    
     public Fenetre_principale(){
         initComponents();
         
@@ -76,9 +121,26 @@ public class Fenetre_principale extends javax.swing.JFrame {
             @Override
             public void run(){
                 refreshActionSalon();
+                // on rafraichir;
+                try
+                {
+                    affichageMessageMessagerie.setText("");
+                    destUser = repertoireMessagerie.getSelectedValue();
+                    destMessagerie = destUser.getNom();
+                    
+                    //afficher les messages appropriés
+                    String messMessagerie = selectBDD.getMessageMessagerie( destMessagerie, Current.getNom() );
+                    
+                    //faut afficher les messages dans le textarea
+                    affichageMessageMessagerie.setText(messMessagerie);
+                }
+                catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         },0, 1000);
         
+        // liste des repertoires de la messagerie
         repertoireMessagerie.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -101,6 +163,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
         
+        // liste des utilisateurs d'un salon
         listeUtilisateurSalon.setCellRenderer(new ListCellRenderer<Utilisateur>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -124,7 +187,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
         
-       listSalon.setCellRenderer(new ListCellRenderer<Salon>() {
+        // liste des salons en fonction de l'utilisateur connecter
+        listSalon.setCellRenderer(new ListCellRenderer<Salon>() {
             @Override
             public Component getListCellRendererComponent(JList<? extends Salon> list, Salon value, int index, boolean isSelected, boolean cellHasFocus) {
 
@@ -141,11 +205,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
          
         });
-      // rafraichir la messagerie 
+       
+        // rafraichir la messagerie 
         refreshActionMessagerie();
         
     }
-            
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -163,9 +228,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         listeUtilisateurSalon = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         listSalon = new javax.swing.JList<>();
-        rechercheSalon = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         sendSalonSend = new javax.swing.JButton();
         decoButtonSalon = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -176,8 +239,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jMessageSalon = new javax.swing.JTextArea();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel5 = new javax.swing.JLabel();
-        rechercheMessagerie = new javax.swing.JTextField();
-        validerRechercheMessagerie = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         sendMessageMessagerie = new javax.swing.JTextArea();
@@ -220,13 +281,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         listSalon.setToolTipText("");
         jScrollPane3.setViewportView(listSalon);
 
-        rechercheSalon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("SALON");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Recherche :");
 
         sendSalonSend.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sendSalonSend.setText("Send");
@@ -257,7 +313,11 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
-        nomUtilisateur.setText("Nom de l'utilisateur");
+        nomUtilisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomUtilisateurActionPerformed(evt);
+            }
+        });
 
         jMessageSalon.setEditable(false);
         jMessageSalon.setColumns(20);
@@ -267,9 +327,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(rechercheSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(sendSalonSend, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(decoButtonSalon, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -288,13 +346,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane1Layout.createSequentialGroup()
-                            .addGap(230, 230, 230)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(rechercheSalon, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(360, 360, 360)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,14 +362,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(sendSalonSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(155, 155, 155)
+                .addGap(90, 90, 90)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(decoButtonSalon)
                             .addComponent(jLabel4))
-                        .addGap(0, 8, Short.MAX_VALUE)))
+                        .addGap(0, 73, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -325,23 +379,18 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(decoButtonSalon))
-                .addGap(18, 18, 18)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rechercheSalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(58, 58, 58)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(sendSalonSend, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendSalonSend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ajoutUtilisateur)
                     .addComponent(nomUtilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -352,17 +401,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel5.setText("Messagerie");
-
-        rechercheMessagerie.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rechercheMessagerie.setText("Recherche");
-        rechercheMessagerie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechercheMessagerieActionPerformed(evt);
-            }
-        });
-
-        validerRechercheMessagerie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        validerRechercheMessagerie.setText("Valider");
 
         sendMessageMessagerie.setColumns(20);
         sendMessageMessagerie.setRows(5);
@@ -385,18 +423,17 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(192, 192, 192))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(affichageMessageMessagerie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(validerSendMessageMessagie)
                         .addGap(14, 14, 14))))
@@ -404,18 +441,18 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(affichageMessageMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(affichageMessageMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(validerSendMessageMessagie, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(16, 16, 16))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -428,8 +465,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jScrollPane6.setViewportView(repertoireMessagerie);
 
         jLayeredPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(rechercheMessagerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(validerRechercheMessagerie, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -438,23 +473,18 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addGap(305, 305, 305)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(rechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(validerRechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addGap(18, 34, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156))
+                .addGap(148, 148, 148))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(512, 512, 512))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,17 +492,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rechercheMessagerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(validerRechercheMessagerie))
-                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(25, 25, 25)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         profil.addTab("MESSAGERIE", jLayeredPane2);
@@ -540,11 +566,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel11.setText("Ancien mot de passe:");
         jLabel11.setToolTipText("");
 
-        changerpwd.setText("Nouveau pwd");
+        changerpwd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changerpwdActionPerformed(evt);
+            }
+        });
 
-        confirmpwd.setText("Confirmation");
-
-        pwdancien.setText("Verif");
         pwdancien.setToolTipText("");
 
         jLayeredPane3.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -651,6 +678,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
+        confirmpwd.getAccessibleContext().setAccessibleName("");
+
         profil.addTab("PROFIL", jLayeredPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -672,14 +701,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
        String droit = "";
        String mail = "";
        
-       
-       
-      /* switch(user){
-           case 1 : mail = CurrentA.getMail();break;
-           case 2 : mail = CurrentCP.getMail();break;
-           default : mail = CurrentU.getMail();break;
-           
-       }*/
           
         try {
             droit = selectBDD.checkright(mail);
@@ -719,11 +740,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         Accueil.setVisible(true);
     }//GEN-LAST:event_decoButtonSalonActionPerformed
 
-    private void rechercheMessagerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercheMessagerieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rechercheMessagerieActionPerformed
-
-    
     private void sendSalonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendSalonSendActionPerformed
        // TODO add your handling code here:
         String salonText = sendSalontexte.getText();
@@ -736,7 +752,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
 	   //get current date time with Date()
 	  java.util.Date date = new java.util.Date();
           String testD;
-        testD = "\n\nEnvoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
+        testD = "Envoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
            
         Messages msg = null;
         
@@ -811,64 +827,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_ajoutUtilisateurActionPerformed
-
-    
-    
-  // refresh les messages des salons   
-    private void refreshActionSalon()
-    {
-        try {// TODO add your handling code here:
-
-            selectBDD.getListSalonUtilisateur(Current);
-            String tampon = selectBDD.getMessageSalon("Salon Global");
-
-            //faut afficher les messages dans le textarea
-            jMessageSalon.setText(tampon);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
-
-    } 
-    
-     // refresh lors de la selection de l'utilisateur en privé   
-    public void refreshActionMessagerie()
-    {
-        // mise à jour de la messagerie
-        
-        repertoireMessagerie.addListSelectionListener(new ListSelectionListener() {
-             
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); 
-                //To change body of generated methods, choose Tools | Templates.
-                if ( e.getValueIsAdjusting() )
-                {
-                    //rString refreshM = repertoireMessagerie.getSelectedValue().toString();.toString();
-                    //System.out.println(refreshM);
-                    
-                        destMessagerie = repertoireMessagerie.getSelectedValue().getMail();
-                        destUser = repertoireMessagerie.getSelectedValue();
-                        
-                    try {
-                        //afficher les messages appropriés
-                        String messMessagerie = selectBDD.getMessageSalon( destMessagerie );
-                        
-                        //faut afficher les messages dans le textarea
-                        affichageMessageMessagerie.setText(messMessagerie);
-                        
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                        
-                    
-                }
-            }
-        }
-        
-        );
-    }
 
     private void firstnameprofilHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_firstnameprofilHierarchyChanged
         // TODO add your handling code here:
@@ -962,8 +920,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
               
                 
     }//GEN-LAST:event_validerProfilActionPerformed
-
-    
+  
     private void validerSendMessageMessagieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerSendMessageMessagieActionPerformed
         // TODO add your handling code here:
         String msgText = sendMessageMessagerie.getText();
@@ -976,7 +933,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
 	   //get current date time with Date()
 	  java.util.Date date = new java.util.Date();
           String testD;
-        testD = "\n\nEnvoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
+        testD = "Envoyé à "+heure.format(date)+":"+minute.format(date)+" le "+jour.format(date)+"-"+mois.format(date)+"-"+annee.format(date);
            
         Messages msg = null;
         
@@ -991,10 +948,36 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 //on vide la zone de texte 
-                sendSalontexte.setText("");
-                refreshActionSalon();
+                sendMessageMessagerie.setText("");
+                // on rafraichi
+                try
+                {
+                    affichageMessageMessagerie.setText("");
+                    destUser = repertoireMessagerie.getSelectedValue();
+                    destMessagerie = destUser.getNom();
+                    
+                    //afficher les messages appropriés
+                    String messMessagerie = selectBDD.getMessageMessagerie( destMessagerie, Current.getNom() );
+                    
+                    //faut afficher les messages dans le textarea
+                    affichageMessageMessagerie.setText(messMessagerie);
+                }
+                catch (SQLException ex) {
+                    Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
     }//GEN-LAST:event_validerSendMessageMessagieActionPerformed
 
+    
+    // a effacer
+    private void changerpwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changerpwdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changerpwdActionPerformed
+
+    private void nomUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomUtilisateurActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomUtilisateurActionPerformed
+// a effacer
   
      
     /**
@@ -1027,11 +1010,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //new Salon().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
         });
         
         
@@ -1051,7 +1030,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1076,8 +1054,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextField nomUtilisateur;
     private javax.swing.JTabbedPane profil;
     private javax.swing.JTextField pwdancien;
-    private javax.swing.JTextField rechercheMessagerie;
-    private javax.swing.JTextField rechercheSalon;
     private javax.swing.JList<Utilisateur> repertoireMessagerie;
     private javax.swing.JTextArea sendMessageMessagerie;
     private javax.swing.JButton sendSalonSend;
@@ -1085,7 +1061,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel serviceprofil;
     private javax.swing.JLabel titreProfil;
     private javax.swing.JButton validerProfil;
-    private javax.swing.JButton validerRechercheMessagerie;
     private javax.swing.JButton validerSendMessageMessagie;
     // End of variables declaration//GEN-END:variables
 }

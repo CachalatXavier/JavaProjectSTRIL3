@@ -125,7 +125,7 @@ public static String getUtilisateur(String email) throws SQLException{
     
 
 
-public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) throws SQLException{    // a finir
+public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) throws SQLException{ 
         Connection connect = coBDD.connect();
         Statement smt = connect.createStatement();
         
@@ -145,7 +145,7 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
         
 }
 
- //recuperer message
+ //recuperer message d'un salon
     public static String getMessageSalon(String salon )throws SQLException
     {
         String msg = "";
@@ -169,7 +169,40 @@ public static List<Utilisateur> getListSalonUtilisateur(Utilisateur Current) thr
                     +" a dit:\n"+resultat.getString(1)
                     +resultat.getString(2)+"\n";
             }
-       deconnect(connect); 
+            
+        deconnect(connect); 
+        return msg;
+    }
+    
+    public static String getMessageMessagerie(String dest, String emet )throws SQLException
+    {
+        String msg = "";
+       
+        //connexion base de donnée
+        Connection connect = coBDD.connect();
+        Statement smt = connect.createStatement();
+
+       // requete 
+            String sql = "SELECT contenuM, dateM, emetteurM FROM message WHERE (destinataireM = '"
+                    +dest+"' AND emetteurM = '"
+                    +emet+"') OR (destinataireM = '"
+                    +emet+"' AND emetteurM = '"
+                    +dest+"')";
+            ResultSet resultat = smt.executeQuery(sql);
+            resultat.next();
+            
+            msg = resultat.getString(3)
+                    +" a dit:\n"+resultat.getString(1)
+                    +"\n\n"+resultat.getString(2)+"\n";
+                    
+            
+            while (resultat.next()) {
+                msg = msg +"\n"+ resultat.getString(3)
+                    +" a dit:\n"+resultat.getString(1)
+                    +"\n\n"+resultat.getString(2)+"\n";
+            }
+            
+        deconnect(connect); 
         return msg;
     }
     
