@@ -1198,24 +1198,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         // TODO add your handling code here:
         tempList2.clear();
         defaultRenderer.removeAll();
-        try {
-            tempList2 = selectBDD.getUserPresent();
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for(int i=0; i<tempList2.size();i++){
-           
-            try {
-                System.out.println(tempList2.get(i).getNom());
-            } catch (SQLException ex) {
-                Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                SalonGlobal.adduser(tempList2.get(i));
-            } catch (SQLException ex) {
-                Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+      
     }//GEN-LAST:event_RefreshUserPresentActionPerformed
 
   
