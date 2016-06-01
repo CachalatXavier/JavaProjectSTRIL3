@@ -23,9 +23,6 @@ import packagebdd.selectBDD;
  * @author Xavier
  */
 public class Accueil extends javax.swing.JFrame {
-    //static Utilisateur CurrentU = new Utilisateur("");
-   // static Chef_Projet CurrentCP = new Chef_Projet("");
-    //static Admin CurrentA = new Admin("");
     static int user = 0;
     static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     static List<Messages> listeMessages = new ArrayList<Messages>();
@@ -259,12 +256,6 @@ public class Accueil extends javax.swing.JFrame {
                     }
                 }
             }
-            
-            /*try {
-                SalonGlobal.adduser(Current);
-            } catch (SQLException ex) {
-                Logger.getLogger(Accueil.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
             
             try {
                 userMess();

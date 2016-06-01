@@ -184,7 +184,7 @@ public static String getUtilisateur(String email) throws SQLException{
      * @return
      * @throws SQLException
      */
-    public static String getMessageSalon(String salon )throws SQLException
+    public static String getMessageSalon(String salon ) throws SQLException
     {
         String msg = "";
        
@@ -452,7 +452,7 @@ public static List<Salon> getListSalon() throws SQLException
          
                 
          try {
-            String sql = ("SELECT mailU FROM utilisateurs WHERE presentU = 1" );
+            String sql = ("SELECT mailU FROM utilisateurs WHERE presentU = 1 OR presentU = 2" );
             ResultSet res = smt.executeQuery(sql);
             ResultSetMetaData resUserMeta = res.getMetaData();
             String mail = "";

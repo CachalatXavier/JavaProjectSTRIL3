@@ -24,11 +24,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-/*import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;*/
 import javax.swing.event.ListSelectionEvent;
 import packageapi.MaListeUserPerso;
-//import packageapi.Admin;
 import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
@@ -70,11 +67,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     // refresh les messages des salons   
     private void refreshActionSalon()
     {
-            /*listeUtilisateurSalon.addListSelectionListener((ListSelectionEvent e) -> {
-            //throw new UnsupportedOperationException("Not supported yet.");
-            //To change body of generated methods, choose Tools | Templates.
-            if ( e.getValueIsAdjusting() )
-            {*/
                  
                 try {
                     //selectBDD.getListSalonUtilisateur(Current);
@@ -84,8 +76,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
-  
-         //}
     }  
                      
 
@@ -125,7 +115,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }
     
     public void refreshActionListSalon()
-	{
+    {
     	listSalon.addListSelectionListener( (ListSelectionEvent ev ) ->
     	{
         	if( ev.getValueIsAdjusting() )
@@ -145,7 +135,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             	}
         	}
     	});
-	}
+    }
     
     
 
@@ -156,13 +146,23 @@ public class Fenetre_principale extends javax.swing.JFrame {
     public Fenetre_principale(){
         initComponents();
         
+        /* timer */
         Timer timerSalon = new Timer();
+        Timer timerMessagerie = new Timer();
+        
         timerSalon.schedule (new TimerTask() {
             @Override
             public void run(){
                 refreshActionSalon();
+                
+            }   
+        },0, 1000);
+        
+        timerMessagerie.schedule(new TimerTask() {
+            @Override
+            public void run (){
                 // on rafraichi;
-                try
+               try
                 {
                     
                     destMessagerie = repertoireMessagerie.getSelectedValue().getNom();
@@ -176,8 +176,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 catch (SQLException ex) {
                     Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }   
-        },0, 1000);
+            }
+        },0,1000);
+        
         //----------------------------------------------------------------------------------------------------------//
         //----****  DECOMMENTER CE CODE POUR LE RAFRAICHISSEMENT DE LA LISTE DES USERS PRESENTS SANS BOUTON ****----//
         //----------------------------------------------------------------------------------------------------------//
@@ -210,30 +211,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         repertoireMessagerie.setCellRenderer(new MaListeUserPerso());
         listeUtilisateurSalon.setCellRenderer(new MaListeUserPerso());
-       
-       /* listeUtilisateurSalon.setCellRenderer(new ListCellRenderer<Utilisateur>() {
-            @Override
-            public Component getListCellRendererComponent(JList<? extends Utilisateur> list, Utilisateur value, int index, boolean isSelected, boolean cellHasFocus) {
-
-                JLabel l = new JLabel();
-                if (isSelected) {
-                    l.setForeground(Color.red);
-                }
-                
-                //for(int i=0; i<=2; i++){
-                    try {
-                        
-                        l.setText(index + 1 + " - " + Current.getNom() + " "+Current.getPrenom()+"");
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                //}
-                    
-                
-                
-                return l;
-            }
-        });*/
         
         // liste des salons en fonction de l'utilisateur connecter
         listSalon.setCellRenderer(new ListCellRenderer<Salon>() {
@@ -858,77 +835,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
     private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
-         /*      // TODO add your handling code here:
-                
-                // on prend juste le nom de l'utilisateur
-                String userNameMail = nomUtilisateur.getText();
-                String userMail = "";
-                
-                
-        try {
-            //vérifie si l'utilisateur est admin
-            String droitU = selectBDD.checkright(Current.getMail());
-            
-            //on récupert dans bdd le nom du salon auquel le current user est chef de projet
-            String bdd = getNomSalon(Current.getMail());
-            //on récupert le nom du salon courrant
-            String CurrentSalon = SalonGlobal.getDescription();
-        
-            //on test les droit de l'utilisateur, s'il n'est pas admin on verifie qu'il soit bien chef de projet du salon courrant
-        if( ( droitU.equals("ADMIN") || ( droitU.equals("CHEF_PROJET") && (bdd.equals(CurrentSalon))) ) )
-        {
-            
-            //on test si l'utilisateur à ajouter n'est pas déjà dans le salon
-           List malistSalon = selectBDD.getListSalonViaMail(userNameMail);
-           int tmp = 0;
-           for(Iterator it = malistSalon.iterator();it.hasNext();){
-              Salon sal;
-               sal = (Salon) it.next();
-              String salnom = sal.getDescription();
-               if(salnom.equals(CurrentSalon)){    
-                  JOptionPane.showMessageDialog(this,"L'utilisateur est déjà dans le salon !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
-                  tmp = 1;
-               }
-            }
-
-                if (tmp==0){   
-                    //select pour vérifier un utilisateur avec l'adresse mail existe
-                    try
-                    {
-                        userMail = selectBDD.getUtilisateur(userNameMail);
-                        //on teste 
-                        //System.out.println("User added to salon, "+userNameMail);
-                        if ( userMail.equals(userNameMail) )
-                        {
-                            // l'utilisateur existe
-                            addUserSalon(userNameMail, CurrentSalon);
-                            System.out.println("User added to salon");
-                            JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
-                    catch (SQLException ex)
-                    {
-                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        else
-        {
-            JOptionPane.showMessageDialog(this,"Vous n'êtes pas autoriser à ajouter un utilisateur à se salon", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+         // TODO add your handling code here:
           // on prend juste le nom de l'utilisateur
                 String userNameMail = nomUtilisateur.getText();
                 String userMail = "";
-                
-               //System.out.println("je viens de rentrer dans la M ajout");
 
         try {
             //vérifie si l'utilisateur est admin
@@ -1276,21 +1186,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-       
-       /*
-       try{
-                	jMessageSalon.setText("");
-                	SalonGlobal = listSalon.getSelectedValue();
-               	 
-                	//recupere les messages deu salon selection
-                	String messSalon = selectBDD.getMessageSalon( SalonGlobal.getDescription() );
-               	 
-                	// affiche les messages
-                	jMessageSalon.setText(messSalon);
-               	 
-            	} catch (SQLException ex) {
-                	Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-            	}*/
     }//GEN-LAST:event_RefreshUserPresentActionPerformed
 
   
