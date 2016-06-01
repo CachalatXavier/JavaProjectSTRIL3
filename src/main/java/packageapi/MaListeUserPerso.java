@@ -22,10 +22,7 @@ import javax.swing.ListCellRenderer;
  */
 public class MaListeUserPerso implements ListCellRenderer {
     
-    /**
-     *
-     */
-    public DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+    public static DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
     
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index,

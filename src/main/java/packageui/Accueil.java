@@ -29,7 +29,7 @@ public class Accueil extends javax.swing.JFrame {
     static int user = 0;
     static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     static List<Messages> listeMessages = new ArrayList<Messages>();
-    static Salon SalonGlobal = new Salon("Salon Global");
+    static Salon SalonGlobal = new Salon("");
     static List<Utilisateur> listeAllUsers = new ArrayList<Utilisateur>();
     static Messagerie Mess = new Messagerie();
     //static Messagerie Mess2 = new Messagerie();
@@ -37,6 +37,7 @@ public class Accueil extends javax.swing.JFrame {
     static ArrayList<Salon> tempS = new ArrayList<Salon>();
     static List<Utilisateur> tempList = new ArrayList<Utilisateur>();
     static List<Utilisateur> tempList2 = new ArrayList<Utilisateur>();
+
     /**
      * Creates new form Acceuil
      */
