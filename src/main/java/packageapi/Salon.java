@@ -63,6 +63,11 @@ public class Salon extends AbstractListModel<Utilisateur>{
         fireContentsChanged(listeUsers, 0, listeUsers.size());
     }
     
+    public void deleteuser (){
+        listeUsers.clear();
+        fireContentsChanged(listeUsers, 0, listeUsers.size());
+    }
+    
     /*public void addChefProjet(Chef_Projet CurrentCP) throws SQLException {
         
         listeUsers.add(CurrentCP);
