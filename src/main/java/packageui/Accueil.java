@@ -34,7 +34,7 @@ public class Accueil extends javax.swing.JFrame {
     static Messagerie Mess = new Messagerie();
     //static Messagerie Mess2 = new Messagerie();
     static Utilisateur Current = new Utilisateur("");
-    static ArrayList<Salon> tempS = new ArrayList<Salon>();
+    static List<Salon> tempS = new ArrayList<Salon>();
     static List<Utilisateur> tempList = new ArrayList<Utilisateur>();
     static List<Utilisateur> tempList2 = new ArrayList<Utilisateur>();
 
@@ -418,11 +418,13 @@ public class Accueil extends javax.swing.JFrame {
      * @throws SQLException
      */
     public void addSalonUser() throws SQLException{
-        List<Salon> S = new ArrayList<Salon>();
-        S = selectBDD.getListSalon(Current);
-       
-       for(int i=0; i<S.size();i++){
-           tempS.add(S.get(i));
+        //List<Salon> S = new ArrayList<Salon>();
+        
+        tempS.clear();
+        Current.InitSalonUser();
+       tempS = selectBDD.getListSalon(Current);
+       for(int i=0; i<tempS.size();i++){
+           //tempS.add(S.get(i));
            /*System.out.println(tempS.get(i).getDescription());
            System.out.println("JE SUIS LA");*/
            Current.salonUser(tempS.get(i));

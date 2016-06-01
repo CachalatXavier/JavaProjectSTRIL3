@@ -377,6 +377,12 @@ import static packagebdd.decoBDD.deconnect;
         listSalonUser.add(tempS);
         fireContentsChanged(listSalonUser, 0, listSalonUser.size());
     }
+    
+    public void InitSalonUser(){
+        
+        listSalonUser.clear();
+        fireContentsChanged(listSalonUser, 0, listSalonUser.size());
+    }
 
     @Override
     public int getSize() {
