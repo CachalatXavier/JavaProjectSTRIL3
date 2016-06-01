@@ -297,7 +297,7 @@ public static String getUtilisateur(String email) throws SQLException{
      * @throws SQLException
      */
     public static List<Salon> getListSalonViaMail (String usermail) throws SQLException{
-     Connection connect = coBDD.connect();
+    /* Connection connect = coBDD.connect();
          Statement smt = connect.createStatement();
                          
          try {
@@ -322,7 +322,44 @@ public static String getUtilisateur(String email) throws SQLException{
                 System.out.println(e4.getMessage());
          }
          deconnect(connect); 
+         return listSalon ;*/
+    
+    Connection connect = coBDD.connect();
+         Statement smt = connect.createStatement();
+                         
+         try {
+            String sql = ("SELECT description FROM utilisateurs,fairepartie,salon "
+                    + "WHERE (utilisateurs.idU=fairepartie.idU) AND (salon.idS=fairepartie.idS) AND ( MailU='"+usermail+"');"  );
+            ResultSet res = smt.executeQuery(sql);
+            ResultSetMetaData resUserMeta = res.getMetaData();
+            String description = "";
+            
+            listSalon.clear();
+            
+           while ( res.next()){
+               for (int i = 1; i <= resUserMeta.getColumnCount(); i++ ){
+                   description = res.getString(i);
+                   //System.out.println(description);
+                   
+                   Salon S = new Salon(description);
+                   
+                   System.out.println("je cré  ma liste icicicicicic");
+                   System.out.println("les description de ma liste"+S.getDescription());
+                   
+                   listSalon.add(S);
+               
+                   
+               }
+           }
+          
+        } catch (SQLException e4) {
+             
+                System.out.println(e4.getMessage());
+         }
+         deconnect(connect);
          return listSalon ;
+    
+
     }
     
     

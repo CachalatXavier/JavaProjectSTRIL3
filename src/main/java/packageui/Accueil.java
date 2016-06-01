@@ -29,7 +29,7 @@ public class Accueil extends javax.swing.JFrame {
     static int user = 0;
     static List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
     static List<Messages> listeMessages = new ArrayList<Messages>();
-    public static Salon SalonGlobal = new Salon("");
+    public static Salon SalonGlobal = new Salon("Salon Global");
     static List<Utilisateur> listeAllUsers = new ArrayList<Utilisateur>();
     static Messagerie Mess = new Messagerie();
     //static Messagerie Mess2 = new Messagerie();

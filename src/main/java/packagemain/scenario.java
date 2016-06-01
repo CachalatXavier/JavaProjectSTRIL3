@@ -30,7 +30,7 @@ public class  scenario {
      */
     public static void main(String args[]) throws SQLException {
         //createTableBDD creation = new createTableBDD();
-        //MainBDDmax maBDDmin = new MainBDDmax();
+        //MainBDDmin maBDDmin = new MainBDDmin();
         Accueil Accueil = new Accueil();
         new Accueil().setVisible(true);
    

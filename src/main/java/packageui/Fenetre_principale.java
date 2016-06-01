@@ -9,39 +9,30 @@ import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import static java.util.Collections.list;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
-import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import javax.swing.*;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
+/*import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;*/
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import packageapi.MaListeUserPerso;
 //import packageapi.Admin;
 import packageapi.Messages;
 import packageapi.Salon;
 import packageapi.Utilisateur;
 import packagebdd.coBDD;
-import static packagebdd.decoBDD.deconnect;
 import packagebdd.insertBDD;
 import static packagebdd.insertBDD.addUserSalon;
 import static packagebdd.insertBDD.addmsg;
@@ -54,12 +45,9 @@ import static packageui.Accueil.Mess;
 import static packageui.Accueil.tempS;
 import static packageui.Accueil.tempList;
 import static packageapi.MaListeUserPerso.defaultRenderer;
-//import static packageui.Accueil.listeAllUsers;
-//import static packagebdd.selectBDD.getListUtilisateur;
 import static packageapi.Salon.listeUsers;
 import static packageapi.Messagerie.allUsers;
 import static packageui.Accueil.tempList2;
-//import static packageui.Accueil.Mess2;
 
 
 /**
@@ -89,7 +77,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
             {*/
                  
                 try {
-                    selectBDD.getListSalonUtilisateur(Current);
+                    //selectBDD.getListSalonUtilisateur(Current);
                     String tampon = selectBDD.getMessageSalon(SalonGlobal.getDescription());
                     //faut afficher les messages dans le textarea
                     jMessageSalon.setText(tampon);
@@ -98,9 +86,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 }
   
          //}
-    }  //);
-                    //}
-     // refresh lors de la selection de l'utilisateur en privé   
+    }  
+                     
 
     /**
      *
@@ -318,7 +305,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         repertoireMessagerie = new javax.swing.JList<>();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jLabel10 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         validerProfil = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         titreProfil = new javax.swing.JLabel();
@@ -328,7 +314,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         firstnameprofil = new javax.swing.JLabel();
         mailprofil = new javax.swing.JLabel();
         nameprofil = new javax.swing.JLabel();
-        serviceprofil = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         changerpwd = new javax.swing.JTextField();
         confirmpwd = new javax.swing.JTextField();
@@ -620,9 +605,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLabel10.setText("Confirmer :");
         jLabel10.setToolTipText("");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Service :");
-
         validerProfil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         validerProfil.setText("Valider");
         validerProfil.addActionListener(new java.awt.event.ActionListener() {
@@ -668,13 +650,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
             }
         });
 
-        serviceprofil.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        serviceprofil.addHierarchyListener(new java.awt.event.HierarchyListener() {
-            public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
-                serviceprofilHierarchyChanged(evt);
-            }
-        });
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Ancien mot de passe:");
         jLabel11.setToolTipText("");
@@ -682,7 +657,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         pwdancien.setToolTipText("");
 
         jLayeredPane3.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(validerProfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(titreProfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -692,7 +666,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         jLayeredPane3.setLayer(firstnameprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(mailprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(nameprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane3.setLayer(serviceprofil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(changerpwd, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane3.setLayer(confirmpwd, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -728,23 +701,18 @@ public class Fenetre_principale extends javax.swing.JFrame {
                             .addComponent(titreProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(nameprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel14)
-                    .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane3Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(191, 191, 191)
-                            .addComponent(serviceprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jLayeredPane3Layout.createSequentialGroup()
-                                    .addComponent(jLabel15)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
-                                    .addComponent(jLabel12)
-                                    .addGap(103, 103, 103)))
-                            .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(firstnameprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(mailprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(775, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(154, 154, 154))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane3Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(103, 103, 103)))
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(firstnameprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mailprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(837, Short.MAX_VALUE))
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -763,11 +731,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel15)
                     .addComponent(mailprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
-                    .addComponent(serviceprofil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addGap(102, 102, 102)
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(changerpwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -779,7 +743,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(pwdancien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(validerProfil)
                 .addGap(33, 33, 33))
         );
@@ -894,7 +858,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }//GEN-LAST:event_sendSalonSendActionPerformed
 
     private void ajoutUtilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutUtilisateurActionPerformed
-               // TODO add your handling code here:
+         /*      // TODO add your handling code here:
                 
                 // on prend juste le nom de l'utilisateur
                 String userNameMail = nomUtilisateur.getText();
@@ -959,6 +923,82 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         } catch (SQLException ex) {
             Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+          // on prend juste le nom de l'utilisateur
+                String userNameMail = nomUtilisateur.getText();
+                String userMail = "";
+                
+               //System.out.println("je viens de rentrer dans la M ajout");
+
+        try {
+            //vérifie si l'utilisateur est admin
+            String droitU = selectBDD.checkright(Current.getMail());
+            
+            //on récupert dans bdd le nom du salon auquel le current user est chef de projet
+            String bdd = getNomSalon(Current.getMail());
+            //on récupert le nom du salon courrant
+            String CurrentSalon = SalonGlobal.getDescription();
+        
+            //on test les droit de l'utilisateur, s'il n'est pas admin on verifie qu'il soit bien chef de projet du salon courrant
+        if( ( droitU.equals("ADMIN") || ( droitU.equals("CHEF_PROJET") && (bdd.equals(CurrentSalon))) ) )
+        {
+                          
+
+           //on test si l'utilisateur à ajouter n'est pas déjà dans le salon
+           List malistSalon = selectBDD.getListSalonViaMail(userNameMail);
+           int tmp = 0;
+           int $i;
+           //a verif pour la condition
+           for ($i=0; $i < malistSalon.size(); $i++){
+               if(tmp !=1 ){
+               
+                    Salon sal = (Salon) malistSalon.get($i);
+                    String salnom = sal.getDescription();
+              
+              System.out.println("occurence: "+salnom);
+              System.out.println("current salon:"+CurrentSalon);
+                
+                if(salnom.equals(CurrentSalon)){    
+                     JOptionPane.showMessageDialog(this,"L'utilisateur est déjà dans le salon !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                     tmp = 1;
+                  }
+              
+               }              
+            
+           }
+
+                if (tmp==0){   
+                    //select pour vérifier un utilisateur avec l'adresse mail existe
+                    try
+                    {
+                        userMail = selectBDD.getUtilisateur(userNameMail);
+                        //on teste
+                        //System.out.println("User added to salon, "+userNameMail);
+                        if ( userMail.equals(userNameMail) )
+                        {
+                            // l'utilisateur existe
+                            addUserSalon(userNameMail, CurrentSalon);
+                            
+                            JOptionPane.showMessageDialog(this,"Vous avez ajouté "+userNameMail+" au salon", "SUCCES", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(this,"L'utilisateur n'existe pas !", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    catch (SQLException ex)
+                    {
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Vous n'êtes pas autoriser à ajouter un utilisateur à se salon", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -993,19 +1033,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_nameprofilHierarchyChanged
 
-    private void serviceprofilHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_serviceprofilHierarchyChanged
-        // TODO add your handling code here:
-        String service;
-        
-        try {
-            service = Current.getService();
-            serviceprofil.setText(service);
-        } catch (SQLException ex) {
-            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
-    }//GEN-LAST:event_serviceprofilHierarchyChanged
-
     private void validerProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerProfilActionPerformed
         // TODO add your handling code here:
             Connection connect = coBDD.connect();
@@ -1038,6 +1065,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         // execute the java preparedstatement
                         preparedStmt.executeUpdate();
                         
+                        JOptionPane.showMessageDialog(this,"Votre mots de passe est modifié", "change mdp", JOptionPane.INFORMATION_MESSAGE);
                         
                     }
                     else{
@@ -1172,7 +1200,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         {
             
             //on test si le salon à créer n'est pas déjà existant
-           List malistSalon = selectBDD.getListSalon();
+           List malistSalon = selectBDD.getListSalonViaMail(Current.getMail());
            int tmp = 0;
            for(Iterator it = malistSalon.iterator();it.hasNext();){
               Salon sal;
@@ -1187,8 +1215,9 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 if (tmp==0){   
                     
                     insertBDD.createNewSalon(nomSalon);
+                    insertBDD.addUserSalon(Current.getMail(), nomSalon);
                     JOptionPane.showMessageDialog(this,"Le salon "+nomSalon+" a été créé.", "Erreur de confirmation", JOptionPane.ERROR_MESSAGE);
-
+                       
                 }
             }
         else
@@ -1232,6 +1261,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         tempList2.clear();
         defaultRenderer.removeAll();
         SalonGlobal.deleteuser();
+        // liste user present 
         try {
             tempList2 = selectBDD.getUserPresent();
         } catch (SQLException ex) {
@@ -1246,6 +1276,21 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+       
+       /*
+       try{
+                	jMessageSalon.setText("");
+                	SalonGlobal = listSalon.getSelectedValue();
+               	 
+                	//recupere les messages deu salon selection
+                	String messSalon = selectBDD.getMessageSalon( SalonGlobal.getDescription() );
+               	 
+                	// affiche les messages
+                	jMessageSalon.setText(messSalon);
+               	 
+            	} catch (SQLException ex) {
+                	Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+            	}*/
     }//GEN-LAST:event_RefreshUserPresentActionPerformed
 
   
@@ -1309,7 +1354,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
@@ -1333,7 +1377,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextArea sendMessageMessagerie;
     private javax.swing.JButton sendSalonSend;
     private javax.swing.JTextArea sendSalontexte;
-    private javax.swing.JLabel serviceprofil;
     private javax.swing.JLabel titreProfil;
     private javax.swing.JButton validerProfil;
     private javax.swing.JButton validerSendMessageMessagie;
